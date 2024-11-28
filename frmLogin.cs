@@ -30,42 +30,6 @@ namespace prjIcedOutWheelz
 
         }
 
-        private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Environment.Exit(0);
-        }
-
-
-        private void txtEmail_Enter(object sender, EventArgs e)
-        {
-            txtEmail.Text = "";
-            txtEmail.ForeColor = Color.Black;
-        }
-
-        private void txtEmail_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtEmail.Text))
-            {
-                txtEmail.Text = "Email";
-                txtEmail.ForeColor = Color.Gray;
-            }
-        }
-
-        private void txtWachtwoord_Enter(object sender, EventArgs e)
-        {
-            txtWachtwoord.Text = "";
-            txtWachtwoord.ForeColor = Color.Black;
-        }
-
-        private void txtWachtwoord_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtWachtwoord.Text))
-            {
-                txtWachtwoord.Text = "Wachtwoord";
-                txtWachtwoord.ForeColor = Color.Gray;
-            }
-        }
-
         private void btnLogin_Click(object sender, EventArgs e)
         {
             Login L = new Login();
@@ -100,6 +64,42 @@ namespace prjIcedOutWheelz
             else
             {
                 MessageBox.Show("Email en/of wachtwoord komen niet overeen!", "Login");
+            }
+        }
+
+        private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+
+        private void txtEmail_Enter(object sender, EventArgs e)
+        {
+            txtEmail.Text = "";
+            txtEmail.ForeColor = Color.Black;
+        }
+
+        private void txtEmail_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtEmail.Text))
+            {
+                txtEmail.Text = "Email";
+                txtEmail.ForeColor = Color.Gray;
+            }
+        }
+
+        private void txtWachtwoord_Enter(object sender, EventArgs e)
+        {
+            txtWachtwoord.Text = "";
+            txtWachtwoord.ForeColor = Color.Black;
+        }
+
+        private void txtWachtwoord_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtWachtwoord.Text))
+            {
+                txtWachtwoord.Text = "Wachtwoord";
+                txtWachtwoord.ForeColor = Color.Gray;
             }
         }
     }  
