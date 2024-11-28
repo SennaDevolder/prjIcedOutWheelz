@@ -10,12 +10,17 @@ using System.Windows.Forms;
 
 namespace prjIcedOutWheelz
 {
-    public partial class Form1 : Form
+    public partial class frmRegistreer : Form
     {
-        public Form1()
+        public frmRegistreer()
         {
             InitializeComponent();
-            //joak joam
+            this.CenterToScreen();
+        }
+
+        private void frmRegistreer_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }
