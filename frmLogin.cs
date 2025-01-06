@@ -56,7 +56,7 @@ namespace prjIcedOutWheelz
                     }
                     else
                     {
-                        MessageBox.Show("2FA code is incorrect\rEr is een nieuwe 2FA code verzonden.", "2FA");
+                        MessageBox.Show("2FA code is incorrect\rEr is een nieuwe 2FA code verzonden.", "2FA");  
                     }
 
                 } while (str2FAcodeCHECKER != str2FAcode);
