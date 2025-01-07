@@ -72,7 +72,6 @@ namespace prjIcedOutWheelz
             Environment.Exit(0);
         }
 
-
         private void txtEmail_Enter(object sender, EventArgs e)
         {
             txtEmail.Text = "";
@@ -102,6 +101,44 @@ namespace prjIcedOutWheelz
                 txtWachtwoord.ForeColor = Color.Gray;
             }
         }
+
+        private void btnChangePass_Click(object sender, EventArgs e)
+        {
+            Login L = new Login();
+
+            L.Email = txtEmail.Text;
+            L.Wachtwoord = txtWachtwoord.Text;
+
+            if(LoginDA.LoginValidation(L) == 1)
+            {
+                string strNewPass, strPassConfirm;
+
+                c:
+                strNewPass = Interaction.InputBox("Voer nieuw wachtwoord in:", "Wachtwoord wijzigen");
+                strPassConfirm = Interaction.InputBox("Voer wachtwoord opnieuw in.", "Wachtwoord wijzigen");
+
+                if (strNewPass == strPassConfirm)
+                {
+                    LoginDA.WachtwoordVeranderen(L, strNewPass);
+                }
+                else
+                {
+                    DialogResult dlr = MessageBox.Show("Wachtwoorden komen niet overeen", "Wachtwoord wijzigen", MessageBoxButtons.RetryCancel);
+
+                    switch (dlr)
+                    {
+                        case DialogResult.Cancel:
+                            {
+                                return;
+                            }
+                        case DialogResult.Retry:
+                            {
+                                goto c;
+                            }
+                    }
+                }
+                txtEmail.Clear();
+            }
+        }
     }  
-    
 }

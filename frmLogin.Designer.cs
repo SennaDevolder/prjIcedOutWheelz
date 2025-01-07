@@ -32,6 +32,7 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtWachtwoord = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.btnChangePass = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,12 +84,29 @@
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
+            // btnChangePass
+            // 
+            this.btnChangePass.BackColor = System.Drawing.Color.Cyan;
+            this.btnChangePass.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnChangePass.FlatAppearance.BorderSize = 4;
+            this.btnChangePass.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnChangePass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChangePass.Font = new System.Drawing.Font("Bell MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangePass.Location = new System.Drawing.Point(64, 347);
+            this.btnChangePass.Name = "btnChangePass";
+            this.btnChangePass.Size = new System.Drawing.Size(168, 55);
+            this.btnChangePass.TabIndex = 4;
+            this.btnChangePass.Text = "Wachtwoord wijzigen";
+            this.btnChangePass.UseVisualStyleBackColor = false;
+            this.btnChangePass.Click += new System.EventHandler(this.btnChangePass_Click);
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(297, 384);
+            this.ClientSize = new System.Drawing.Size(297, 408);
+            this.Controls.Add(this.btnChangePass);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtWachtwoord);
             this.Controls.Add(this.txtEmail);
@@ -109,5 +127,6 @@
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtWachtwoord;
         private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Button btnChangePass;
     }
 }

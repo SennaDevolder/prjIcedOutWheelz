@@ -49,7 +49,7 @@ namespace prjIcedOutWheelz.DA
         {
             MySqlConnection conn = Database.MakeConnection();
 
-            string query = "INSERT INTO login.tbllogin(Username, Password) VALUES (@Username, @Password)";
+            string query = "INSERT INTO icedoutwheelz.klant(Username, Password) VALUES (@Username, @Password)";
             MySqlCommand sqlcmd = new MySqlCommand(query, conn);
             //sqlcmd.Parameters.AddWithValue("@Username", L.Username);
             //sqlcmd.Parameters.AddWithValue("@Password", L.Password);
@@ -64,16 +64,16 @@ namespace prjIcedOutWheelz.DA
         {
             MySqlConnection conn = Database.MakeConnection();
 
-            string query = "UPDATE login.tbllogin SET Password=@NewPass WHERE Username=@Username AND Password=@Password";
+            string query = "UPDATE icedoutwheelz.klant SET Wachtwoord=@NewPass WHERE Email=@Email AND Wachtwoord=@Wachtwoord";
             MySqlCommand sqlcmd = new MySqlCommand(query, conn);
-            //sqlcmd.Parameters.AddWithValue("@Username", L.Username);
-            //sqlcmd.Parameters.AddWithValue("@Password", L.Password);
+            sqlcmd.Parameters.AddWithValue("@Email", L.Email);
+            sqlcmd.Parameters.AddWithValue("@Wachtwoord", L.Wachtwoord);
             sqlcmd.Parameters.AddWithValue("@NewPass", NewPass);
 
             sqlcmd.ExecuteScalar();
 
 
-            MessageBox.Show("Wachtwoord werd gewijzigd!");
+            MessageBox.Show("Wachtwoord succesvol gewijzigd!", "Wachtwoord wijzigen");
         }
 
         public static void GebruikerVerwijderen(Login L)
