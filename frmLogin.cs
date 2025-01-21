@@ -50,7 +50,7 @@ namespace prjIcedOutWheelz
                     if (str2FAcodeCHECKER == str2FAcode)
                     {
                         MessageBox.Show("Succesvol ingelogd!", "Login");
-                        frmRegistreer frm = new frmRegistreer();
+                        frmhoofdpagina frm = new frmhoofdpagina();
                         frm.Show();
                         this.Hide();
                     }

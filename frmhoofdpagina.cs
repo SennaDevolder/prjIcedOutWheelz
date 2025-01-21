@@ -15,6 +15,7 @@ namespace prjIcedOutWheelz
         public frmhoofdpagina()
         {
             InitializeComponent();
+            this.CenterToScreen();
         }
     }
 }
