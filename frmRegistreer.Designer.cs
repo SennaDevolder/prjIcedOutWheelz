@@ -28,21 +28,153 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.btnaccount = new System.Windows.Forms.Button();
+            this.txtwachtwoord = new System.Windows.Forms.TextBox();
+            this.txtherhaal = new System.Windows.Forms.TextBox();
+            this.picLogo = new System.Windows.Forms.PictureBox();
+            this.txtadres = new System.Windows.Forms.TextBox();
+            this.txtstraatnr = new System.Windows.Forms.TextBox();
+            this.txttelefoon = new System.Windows.Forms.TextBox();
+            this.txtemail = new System.Windows.Forms.TextBox();
+            this.txtvoornaam = new System.Windows.Forms.TextBox();
+            this.txtnaam = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
+            // 
+            // btnaccount
+            // 
+            this.btnaccount.BackColor = System.Drawing.Color.Cyan;
+            this.btnaccount.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnaccount.FlatAppearance.BorderSize = 4;
+            this.btnaccount.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnaccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnaccount.Font = new System.Drawing.Font("Bell MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnaccount.Location = new System.Drawing.Point(56, 416);
+            this.btnaccount.Name = "btnaccount";
+            this.btnaccount.Size = new System.Drawing.Size(168, 34);
+            this.btnaccount.TabIndex = 8;
+            this.btnaccount.Text = "Maak account aan";
+            this.btnaccount.UseVisualStyleBackColor = false;
+            // 
+            // txtwachtwoord
+            // 
+            this.txtwachtwoord.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtwachtwoord.ForeColor = System.Drawing.Color.Black;
+            this.txtwachtwoord.Location = new System.Drawing.Point(56, 359);
+            this.txtwachtwoord.Name = "txtwachtwoord";
+            this.txtwachtwoord.Size = new System.Drawing.Size(168, 20);
+            this.txtwachtwoord.TabIndex = 7;
+            // 
+            // txtherhaal
+            // 
+            this.txtherhaal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtherhaal.ForeColor = System.Drawing.Color.Black;
+            this.txtherhaal.Location = new System.Drawing.Point(56, 388);
+            this.txtherhaal.Name = "txtherhaal";
+            this.txtherhaal.Size = new System.Drawing.Size(168, 20);
+            this.txtherhaal.TabIndex = 6;
+            // 
+            // picLogo
+            // 
+            this.picLogo.Image = global::prjIcedOutWheelz.Properties.Resources.Logo;
+            this.picLogo.Location = new System.Drawing.Point(56, 12);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Size = new System.Drawing.Size(168, 167);
+            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picLogo.TabIndex = 5;
+            this.picLogo.TabStop = false;
+            // 
+            // txtadres
+            // 
+            this.txtadres.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtadres.ForeColor = System.Drawing.Color.Black;
+            this.txtadres.Location = new System.Drawing.Point(56, 330);
+            this.txtadres.Name = "txtadres";
+            this.txtadres.Size = new System.Drawing.Size(168, 20);
+            this.txtadres.TabIndex = 9;
+            // 
+            // txtstraatnr
+            // 
+            this.txtstraatnr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtstraatnr.ForeColor = System.Drawing.Color.Black;
+            this.txtstraatnr.Location = new System.Drawing.Point(56, 301);
+            this.txtstraatnr.Name = "txtstraatnr";
+            this.txtstraatnr.Size = new System.Drawing.Size(168, 20);
+            this.txtstraatnr.TabIndex = 10;
+            // 
+            // txttelefoon
+            // 
+            this.txttelefoon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txttelefoon.ForeColor = System.Drawing.Color.Black;
+            this.txttelefoon.Location = new System.Drawing.Point(56, 272);
+            this.txttelefoon.Name = "txttelefoon";
+            this.txttelefoon.Size = new System.Drawing.Size(168, 20);
+            this.txttelefoon.TabIndex = 11;
+            // 
+            // txtemail
+            // 
+            this.txtemail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtemail.ForeColor = System.Drawing.Color.Black;
+            this.txtemail.Location = new System.Drawing.Point(56, 243);
+            this.txtemail.Name = "txtemail";
+            this.txtemail.Size = new System.Drawing.Size(168, 20);
+            this.txtemail.TabIndex = 12;
+            // 
+            // txtvoornaam
+            // 
+            this.txtvoornaam.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtvoornaam.ForeColor = System.Drawing.Color.Black;
+            this.txtvoornaam.Location = new System.Drawing.Point(56, 214);
+            this.txtvoornaam.Name = "txtvoornaam";
+            this.txtvoornaam.Size = new System.Drawing.Size(168, 20);
+            this.txtvoornaam.TabIndex = 13;
+            // 
+            // txtnaam
+            // 
+            this.txtnaam.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtnaam.ForeColor = System.Drawing.Color.Black;
+            this.txtnaam.Location = new System.Drawing.Point(56, 185);
+            this.txtnaam.Name = "txtnaam";
+            this.txtnaam.Size = new System.Drawing.Size(168, 20);
+            this.txtnaam.TabIndex = 14;
             // 
             // frmRegistreer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.ClientSize = new System.Drawing.Size(278, 469);
+            this.Controls.Add(this.txtnaam);
+            this.Controls.Add(this.txtvoornaam);
+            this.Controls.Add(this.txtemail);
+            this.Controls.Add(this.txttelefoon);
+            this.Controls.Add(this.txtstraatnr);
+            this.Controls.Add(this.txtadres);
+            this.Controls.Add(this.btnaccount);
+            this.Controls.Add(this.txtwachtwoord);
+            this.Controls.Add(this.txtherhaal);
+            this.Controls.Add(this.picLogo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmRegistreer";
             this.Text = "frmRegistreer";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmRegistreer_FormClosed);
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnaccount;
+        private System.Windows.Forms.TextBox txtwachtwoord;
+        private System.Windows.Forms.TextBox txtherhaal;
+        private System.Windows.Forms.PictureBox picLogo;
+        private System.Windows.Forms.TextBox txtadres;
+        private System.Windows.Forms.TextBox txtstraatnr;
+        private System.Windows.Forms.TextBox txttelefoon;
+        private System.Windows.Forms.TextBox txtemail;
+        private System.Windows.Forms.TextBox txtvoornaam;
+        private System.Windows.Forms.TextBox txtnaam;
     }
 }

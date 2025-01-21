@@ -9,7 +9,6 @@ using System.Data.SqlClient;
 
 //dependencies om mails te versturen
 
-//joa
 using System.Net;
 using System.Net.Mail;
 
@@ -33,7 +32,7 @@ namespace prjIcedOutWheelz.DA
             //sqlconnection aanmaken --> verbinding met de databank te maken
             MySqlConnection conn = Database.MakeConnection();
 
-            string query = "SELECT COUNT(1) FROM icedoutwheelz.klant WHERE Email=@Email AND Wachtwoord=@Wachtwoord";
+            string query = "SELECT COUNT(1) FROM icedoutwheelz.tblKlant WHERE Email=@Email AND Wachtwoord=@Wachtwoord";
             //commando maken --> zorgt ervoor dat de sql statement wordt ingezet
             MySqlCommand sqlcmd = new MySqlCommand(query, conn);
             //welk soort commando is dat?
@@ -51,7 +50,7 @@ namespace prjIcedOutWheelz.DA
         {
             MySqlConnection conn = Database.MakeConnection();
 
-            string query = "INSERT INTO icedoutwheelz.klant(Username, Password) VALUES (@Username, @Password)";
+            string query = "INSERT INTO icedoutwheelz.tblKlant(Username, Password) VALUES (@Username, @Password)";
             MySqlCommand sqlcmd = new MySqlCommand(query, conn);
             //sqlcmd.Parameters.AddWithValue("@Username", L.Username);
             //sqlcmd.Parameters.AddWithValue("@Password", L.Password);
@@ -66,7 +65,7 @@ namespace prjIcedOutWheelz.DA
         {
             MySqlConnection conn = Database.MakeConnection();
 
-            string query = "UPDATE icedoutwheelz.klant SET Wachtwoord=@NewPass WHERE Email=@Email AND Wachtwoord=@Wachtwoord";
+            string query = "UPDATE icedoutwheelz.tblKlant SET Wachtwoord=@NewPass WHERE Email=@Email AND Wachtwoord=@Wachtwoord";
             MySqlCommand sqlcmd = new MySqlCommand(query, conn);
             sqlcmd.Parameters.AddWithValue("@Email", L.Email);
             sqlcmd.Parameters.AddWithValue("@Wachtwoord", L.Wachtwoord);
