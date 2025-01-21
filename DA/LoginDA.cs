@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 
 //dependencies om mails te versturen
+
+//joa
 using System.Net;
 using System.Net.Mail;
 
