@@ -17,5 +17,11 @@ namespace prjIcedOutWheelz
             InitializeComponent();
             this.CenterToScreen();
         }
+
+        private void btnAdmin_Click(object sender, EventArgs e)
+        {
+            frmAdminscherm frmAdminscherm = new frmAdminscherm();
+            frmAdminscherm.Show();
+        }
     }
 }

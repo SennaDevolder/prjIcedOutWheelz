@@ -52,8 +52,8 @@
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.9.0.1\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="MySql.Data, Version=9.2.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>packages\MySql.Data.9.2.0\lib\net462\MySql.Data.dll</HintPath>
+    <Reference Include="mysql.data">
+      <HintPath>Y:\6AD\0-opdrachten\Softwareontwikkeling\mysql.data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -99,6 +99,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAdminscherm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdminscherm.Designer.cs">
+      <DependentUpon>frmAdminscherm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DA\LoginDA.cs" />
     <Compile Include="frmhoofdpagina.cs">
       <SubType>Form</SubType>
@@ -128,6 +134,9 @@
     <Compile Include="Model\Login.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAdminscherm.resx">
+      <DependentUpon>frmAdminscherm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmhoofdpagina.resx">
       <DependentUpon>frmhoofdpagina.cs</DependentUpon>
     </EmbeddedResource>
