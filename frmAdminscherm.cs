@@ -21,33 +21,33 @@ namespace prjIcedOutWheelz
 
         private void btnaddimg_Click(object sender, EventArgs e)
         {
-            // Create an OpenFileDialog to allow user to select an image
+            //maak een openfiledialog zodat je een img kan selecteren
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.tiff"; // Filter for image files
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.tiff"; // Filter
             openFileDialog.Title = "Select an Image";
 
-            // Show the dialog and check if user selected a file
+            //toon en check of er een file is geselecteerd
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    // Get the selected file path
+                    //file path
                     string selectedFilePath = openFileDialog.FileName;
 
-                    // Define the custom Resources folder path
+                    //waar opslaan
                     string resourcesFolder = @"Z:\oefen\Sofo\Projecten\E\Resources";
 
-                    // Check if the Resources folder exists, and if not, create it
+                    //check of locatie bestaat anders word er een gemaakt
                     if (!Directory.Exists(resourcesFolder))
                     {
                         Directory.CreateDirectory(resourcesFolder);
                     }
 
-                    // Get the file name from the selected file path
+                    //naam file van path
                     string fileName = Path.GetFileName(selectedFilePath);
                     string destinationPath = Path.Combine(resourcesFolder, fileName);
 
-                    // If the file already exists, generate a unique name by appending a number
+                    //maak naam uniek als die al bestaat
                     int counter = 1;
                     while (File.Exists(destinationPath))
                     {
@@ -56,14 +56,14 @@ namespace prjIcedOutWheelz
                         counter++;
                     }
 
-                    // Copy the file to the Resources folder
+                    //copieer file
                     File.Copy(selectedFilePath, destinationPath);
 
-                    // Load the selected image into the PictureBox
+                    // img in picturebox
                     pcbauto.Image = System.Drawing.Image.FromFile(destinationPath);
-                    pcbauto.SizeMode = PictureBoxSizeMode.StretchImage; // Adjust image to fit PictureBox
-
-                    // Notify the user where the image was saved
+                    //img aanpassen
+                    pcbauto.SizeMode = PictureBoxSizeMode.StretchImage;
+                    //messagebox om te melden dat de img is opgeslagen
                     MessageBox.Show($"Image saved to: {destinationPath}");
                 }
                 catch (Exception ex)
