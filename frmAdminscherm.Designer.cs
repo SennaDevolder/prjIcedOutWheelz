@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pcbBalk = new System.Windows.Forms.PictureBox();
-            this.pcbLogo = new System.Windows.Forms.PictureBox();
             this.lblSlogan = new System.Windows.Forms.Label();
             this.txthooftdpagina = new System.Windows.Forms.Button();
             this.lsbautos = new System.Windows.Forms.ListBox();
@@ -37,10 +35,8 @@
             this.btnremove = new System.Windows.Forms.Button();
             this.btnclear = new System.Windows.Forms.Button();
             this.btnaddimg = new System.Windows.Forms.Button();
-            this.pcbauto = new System.Windows.Forms.PictureBox();
             this.btnsave = new System.Windows.Forms.Button();
             this.btnadd = new System.Windows.Forms.Button();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkBox29 = new System.Windows.Forms.CheckBox();
             this.checkBox30 = new System.Windows.Forms.CheckBox();
@@ -77,31 +73,16 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbBalk)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbauto)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pcbauto = new System.Windows.Forms.PictureBox();
+            this.pcbLogo = new System.Windows.Forms.PictureBox();
+            this.pcbBalk = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbauto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbBalk)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pcbBalk
-            // 
-            this.pcbBalk.BackColor = System.Drawing.Color.Cyan;
-            this.pcbBalk.Location = new System.Drawing.Point(-91, -21);
-            this.pcbBalk.Name = "pcbBalk";
-            this.pcbBalk.Size = new System.Drawing.Size(1342, 139);
-            this.pcbBalk.TabIndex = 3;
-            this.pcbBalk.TabStop = false;
-            // 
-            // pcbLogo
-            // 
-            this.pcbLogo.Image = global::prjIcedOutWheelz.Properties.Resources.Logo;
-            this.pcbLogo.Location = new System.Drawing.Point(12, 12);
-            this.pcbLogo.Name = "pcbLogo";
-            this.pcbLogo.Size = new System.Drawing.Size(99, 96);
-            this.pcbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pcbLogo.TabIndex = 4;
-            this.pcbLogo.TabStop = false;
             // 
             // lblSlogan
             // 
@@ -162,6 +143,7 @@
             this.btnclear.TabIndex = 10;
             this.btnclear.Text = "Clear";
             this.btnclear.UseVisualStyleBackColor = true;
+            this.btnclear.Click += new System.EventHandler(this.btnclear_Click);
             // 
             // btnaddimg
             // 
@@ -173,14 +155,6 @@
             this.btnaddimg.Text = "Add img";
             this.btnaddimg.UseVisualStyleBackColor = true;
             this.btnaddimg.Click += new System.EventHandler(this.btnaddimg_Click);
-            // 
-            // pcbauto
-            // 
-            this.pcbauto.Location = new System.Drawing.Point(413, 132);
-            this.pcbauto.Name = "pcbauto";
-            this.pcbauto.Size = new System.Drawing.Size(461, 258);
-            this.pcbauto.TabIndex = 13;
-            this.pcbauto.TabStop = false;
             // 
             // btnsave
             // 
@@ -201,15 +175,6 @@
             this.btnadd.TabIndex = 16;
             this.btnadd.Text = "Add";
             this.btnadd.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Black;
-            this.pictureBox3.Location = new System.Drawing.Point(-191, 116);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(1278, 10);
-            this.pictureBox3.TabIndex = 20;
-            this.pictureBox3.TabStop = false;
             // 
             // panel1
             // 
@@ -603,6 +568,44 @@
             this.checkBox1.Text = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Black;
+            this.pictureBox3.Location = new System.Drawing.Point(-191, 116);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(1278, 10);
+            this.pictureBox3.TabIndex = 20;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pcbauto
+            // 
+            this.pcbauto.Image = global::prjIcedOutWheelz.Properties.Resources.placeholder_image;
+            this.pcbauto.Location = new System.Drawing.Point(413, 132);
+            this.pcbauto.Name = "pcbauto";
+            this.pcbauto.Size = new System.Drawing.Size(461, 258);
+            this.pcbauto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcbauto.TabIndex = 13;
+            this.pcbauto.TabStop = false;
+            // 
+            // pcbLogo
+            // 
+            this.pcbLogo.Image = global::prjIcedOutWheelz.Properties.Resources.Logo;
+            this.pcbLogo.Location = new System.Drawing.Point(12, 12);
+            this.pcbLogo.Name = "pcbLogo";
+            this.pcbLogo.Size = new System.Drawing.Size(99, 96);
+            this.pcbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbLogo.TabIndex = 4;
+            this.pcbLogo.TabStop = false;
+            // 
+            // pcbBalk
+            // 
+            this.pcbBalk.BackColor = System.Drawing.Color.Cyan;
+            this.pcbBalk.Location = new System.Drawing.Point(-91, -21);
+            this.pcbBalk.Name = "pcbBalk";
+            this.pcbBalk.Size = new System.Drawing.Size(1342, 139);
+            this.pcbBalk.TabIndex = 3;
+            this.pcbBalk.TabStop = false;
+            // 
             // frmAdminscherm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -625,12 +628,12 @@
             this.Controls.Add(this.pcbBalk);
             this.Name = "frmAdminscherm";
             this.Text = "Adminscherm";
-            ((System.ComponentModel.ISupportInitialize)(this.pcbBalk)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbauto)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbauto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbBalk)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

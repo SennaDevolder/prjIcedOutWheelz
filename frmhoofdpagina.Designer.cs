@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmhoofdpagina));
             this.lblSlogan = new System.Windows.Forms.Label();
             this.cmbMerk = new System.Windows.Forms.ComboBox();
             this.cmbType = new System.Windows.Forms.ComboBox();
@@ -35,12 +36,6 @@
             this.btnAdmin = new System.Windows.Forms.Button();
             this.lsbAutos = new System.Windows.Forms.ListBox();
             this.lsbInformatie = new System.Windows.Forms.ListBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pcbAuto = new System.Windows.Forms.PictureBox();
-            this.pcbLogo = new System.Windows.Forms.PictureBox();
-            this.pcbBalk = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkBox15 = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -67,13 +62,19 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pcbAuto = new System.Windows.Forms.PictureBox();
+            this.pcbLogo = new System.Windows.Forms.PictureBox();
+            this.pcbBalk = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbAuto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbBalk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSlogan
@@ -81,7 +82,7 @@
             this.lblSlogan.AutoSize = true;
             this.lblSlogan.BackColor = System.Drawing.Color.Cyan;
             this.lblSlogan.Font = new System.Drawing.Font("Bell MT", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSlogan.Location = new System.Drawing.Point(178, 11);
+            this.lblSlogan.Location = new System.Drawing.Point(80, 11);
             this.lblSlogan.Name = "lblSlogan";
             this.lblSlogan.Size = new System.Drawing.Size(507, 34);
             this.lblSlogan.TabIndex = 4;
@@ -90,7 +91,7 @@
             // cmbMerk
             // 
             this.cmbMerk.FormattingEnabled = true;
-            this.cmbMerk.Location = new System.Drawing.Point(115, 89);
+            this.cmbMerk.Location = new System.Drawing.Point(27, 89);
             this.cmbMerk.Name = "cmbMerk";
             this.cmbMerk.Size = new System.Drawing.Size(153, 21);
             this.cmbMerk.TabIndex = 5;
@@ -99,7 +100,7 @@
             // cmbType
             // 
             this.cmbType.FormattingEnabled = true;
-            this.cmbType.Location = new System.Drawing.Point(350, 89);
+            this.cmbType.Location = new System.Drawing.Point(262, 89);
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(153, 21);
             this.cmbType.TabIndex = 6;
@@ -108,7 +109,7 @@
             // cmbUitvoering
             // 
             this.cmbUitvoering.FormattingEnabled = true;
-            this.cmbUitvoering.Location = new System.Drawing.Point(584, 89);
+            this.cmbUitvoering.Location = new System.Drawing.Point(496, 89);
             this.cmbUitvoering.Name = "cmbUitvoering";
             this.cmbUitvoering.Size = new System.Drawing.Size(153, 21);
             this.cmbUitvoering.TabIndex = 7;
@@ -119,7 +120,7 @@
             this.btnAdmin.BackColor = System.Drawing.Color.Cyan;
             this.btnAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdmin.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAdmin.Location = new System.Drawing.Point(883, 85);
+            this.btnAdmin.Location = new System.Drawing.Point(743, 84);
             this.btnAdmin.Name = "btnAdmin";
             this.btnAdmin.Size = new System.Drawing.Size(143, 26);
             this.btnAdmin.TabIndex = 8;
@@ -142,60 +143,8 @@
             this.lsbInformatie.FormattingEnabled = true;
             this.lsbInformatie.Location = new System.Drawing.Point(12, 518);
             this.lsbInformatie.Name = "lsbInformatie";
-            this.lsbInformatie.Size = new System.Drawing.Size(673, 182);
+            this.lsbInformatie.Size = new System.Drawing.Size(516, 182);
             this.lsbInformatie.TabIndex = 11;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Black;
-            this.pictureBox3.Location = new System.Drawing.Point(-46, 132);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(1278, 10);
-            this.pictureBox3.TabIndex = 19;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pcbAuto
-            // 
-            this.pcbAuto.Location = new System.Drawing.Point(291, 164);
-            this.pcbAuto.Name = "pcbAuto";
-            this.pcbAuto.Size = new System.Drawing.Size(862, 338);
-            this.pcbAuto.TabIndex = 9;
-            this.pcbAuto.TabStop = false;
-            // 
-            // pcbLogo
-            // 
-            this.pcbLogo.Image = global::prjIcedOutWheelz.Properties.Resources.Logo;
-            this.pcbLogo.Location = new System.Drawing.Point(1049, 11);
-            this.pcbLogo.Name = "pcbLogo";
-            this.pcbLogo.Size = new System.Drawing.Size(103, 100);
-            this.pcbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pcbLogo.TabIndex = 3;
-            this.pcbLogo.TabStop = false;
-            // 
-            // pcbBalk
-            // 
-            this.pcbBalk.BackColor = System.Drawing.Color.Cyan;
-            this.pcbBalk.Location = new System.Drawing.Point(-23, -9);
-            this.pcbBalk.Name = "pcbBalk";
-            this.pcbBalk.Size = new System.Drawing.Size(1342, 151);
-            this.pcbBalk.TabIndex = 2;
-            this.pcbBalk.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Location = new System.Drawing.Point(1561, 58);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(1698, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(194, 132);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // panel1
             // 
@@ -224,7 +173,7 @@
             this.panel1.Controls.Add(this.checkBox3);
             this.panel1.Controls.Add(this.checkBox2);
             this.panel1.Controls.Add(this.checkBox1);
-            this.panel1.Location = new System.Drawing.Point(702, 518);
+            this.panel1.Location = new System.Drawing.Point(545, 518);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(450, 182);
             this.panel1.TabIndex = 20;
@@ -478,12 +427,66 @@
             this.checkBox1.Text = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Black;
+            this.pictureBox3.Location = new System.Drawing.Point(-46, 132);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(1278, 10);
+            this.pictureBox3.TabIndex = 19;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pcbAuto
+            // 
+            this.pcbAuto.Image = ((System.Drawing.Image)(resources.GetObject("pcbAuto.Image")));
+            this.pcbAuto.Location = new System.Drawing.Point(291, 164);
+            this.pcbAuto.Name = "pcbAuto";
+            this.pcbAuto.Size = new System.Drawing.Size(704, 338);
+            this.pcbAuto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbAuto.TabIndex = 9;
+            this.pcbAuto.TabStop = false;
+            // 
+            // pcbLogo
+            // 
+            this.pcbLogo.Image = global::prjIcedOutWheelz.Properties.Resources.Logo;
+            this.pcbLogo.Location = new System.Drawing.Point(892, 10);
+            this.pcbLogo.Name = "pcbLogo";
+            this.pcbLogo.Size = new System.Drawing.Size(103, 100);
+            this.pcbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbLogo.TabIndex = 3;
+            this.pcbLogo.TabStop = false;
+            // 
+            // pcbBalk
+            // 
+            this.pcbBalk.BackColor = System.Drawing.Color.Cyan;
+            this.pcbBalk.Location = new System.Drawing.Point(-111, -9);
+            this.pcbBalk.Name = "pcbBalk";
+            this.pcbBalk.Size = new System.Drawing.Size(1342, 151);
+            this.pcbBalk.TabIndex = 2;
+            this.pcbBalk.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(1561, 58);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(1698, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(194, 132);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmhoofdpagina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(1164, 713);
+            this.ClientSize = new System.Drawing.Size(1005, 713);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.lsbInformatie);
@@ -500,14 +503,14 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "frmhoofdpagina";
             this.Text = "Form1";
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbAuto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbBalk)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

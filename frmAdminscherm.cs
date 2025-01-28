@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MySql.Data;
+using prjIcedOutWheelz.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -81,7 +83,45 @@ namespace prjIcedOutWheelz
 
         private void btnremove_Click(object sender, EventArgs e)
         {
-                
+            // maak een openfiledialog
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            // filter op specifieke image types
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.tiff";
+
+            // // toon dialog en check als de gebruiker een file heeft geselecteerd
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string selectedFile = openFileDialog.FileName;
+
+                try
+                {
+                    // Check als file bestaat voor verwijderen
+                    if (File.Exists(selectedFile))
+                    {
+                        pcbauto.Image.Dispose();
+                        pcbauto.Image = Properties.Resources.placeholder_image;
+                        File.Delete(selectedFile);
+                        MessageBox.Show("File deleted successfully!");
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("File does not exist.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}");
+                }
+            }
+        }
+
+        private void btnclear_Click(object sender, EventArgs e)
+        {
+            lsbautos.Items.Clear();
+            lsbinfo.Items.Clear();
+            pcbauto.Image = Properties.Resources.placeholder_image;
         }
     }
 }

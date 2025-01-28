@@ -79,5 +79,75 @@ namespace prjIcedOutWheelz.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap McLarenSenna_Grijs {
+            get {
+                object obj = ResourceManager.GetObject("McLarenSenna-Grijs", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap McLarenSenna_Oranje {
+            get {
+                object obj = ResourceManager.GetObject("McLarenSenna-Oranje", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap McLarenSenna_Paars {
+            get {
+                object obj = ResourceManager.GetObject("McLarenSenna-Paars", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap placeholder_image {
+            get {
+                object obj = ResourceManager.GetObject("placeholder-image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Porsche_Turbo_S_Blauw {
+            get {
+                object obj = ResourceManager.GetObject("Porsche-Turbo-S-Blauw", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Porsche_Turbo_S_Goud {
+            get {
+                object obj = ResourceManager.GetObject("Porsche-Turbo-S-Goud", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Porsche_Turbo_S_Grijs {
+            get {
+                object obj = ResourceManager.GetObject("Porsche-Turbo-S-Grijs", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

@@ -23,6 +23,5 @@ namespace prjIcedOutWheelz
             frmAdminscherm frmAdminscherm = new frmAdminscherm();
             frmAdminscherm.Show();
         }
-
     }
 }

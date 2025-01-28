@@ -181,6 +181,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
+    <None Include="Resources\Porsche-Turbo-S-Grijs.jpg" />
+    <None Include="Resources\Porsche-Turbo-S-Goud.png" />
+    <None Include="Resources\Porsche-Turbo-S-Blauw.png" />
+    <None Include="Resources\McLarenSenna-Paars.png" />
+    <None Include="Resources\McLarenSenna-Oranje.png" />
+    <None Include="Resources\McLarenSenna-Grijs.png" />
+    <None Include="Resources\placeholder-image.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
