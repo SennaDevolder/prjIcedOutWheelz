@@ -35,7 +35,7 @@ namespace prjIcedOutWheelz
                     string selectedFilePath = openFileDialog.FileName;
 
                     //waar opslaan
-                    string resourcesFolder = @"Z:\oefen\Sofo\Projecten\E\Resources";
+                    string resourcesFolder = @"Z:\oefen\Sofo\Projecten\Eindwerk\Resources";
 
                     //check of locatie bestaat anders word er een gemaakt
                     if (!Directory.Exists(resourcesFolder))
@@ -71,6 +71,17 @@ namespace prjIcedOutWheelz
                     MessageBox.Show("Error loading or saving image: " + ex.Message);
                 }
             }
+        }
+
+        private void txthooftdpagina_Click(object sender, EventArgs e)
+        {
+            frmhoofdpagina frmhoofdpagina = new frmhoofdpagina();
+            frmhoofdpagina.Show();
+        }
+
+        private void btnremove_Click(object sender, EventArgs e)
+        {
+                
         }
     }
 }
