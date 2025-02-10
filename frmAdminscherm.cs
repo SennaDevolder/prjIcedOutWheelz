@@ -28,6 +28,7 @@ namespace prjIcedOutWheelz
             openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.tiff"; // Filter
             openFileDialog.Title = "Select an Image";
 
+
             //toon en check of er een file is geselecteerd
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -83,20 +84,24 @@ namespace prjIcedOutWheelz
 
         private void btnremove_Click(object sender, EventArgs e)
         {
-            // maak een openfiledialog
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            //maak een openfiledialog
+            OpenFileDialog openFileDialog = new OpenFileDialog()
+            {
+                InitialDirectory = @"Z:\oefen\Sofo\Projecten\Eindwerk\Resources" // folder locatie
+            };
 
-            // filter op specifieke image types
+            //filter op specifieke image types
             openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.tiff";
 
-            // // toon dialog en check als de gebruiker een file heeft geselecteerd
+
+            //toon dialog en check als de gebruiker een file heeft geselecteerd
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string selectedFile = openFileDialog.FileName;
 
                 try
                 {
-                    // Check als file bestaat voor verwijderen
+                    //Check als file bestaat voor verwijderen
                     if (File.Exists(selectedFile))
                     {
                         pcbauto.Image.Dispose();
@@ -123,5 +128,26 @@ namespace prjIcedOutWheelz
             lsbinfo.Items.Clear();
             pcbauto.Image = Properties.Resources.placeholder_image;
         }
+
+        private void btnselect_Click(object sender, EventArgs e)
+        {
+            //maak OpenFileDialog
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Title = "Select an Image",
+                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif",
+                InitialDirectory = @"Z:\oefen\Sofo\Projecten\Eindwerk\Resources" // folder locatie
+            };
+
+            //toon dialog en get result
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                //laad img in picturebox
+                pcbauto.ImageLocation = openFileDialog.FileName;
+            }
+
+        }
+
     }
+    
 }

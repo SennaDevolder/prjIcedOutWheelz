@@ -77,6 +77,7 @@
             this.pcbauto = new System.Windows.Forms.PictureBox();
             this.pcbLogo = new System.Windows.Forms.PictureBox();
             this.pcbBalk = new System.Windows.Forms.PictureBox();
+            this.btnselect = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbauto)).BeginInit();
@@ -159,9 +160,9 @@
             // btnsave
             // 
             this.btnsave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnsave.Location = new System.Drawing.Point(506, 615);
+            this.btnsave.Location = new System.Drawing.Point(655, 615);
             this.btnsave.Name = "btnsave";
-            this.btnsave.Size = new System.Drawing.Size(276, 32);
+            this.btnsave.Size = new System.Drawing.Size(223, 32);
             this.btnsave.TabIndex = 15;
             this.btnsave.Text = "Save";
             this.btnsave.UseVisualStyleBackColor = true;
@@ -606,12 +607,24 @@
             this.pcbBalk.TabIndex = 3;
             this.pcbBalk.TabStop = false;
             // 
+            // btnselect
+            // 
+            this.btnselect.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnselect.Location = new System.Drawing.Point(413, 615);
+            this.btnselect.Name = "btnselect";
+            this.btnselect.Size = new System.Drawing.Size(224, 32);
+            this.btnselect.TabIndex = 22;
+            this.btnselect.Text = "Select img";
+            this.btnselect.UseVisualStyleBackColor = true;
+            this.btnselect.Click += new System.EventHandler(this.btnselect_Click);
+            // 
             // frmAdminscherm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(890, 713);
+            this.Controls.Add(this.btnselect);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.btnadd);
@@ -690,5 +703,6 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button btnselect;
     }
 }
