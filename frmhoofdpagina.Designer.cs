@@ -120,7 +120,7 @@
             this.btnAdmin.BackColor = System.Drawing.Color.Cyan;
             this.btnAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdmin.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAdmin.Location = new System.Drawing.Point(743, 84);
+            this.btnAdmin.Location = new System.Drawing.Point(730, 84);
             this.btnAdmin.Name = "btnAdmin";
             this.btnAdmin.Size = new System.Drawing.Size(143, 26);
             this.btnAdmin.TabIndex = 8;
