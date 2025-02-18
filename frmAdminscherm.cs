@@ -75,6 +75,8 @@ namespace prjIcedOutWheelz
             //        }
             //    }
             string eindwerkPath = FindEindwerkPath();
+            string currentDirectory = Directory.GetCurrentDirectory();
+            DirectoryInfo dir = new DirectoryInfo(currentDirectory);
 
             if (eindwerkPath == null)
             {
@@ -82,7 +84,13 @@ namespace prjIcedOutWheelz
                 return;
             }
 
-            string resourcesPath = Path.Combine(eindwerkPath, "Resources");
+            string resourcesPath = FindEindwerkPath();
+
+            if (resourcesPath == null)
+            {
+                MessageBox.Show("Resources folder not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             if (!Directory.Exists(resourcesPath))
             {
@@ -102,16 +110,31 @@ namespace prjIcedOutWheelz
 
                     string destinationPath = Path.Combine(resourcesPath, fileName);
 
-                    File.Copy(selectedFilePath, destinationPath, true); // Overwrite if exists
-                    MessageBox.Show($"Image saved to: {destinationPath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    // img in picturebox
-                    pcbauto.Image = System.Drawing.Image.FromFile(destinationPath);
-                    //img aanpassen
-                    pcbauto.SizeMode = PictureBoxSizeMode.StretchImage;
+                    try
+                    {
+                        File.Copy(selectedFilePath, destinationPath, true); // Overwrite if exists
+                        MessageBox.Show($"Image saved to: {destinationPath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        pcbauto.Image.Dispose();
+                        // img in picturebox
+                        pcbauto.Image = System.Drawing.Image.FromFile(destinationPath);
+                        //img aanpassen
+                        pcbauto.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                    catch
+                    {
+                        MessageBox.Show("This image is already added", "Add" ,MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                   
                 }
                 else
                 {
-                    MessageBox.Show("No file selected.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    DialogResult resultaat = MessageBox.Show("No file selected.\nWilt u file explorer sluiten", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (resultaat == DialogResult.No)
+                    {
+                        btnaddimg.PerformClick();
+                    }
                 }
             }
 
@@ -123,9 +146,9 @@ namespace prjIcedOutWheelz
 
             while (dir != null)
             {
-                if (dir.Name.Equals("Eindwerk", StringComparison.OrdinalIgnoreCase))
+                if (dir.GetDirectories("Resources").Any())
                 {
-                    return dir.FullName;
+                    return Path.Combine(dir.FullName, "Resources");
                 }
                 dir = dir.Parent;
             }
@@ -151,12 +174,17 @@ namespace prjIcedOutWheelz
         {
             string eindwerkPath = FindEindwerkPath();
 
-            string resourcesPath = Path.Combine(eindwerkPath, "Resources");
+            if (eindwerkPath == null)
+            {
+                MessageBox.Show("Resources folder not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             //maak een openfiledialog
             OpenFileDialog openFileDialog = new OpenFileDialog()
             {
-                InitialDirectory = resourcesPath // folder locatie
+                InitialDirectory = eindwerkPath // folder locatie
+
             };
 
             //filter op specifieke image types
@@ -188,19 +216,33 @@ namespace prjIcedOutWheelz
                     MessageBox.Show($"Error: {ex.Message}");
                 }
             }
+            else
+            {
+                DialogResult resultaat = MessageBox.Show("No file selected.\nWilt u file explorer sluiten", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (resultaat == DialogResult.No)
+                {
+                    btnremove.PerformClick();
+                }
+            }
         }
 
         private void btnclear_Click(object sender, EventArgs e)
         {
             lsbautos.Items.Clear();
             lsbinfo.Items.Clear();
+            pcbauto.Image.Dispose();
             pcbauto.Image = Properties.Resources.placeholder_image;
         }
         private void btnselect_Click(object sender, EventArgs e)
         {
             string eindwerkPath = FindEindwerkPath();
 
-            string resourcesPath = Path.Combine(eindwerkPath, "Resources");
+            if (eindwerkPath == null)
+            {
+                MessageBox.Show("Resources folder not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             //maak OpenFileDialog
             OpenFileDialog openFileDialog = new OpenFileDialog
@@ -208,7 +250,7 @@ namespace prjIcedOutWheelz
                 Title = "Select an Image",
                 Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif",
 
-                InitialDirectory = resourcesPath // folder locatie
+                InitialDirectory = eindwerkPath // folder locatie
             };
 
             //toon dialog en get result
@@ -216,6 +258,15 @@ namespace prjIcedOutWheelz
             {
                 //laad img in picturebox
                 pcbauto.ImageLocation = openFileDialog.FileName;
+            }
+            else
+            {
+                DialogResult resultaat = MessageBox.Show("No file selected.\nWilt u file explorer sluiten", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (resultaat == DialogResult.No)
+                {
+                    btnselect.PerformClick();
+                }
             }
 
         }

@@ -35,7 +35,6 @@
             this.btnremove = new System.Windows.Forms.Button();
             this.btnclear = new System.Windows.Forms.Button();
             this.btnaddimg = new System.Windows.Forms.Button();
-            this.btnsave = new System.Windows.Forms.Button();
             this.btnadd = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkBox29 = new System.Windows.Forms.CheckBox();
@@ -157,22 +156,12 @@
             this.btnaddimg.UseVisualStyleBackColor = true;
             this.btnaddimg.Click += new System.EventHandler(this.btnaddimg_Click);
             // 
-            // btnsave
-            // 
-            this.btnsave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnsave.Location = new System.Drawing.Point(655, 615);
-            this.btnsave.Name = "btnsave";
-            this.btnsave.Size = new System.Drawing.Size(223, 32);
-            this.btnsave.TabIndex = 15;
-            this.btnsave.Text = "Save";
-            this.btnsave.UseVisualStyleBackColor = true;
-            // 
             // btnadd
             // 
             this.btnadd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnadd.Location = new System.Drawing.Point(506, 669);
+            this.btnadd.Location = new System.Drawing.Point(413, 669);
             this.btnadd.Name = "btnadd";
-            this.btnadd.Size = new System.Drawing.Size(276, 32);
+            this.btnadd.Size = new System.Drawing.Size(461, 32);
             this.btnadd.TabIndex = 16;
             this.btnadd.Text = "Add";
             this.btnadd.UseVisualStyleBackColor = true;
@@ -612,7 +601,7 @@
             this.btnselect.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnselect.Location = new System.Drawing.Point(413, 615);
             this.btnselect.Name = "btnselect";
-            this.btnselect.Size = new System.Drawing.Size(224, 32);
+            this.btnselect.Size = new System.Drawing.Size(461, 32);
             this.btnselect.TabIndex = 22;
             this.btnselect.Text = "Select img";
             this.btnselect.UseVisualStyleBackColor = true;
@@ -628,7 +617,6 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.btnadd);
-            this.Controls.Add(this.btnsave);
             this.Controls.Add(this.pcbauto);
             this.Controls.Add(this.btnaddimg);
             this.Controls.Add(this.btnclear);
@@ -664,7 +652,6 @@
         private System.Windows.Forms.Button btnclear;
         private System.Windows.Forms.Button btnaddimg;
         private System.Windows.Forms.PictureBox pcbauto;
-        private System.Windows.Forms.Button btnsave;
         private System.Windows.Forms.Button btnadd;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Panel panel1;
