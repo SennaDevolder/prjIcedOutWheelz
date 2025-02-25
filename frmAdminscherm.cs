@@ -1,4 +1,5 @@
-﻿using MySql.Data;
+﻿using Microsoft.VisualBasic;
+using MySql.Data;
 using prjIcedOutWheelz.Properties;
 using System;
 using System.Collections.Generic;
@@ -271,6 +272,110 @@ namespace prjIcedOutWheelz
 
         }
 
+        private void btnMerk_Click(object sender, EventArgs e)
+        {
+            string strcontrole;
+            do
+            {
+                strcontrole = Interaction.InputBox("Gelieve het merk van de auto in te vullen", "Merk Auto");
+
+                if (strcontrole.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strcontrole))
+                {
+                    MessageBox.Show("Gelieve alleen letters te gebruiken en het veld niet leeg te laten!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            } while (strcontrole.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strcontrole)); // Herhaal als er cijfers zijn of als het leeg is
+
+            MessageBox.Show($"Merk opgeslagen: {strcontrole}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+        private void btnModel_Click(object sender, EventArgs e)
+        {
+            Interaction.InputBox("Gelieve het model van de auto in te vullen", "Model Auto");
+
+
+        }
+
+        private void btnBouwjaar_Click(object sender, EventArgs e)
+        {
+            Interaction.InputBox("Voer het bouwjaar van de auto in (bijv. 2018)", "Bouwjaar");
+        }
+
+        private void btnBrandstof_Click(object sender, EventArgs e)
+        {
+            Interaction.InputBox("Welke brandstof gebruikt de auto? (Benzine, Diesel, Hybride, Elektrisch)", "Brandstof");
+        }
+
+        private void btnTransmissie_Click(object sender, EventArgs e)
+        {
+            Interaction.InputBox("Wat is de transmissie van de auto? (Handgeschakeld of Automaat)", "Transmissie");
+        }
+
+        private void btnKilometerstand_Click(object sender, EventArgs e)
+        {
+            Interaction.InputBox("Voer de kilometerstand van de auto in", "Kilometerstand");
+        }
+
+        private void btnAPKgeldig_Click(object sender, EventArgs e)
+        {
+            Interaction.InputBox("Tot welke datum is de APK geldig?", "APK Geldig Tot");
+        }
+
+        private void Motorvermogen_Click(object sender, EventArgs e)
+        {
+            Interaction.InputBox("Wat is het motorvermogen? (bijv. 110 pk)", "Motorvermogen");
+        }
+
+        private void btnVerbruik_Click(object sender, EventArgs e)
+        {
+            Interaction.InputBox("Wat is het brandstofverbruik? (bijv. 1 op 16 of 6,3L/100km)", "Verbruik");
+        }
+
+        private void btnCO2_Click(object sender, EventArgs e)
+        {
+            Interaction.InputBox("Wat is de CO2-uitstoot van de auto? (bijv. 120 g/km)", "CO₂-uitstoot");
+        }
+
+        private void btnTrekgewicht_Click(object sender, EventArgs e)
+        {
+            Interaction.InputBox("Wat is het maximale trekgewicht van de auto? (bijv. 1500 kg)", "Trekgewicht");
+        }
+
+        private void btnExtras_Click(object sender, EventArgs e)
+        {
+            Interaction.InputBox("Welke extra opties heeft de auto? (bijv. stoelverwarming, navigatie)", "Extra’s");
+        }
+
+        private void btnOnderhoudsboekje_Click(object sender, EventArgs e)
+        {
+            Interaction.InputBox("Is het onderhoudsboekje aanwezig? (Ja/Nee)", "Onderhoudsboekje");
+        }
+
+        private void btneigenaren_Click(object sender, EventArgs e)
+        {
+            Interaction.InputBox("Hoeveel eigenaren heeft de auto gehad?", "Aantal Eigenaren");
+        }
+
+        private void btnSchadeverleden_Click(object sender, EventArgs e)
+        {
+            Interaction.InputBox("Heeft de auto schade gehad? Zo ja, welke?", "Schadeverleden");
+        }
+
+        private void btnKleur_Click(object sender, EventArgs e)
+        {
+            Interaction.InputBox("Wat is de kleur van de auto?", "Kleur");
+        }
+
+        private void btnLocatie_Click(object sender, EventArgs e)
+        {
+            Interaction.InputBox("Waar bevindt de auto zich? (Plaatsnaam)", "Locatie");
+        }
+
+        private void btnPrijs_Click(object sender, EventArgs e)
+        {
+            Interaction.InputBox("Wat is de vraagprijs van de auto?", "Prijs");
+        }
     }
     
 }

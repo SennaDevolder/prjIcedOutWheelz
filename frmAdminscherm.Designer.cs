@@ -36,48 +36,29 @@
             this.btnclear = new System.Windows.Forms.Button();
             this.btnaddimg = new System.Windows.Forms.Button();
             this.btnadd = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.checkBox29 = new System.Windows.Forms.CheckBox();
-            this.checkBox30 = new System.Windows.Forms.CheckBox();
-            this.checkBox31 = new System.Windows.Forms.CheckBox();
-            this.checkBox32 = new System.Windows.Forms.CheckBox();
-            this.checkBox33 = new System.Windows.Forms.CheckBox();
-            this.checkBox34 = new System.Windows.Forms.CheckBox();
-            this.checkBox35 = new System.Windows.Forms.CheckBox();
-            this.checkBox22 = new System.Windows.Forms.CheckBox();
-            this.checkBox23 = new System.Windows.Forms.CheckBox();
-            this.checkBox24 = new System.Windows.Forms.CheckBox();
-            this.checkBox25 = new System.Windows.Forms.CheckBox();
-            this.checkBox26 = new System.Windows.Forms.CheckBox();
-            this.checkBox27 = new System.Windows.Forms.CheckBox();
-            this.checkBox28 = new System.Windows.Forms.CheckBox();
-            this.checkBox15 = new System.Windows.Forms.CheckBox();
-            this.checkBox16 = new System.Windows.Forms.CheckBox();
-            this.checkBox17 = new System.Windows.Forms.CheckBox();
-            this.checkBox18 = new System.Windows.Forms.CheckBox();
-            this.checkBox19 = new System.Windows.Forms.CheckBox();
-            this.checkBox20 = new System.Windows.Forms.CheckBox();
-            this.checkBox21 = new System.Windows.Forms.CheckBox();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.checkBox9 = new System.Windows.Forms.CheckBox();
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
-            this.checkBox11 = new System.Windows.Forms.CheckBox();
-            this.checkBox12 = new System.Windows.Forms.CheckBox();
-            this.checkBox13 = new System.Windows.Forms.CheckBox();
-            this.checkBox14 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pcbauto = new System.Windows.Forms.PictureBox();
             this.pcbLogo = new System.Windows.Forms.PictureBox();
             this.pcbBalk = new System.Windows.Forms.PictureBox();
             this.btnselect = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.btnPrijs = new System.Windows.Forms.Button();
+            this.btnLocatie = new System.Windows.Forms.Button();
+            this.btnModel = new System.Windows.Forms.Button();
+            this.btnMerk = new System.Windows.Forms.Button();
+            this.btnSchadeverleden = new System.Windows.Forms.Button();
+            this.btneigenaren = new System.Windows.Forms.Button();
+            this.btnOnderhoudsboekje = new System.Windows.Forms.Button();
+            this.btnExtras = new System.Windows.Forms.Button();
+            this.btnTrekgewicht = new System.Windows.Forms.Button();
+            this.btnCO2 = new System.Windows.Forms.Button();
+            this.btnVerbruik = new System.Windows.Forms.Button();
+            this.Motorvermogen = new System.Windows.Forms.Button();
+            this.btnAPKgeldig = new System.Windows.Forms.Button();
+            this.btnKilometerstand = new System.Windows.Forms.Button();
+            this.btnTransmissie = new System.Windows.Forms.Button();
+            this.btnBrandstof = new System.Windows.Forms.Button();
+            this.btnBouwjaar = new System.Windows.Forms.Button();
+            this.btnKleur = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbauto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbLogo)).BeginInit();
@@ -166,398 +147,6 @@
             this.btnadd.Text = "Add";
             this.btnadd.UseVisualStyleBackColor = true;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.checkBox29);
-            this.panel1.Controls.Add(this.checkBox30);
-            this.panel1.Controls.Add(this.checkBox31);
-            this.panel1.Controls.Add(this.checkBox32);
-            this.panel1.Controls.Add(this.checkBox33);
-            this.panel1.Controls.Add(this.checkBox34);
-            this.panel1.Controls.Add(this.checkBox35);
-            this.panel1.Controls.Add(this.checkBox22);
-            this.panel1.Controls.Add(this.checkBox23);
-            this.panel1.Controls.Add(this.checkBox24);
-            this.panel1.Controls.Add(this.checkBox25);
-            this.panel1.Controls.Add(this.checkBox26);
-            this.panel1.Controls.Add(this.checkBox27);
-            this.panel1.Controls.Add(this.checkBox28);
-            this.panel1.Controls.Add(this.checkBox15);
-            this.panel1.Controls.Add(this.checkBox16);
-            this.panel1.Controls.Add(this.checkBox17);
-            this.panel1.Controls.Add(this.checkBox18);
-            this.panel1.Controls.Add(this.checkBox19);
-            this.panel1.Controls.Add(this.checkBox20);
-            this.panel1.Controls.Add(this.checkBox21);
-            this.panel1.Controls.Add(this.checkBox8);
-            this.panel1.Controls.Add(this.checkBox9);
-            this.panel1.Controls.Add(this.checkBox10);
-            this.panel1.Controls.Add(this.checkBox11);
-            this.panel1.Controls.Add(this.checkBox12);
-            this.panel1.Controls.Add(this.checkBox13);
-            this.panel1.Controls.Add(this.checkBox14);
-            this.panel1.Controls.Add(this.checkBox7);
-            this.panel1.Controls.Add(this.checkBox6);
-            this.panel1.Controls.Add(this.checkBox5);
-            this.panel1.Controls.Add(this.checkBox4);
-            this.panel1.Controls.Add(this.checkBox3);
-            this.panel1.Controls.Add(this.checkBox2);
-            this.panel1.Controls.Add(this.checkBox1);
-            this.panel1.Location = new System.Drawing.Point(413, 396);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(461, 197);
-            this.panel1.TabIndex = 21;
-            // 
-            // checkBox29
-            // 
-            this.checkBox29.AutoSize = true;
-            this.checkBox29.Location = new System.Drawing.Point(368, 159);
-            this.checkBox29.Name = "checkBox29";
-            this.checkBox29.Size = new System.Drawing.Size(86, 17);
-            this.checkBox29.TabIndex = 69;
-            this.checkBox29.Text = "checkBox29";
-            this.checkBox29.UseVisualStyleBackColor = true;
-            // 
-            // checkBox30
-            // 
-            this.checkBox30.AutoSize = true;
-            this.checkBox30.Location = new System.Drawing.Point(368, 136);
-            this.checkBox30.Name = "checkBox30";
-            this.checkBox30.Size = new System.Drawing.Size(86, 17);
-            this.checkBox30.TabIndex = 68;
-            this.checkBox30.Text = "checkBox30";
-            this.checkBox30.UseVisualStyleBackColor = true;
-            // 
-            // checkBox31
-            // 
-            this.checkBox31.AutoSize = true;
-            this.checkBox31.Location = new System.Drawing.Point(368, 113);
-            this.checkBox31.Name = "checkBox31";
-            this.checkBox31.Size = new System.Drawing.Size(86, 17);
-            this.checkBox31.TabIndex = 67;
-            this.checkBox31.Text = "checkBox31";
-            this.checkBox31.UseVisualStyleBackColor = true;
-            // 
-            // checkBox32
-            // 
-            this.checkBox32.AutoSize = true;
-            this.checkBox32.Location = new System.Drawing.Point(368, 90);
-            this.checkBox32.Name = "checkBox32";
-            this.checkBox32.Size = new System.Drawing.Size(86, 17);
-            this.checkBox32.TabIndex = 66;
-            this.checkBox32.Text = "checkBox32";
-            this.checkBox32.UseVisualStyleBackColor = true;
-            // 
-            // checkBox33
-            // 
-            this.checkBox33.AutoSize = true;
-            this.checkBox33.Location = new System.Drawing.Point(368, 67);
-            this.checkBox33.Name = "checkBox33";
-            this.checkBox33.Size = new System.Drawing.Size(86, 17);
-            this.checkBox33.TabIndex = 65;
-            this.checkBox33.Text = "checkBox33";
-            this.checkBox33.UseVisualStyleBackColor = true;
-            // 
-            // checkBox34
-            // 
-            this.checkBox34.AutoSize = true;
-            this.checkBox34.Location = new System.Drawing.Point(368, 44);
-            this.checkBox34.Name = "checkBox34";
-            this.checkBox34.Size = new System.Drawing.Size(86, 17);
-            this.checkBox34.TabIndex = 64;
-            this.checkBox34.Text = "checkBox34";
-            this.checkBox34.UseVisualStyleBackColor = true;
-            // 
-            // checkBox35
-            // 
-            this.checkBox35.AutoSize = true;
-            this.checkBox35.Location = new System.Drawing.Point(368, 21);
-            this.checkBox35.Name = "checkBox35";
-            this.checkBox35.Size = new System.Drawing.Size(86, 17);
-            this.checkBox35.TabIndex = 63;
-            this.checkBox35.Text = "checkBox35";
-            this.checkBox35.UseVisualStyleBackColor = true;
-            // 
-            // checkBox22
-            // 
-            this.checkBox22.AutoSize = true;
-            this.checkBox22.Location = new System.Drawing.Point(276, 159);
-            this.checkBox22.Name = "checkBox22";
-            this.checkBox22.Size = new System.Drawing.Size(86, 17);
-            this.checkBox22.TabIndex = 62;
-            this.checkBox22.Text = "checkBox22";
-            this.checkBox22.UseVisualStyleBackColor = true;
-            // 
-            // checkBox23
-            // 
-            this.checkBox23.AutoSize = true;
-            this.checkBox23.Location = new System.Drawing.Point(276, 136);
-            this.checkBox23.Name = "checkBox23";
-            this.checkBox23.Size = new System.Drawing.Size(86, 17);
-            this.checkBox23.TabIndex = 61;
-            this.checkBox23.Text = "checkBox23";
-            this.checkBox23.UseVisualStyleBackColor = true;
-            // 
-            // checkBox24
-            // 
-            this.checkBox24.AutoSize = true;
-            this.checkBox24.Location = new System.Drawing.Point(276, 113);
-            this.checkBox24.Name = "checkBox24";
-            this.checkBox24.Size = new System.Drawing.Size(86, 17);
-            this.checkBox24.TabIndex = 60;
-            this.checkBox24.Text = "checkBox24";
-            this.checkBox24.UseVisualStyleBackColor = true;
-            // 
-            // checkBox25
-            // 
-            this.checkBox25.AutoSize = true;
-            this.checkBox25.Location = new System.Drawing.Point(276, 90);
-            this.checkBox25.Name = "checkBox25";
-            this.checkBox25.Size = new System.Drawing.Size(86, 17);
-            this.checkBox25.TabIndex = 59;
-            this.checkBox25.Text = "checkBox25";
-            this.checkBox25.UseVisualStyleBackColor = true;
-            // 
-            // checkBox26
-            // 
-            this.checkBox26.AutoSize = true;
-            this.checkBox26.Location = new System.Drawing.Point(276, 67);
-            this.checkBox26.Name = "checkBox26";
-            this.checkBox26.Size = new System.Drawing.Size(86, 17);
-            this.checkBox26.TabIndex = 58;
-            this.checkBox26.Text = "checkBox26";
-            this.checkBox26.UseVisualStyleBackColor = true;
-            // 
-            // checkBox27
-            // 
-            this.checkBox27.AutoSize = true;
-            this.checkBox27.Location = new System.Drawing.Point(276, 44);
-            this.checkBox27.Name = "checkBox27";
-            this.checkBox27.Size = new System.Drawing.Size(86, 17);
-            this.checkBox27.TabIndex = 57;
-            this.checkBox27.Text = "checkBox27";
-            this.checkBox27.UseVisualStyleBackColor = true;
-            // 
-            // checkBox28
-            // 
-            this.checkBox28.AutoSize = true;
-            this.checkBox28.Location = new System.Drawing.Point(276, 21);
-            this.checkBox28.Name = "checkBox28";
-            this.checkBox28.Size = new System.Drawing.Size(86, 17);
-            this.checkBox28.TabIndex = 56;
-            this.checkBox28.Text = "checkBox28";
-            this.checkBox28.UseVisualStyleBackColor = true;
-            // 
-            // checkBox15
-            // 
-            this.checkBox15.AutoSize = true;
-            this.checkBox15.Location = new System.Drawing.Point(184, 159);
-            this.checkBox15.Name = "checkBox15";
-            this.checkBox15.Size = new System.Drawing.Size(86, 17);
-            this.checkBox15.TabIndex = 55;
-            this.checkBox15.Text = "checkBox15";
-            this.checkBox15.UseVisualStyleBackColor = true;
-            // 
-            // checkBox16
-            // 
-            this.checkBox16.AutoSize = true;
-            this.checkBox16.Location = new System.Drawing.Point(184, 136);
-            this.checkBox16.Name = "checkBox16";
-            this.checkBox16.Size = new System.Drawing.Size(86, 17);
-            this.checkBox16.TabIndex = 54;
-            this.checkBox16.Text = "checkBox16";
-            this.checkBox16.UseVisualStyleBackColor = true;
-            // 
-            // checkBox17
-            // 
-            this.checkBox17.AutoSize = true;
-            this.checkBox17.Location = new System.Drawing.Point(184, 113);
-            this.checkBox17.Name = "checkBox17";
-            this.checkBox17.Size = new System.Drawing.Size(86, 17);
-            this.checkBox17.TabIndex = 53;
-            this.checkBox17.Text = "checkBox17";
-            this.checkBox17.UseVisualStyleBackColor = true;
-            // 
-            // checkBox18
-            // 
-            this.checkBox18.AutoSize = true;
-            this.checkBox18.Location = new System.Drawing.Point(184, 90);
-            this.checkBox18.Name = "checkBox18";
-            this.checkBox18.Size = new System.Drawing.Size(86, 17);
-            this.checkBox18.TabIndex = 52;
-            this.checkBox18.Text = "checkBox18";
-            this.checkBox18.UseVisualStyleBackColor = true;
-            // 
-            // checkBox19
-            // 
-            this.checkBox19.AutoSize = true;
-            this.checkBox19.Location = new System.Drawing.Point(184, 67);
-            this.checkBox19.Name = "checkBox19";
-            this.checkBox19.Size = new System.Drawing.Size(86, 17);
-            this.checkBox19.TabIndex = 51;
-            this.checkBox19.Text = "checkBox19";
-            this.checkBox19.UseVisualStyleBackColor = true;
-            // 
-            // checkBox20
-            // 
-            this.checkBox20.AutoSize = true;
-            this.checkBox20.Location = new System.Drawing.Point(184, 44);
-            this.checkBox20.Name = "checkBox20";
-            this.checkBox20.Size = new System.Drawing.Size(86, 17);
-            this.checkBox20.TabIndex = 50;
-            this.checkBox20.Text = "checkBox20";
-            this.checkBox20.UseVisualStyleBackColor = true;
-            // 
-            // checkBox21
-            // 
-            this.checkBox21.AutoSize = true;
-            this.checkBox21.Location = new System.Drawing.Point(184, 21);
-            this.checkBox21.Name = "checkBox21";
-            this.checkBox21.Size = new System.Drawing.Size(86, 17);
-            this.checkBox21.TabIndex = 49;
-            this.checkBox21.Text = "checkBox21";
-            this.checkBox21.UseVisualStyleBackColor = true;
-            // 
-            // checkBox8
-            // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(92, 159);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(80, 17);
-            this.checkBox8.TabIndex = 48;
-            this.checkBox8.Text = "checkBox8";
-            this.checkBox8.UseVisualStyleBackColor = true;
-            // 
-            // checkBox9
-            // 
-            this.checkBox9.AutoSize = true;
-            this.checkBox9.Location = new System.Drawing.Point(92, 136);
-            this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(80, 17);
-            this.checkBox9.TabIndex = 47;
-            this.checkBox9.Text = "checkBox9";
-            this.checkBox9.UseVisualStyleBackColor = true;
-            // 
-            // checkBox10
-            // 
-            this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(92, 113);
-            this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(86, 17);
-            this.checkBox10.TabIndex = 46;
-            this.checkBox10.Text = "checkBox10";
-            this.checkBox10.UseVisualStyleBackColor = true;
-            // 
-            // checkBox11
-            // 
-            this.checkBox11.AutoSize = true;
-            this.checkBox11.Location = new System.Drawing.Point(92, 90);
-            this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(86, 17);
-            this.checkBox11.TabIndex = 45;
-            this.checkBox11.Text = "checkBox11";
-            this.checkBox11.UseVisualStyleBackColor = true;
-            // 
-            // checkBox12
-            // 
-            this.checkBox12.AutoSize = true;
-            this.checkBox12.Location = new System.Drawing.Point(92, 67);
-            this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(86, 17);
-            this.checkBox12.TabIndex = 44;
-            this.checkBox12.Text = "checkBox12";
-            this.checkBox12.UseVisualStyleBackColor = true;
-            // 
-            // checkBox13
-            // 
-            this.checkBox13.AutoSize = true;
-            this.checkBox13.Location = new System.Drawing.Point(92, 44);
-            this.checkBox13.Name = "checkBox13";
-            this.checkBox13.Size = new System.Drawing.Size(86, 17);
-            this.checkBox13.TabIndex = 43;
-            this.checkBox13.Text = "checkBox13";
-            this.checkBox13.UseVisualStyleBackColor = true;
-            // 
-            // checkBox14
-            // 
-            this.checkBox14.AutoSize = true;
-            this.checkBox14.Location = new System.Drawing.Point(92, 21);
-            this.checkBox14.Name = "checkBox14";
-            this.checkBox14.Size = new System.Drawing.Size(86, 17);
-            this.checkBox14.TabIndex = 42;
-            this.checkBox14.Text = "checkBox14";
-            this.checkBox14.UseVisualStyleBackColor = true;
-            // 
-            // checkBox7
-            // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(6, 159);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(80, 17);
-            this.checkBox7.TabIndex = 41;
-            this.checkBox7.Text = "checkBox7";
-            this.checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // checkBox6
-            // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(6, 136);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(80, 17);
-            this.checkBox6.TabIndex = 40;
-            this.checkBox6.Text = "checkBox6";
-            this.checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(6, 113);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(80, 17);
-            this.checkBox5.TabIndex = 39;
-            this.checkBox5.Text = "checkBox5";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(6, 90);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(80, 17);
-            this.checkBox4.TabIndex = 38;
-            this.checkBox4.Text = "checkBox4";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(6, 67);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(80, 17);
-            this.checkBox3.TabIndex = 37;
-            this.checkBox3.Text = "checkBox3";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(6, 44);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(80, 17);
-            this.checkBox2.TabIndex = 36;
-            this.checkBox2.Text = "checkBox2";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 21);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(80, 17);
-            this.checkBox1.TabIndex = 35;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Black;
@@ -607,14 +196,211 @@
             this.btnselect.UseVisualStyleBackColor = true;
             this.btnselect.Click += new System.EventHandler(this.btnselect_Click);
             // 
+            // btnPrijs
+            // 
+            this.btnPrijs.Location = new System.Drawing.Point(727, 560);
+            this.btnPrijs.Name = "btnPrijs";
+            this.btnPrijs.Size = new System.Drawing.Size(137, 21);
+            this.btnPrijs.TabIndex = 58;
+            this.btnPrijs.Text = "Prijs";
+            this.btnPrijs.UseVisualStyleBackColor = true;
+            this.btnPrijs.Click += new System.EventHandler(this.btnPrijs_Click);
+            // 
+            // btnLocatie
+            // 
+            this.btnLocatie.Location = new System.Drawing.Point(727, 533);
+            this.btnLocatie.Name = "btnLocatie";
+            this.btnLocatie.Size = new System.Drawing.Size(137, 21);
+            this.btnLocatie.TabIndex = 57;
+            this.btnLocatie.Text = "Locatie";
+            this.btnLocatie.UseVisualStyleBackColor = true;
+            this.btnLocatie.Click += new System.EventHandler(this.btnLocatie_Click);
+            // 
+            // btnModel
+            // 
+            this.btnModel.Location = new System.Drawing.Point(421, 451);
+            this.btnModel.Name = "btnModel";
+            this.btnModel.Size = new System.Drawing.Size(137, 21);
+            this.btnModel.TabIndex = 56;
+            this.btnModel.Text = "Model";
+            this.btnModel.UseVisualStyleBackColor = true;
+            this.btnModel.Click += new System.EventHandler(this.btnModel_Click);
+            // 
+            // btnMerk
+            // 
+            this.btnMerk.Location = new System.Drawing.Point(421, 424);
+            this.btnMerk.Name = "btnMerk";
+            this.btnMerk.Size = new System.Drawing.Size(137, 21);
+            this.btnMerk.TabIndex = 55;
+            this.btnMerk.Text = "Merk";
+            this.btnMerk.UseVisualStyleBackColor = true;
+            this.btnMerk.Click += new System.EventHandler(this.btnMerk_Click);
+            // 
+            // btnSchadeverleden
+            // 
+            this.btnSchadeverleden.Location = new System.Drawing.Point(727, 478);
+            this.btnSchadeverleden.Name = "btnSchadeverleden";
+            this.btnSchadeverleden.Size = new System.Drawing.Size(137, 21);
+            this.btnSchadeverleden.TabIndex = 54;
+            this.btnSchadeverleden.Text = "Schadeverleden";
+            this.btnSchadeverleden.UseVisualStyleBackColor = true;
+            this.btnSchadeverleden.Click += new System.EventHandler(this.btnSchadeverleden_Click);
+            // 
+            // btneigenaren
+            // 
+            this.btneigenaren.Location = new System.Drawing.Point(727, 451);
+            this.btneigenaren.Name = "btneigenaren";
+            this.btneigenaren.Size = new System.Drawing.Size(137, 21);
+            this.btneigenaren.TabIndex = 53;
+            this.btneigenaren.Text = "Aantal eigenaren";
+            this.btneigenaren.UseVisualStyleBackColor = true;
+            this.btneigenaren.Click += new System.EventHandler(this.btneigenaren_Click);
+            // 
+            // btnOnderhoudsboekje
+            // 
+            this.btnOnderhoudsboekje.Location = new System.Drawing.Point(727, 424);
+            this.btnOnderhoudsboekje.Name = "btnOnderhoudsboekje";
+            this.btnOnderhoudsboekje.Size = new System.Drawing.Size(137, 21);
+            this.btnOnderhoudsboekje.TabIndex = 52;
+            this.btnOnderhoudsboekje.Text = "Onderhoudsboekje";
+            this.btnOnderhoudsboekje.UseVisualStyleBackColor = true;
+            this.btnOnderhoudsboekje.Click += new System.EventHandler(this.btnOnderhoudsboekje_Click);
+            // 
+            // btnExtras
+            // 
+            this.btnExtras.Location = new System.Drawing.Point(574, 561);
+            this.btnExtras.Name = "btnExtras";
+            this.btnExtras.Size = new System.Drawing.Size(137, 21);
+            this.btnExtras.TabIndex = 51;
+            this.btnExtras.Text = "Extras";
+            this.btnExtras.UseVisualStyleBackColor = true;
+            this.btnExtras.Click += new System.EventHandler(this.btnExtras_Click);
+            // 
+            // btnTrekgewicht
+            // 
+            this.btnTrekgewicht.Location = new System.Drawing.Point(574, 533);
+            this.btnTrekgewicht.Name = "btnTrekgewicht";
+            this.btnTrekgewicht.Size = new System.Drawing.Size(137, 21);
+            this.btnTrekgewicht.TabIndex = 50;
+            this.btnTrekgewicht.Text = "Trekgewicht";
+            this.btnTrekgewicht.UseVisualStyleBackColor = true;
+            this.btnTrekgewicht.Click += new System.EventHandler(this.btnTrekgewicht_Click);
+            // 
+            // btnCO2
+            // 
+            this.btnCO2.Location = new System.Drawing.Point(574, 506);
+            this.btnCO2.Name = "btnCO2";
+            this.btnCO2.Size = new System.Drawing.Size(137, 21);
+            this.btnCO2.TabIndex = 49;
+            this.btnCO2.Text = "CO₂-uitstoot";
+            this.btnCO2.UseVisualStyleBackColor = true;
+            this.btnCO2.Click += new System.EventHandler(this.btnCO2_Click);
+            // 
+            // btnVerbruik
+            // 
+            this.btnVerbruik.Location = new System.Drawing.Point(574, 479);
+            this.btnVerbruik.Name = "btnVerbruik";
+            this.btnVerbruik.Size = new System.Drawing.Size(137, 21);
+            this.btnVerbruik.TabIndex = 48;
+            this.btnVerbruik.Text = "Verbruik";
+            this.btnVerbruik.UseVisualStyleBackColor = true;
+            this.btnVerbruik.Click += new System.EventHandler(this.btnVerbruik_Click);
+            // 
+            // Motorvermogen
+            // 
+            this.Motorvermogen.Location = new System.Drawing.Point(574, 452);
+            this.Motorvermogen.Name = "Motorvermogen";
+            this.Motorvermogen.Size = new System.Drawing.Size(137, 21);
+            this.Motorvermogen.TabIndex = 47;
+            this.Motorvermogen.Text = "Motorvermogen";
+            this.Motorvermogen.UseVisualStyleBackColor = true;
+            this.Motorvermogen.Click += new System.EventHandler(this.Motorvermogen_Click);
+            // 
+            // btnAPKgeldig
+            // 
+            this.btnAPKgeldig.Location = new System.Drawing.Point(574, 425);
+            this.btnAPKgeldig.Name = "btnAPKgeldig";
+            this.btnAPKgeldig.Size = new System.Drawing.Size(137, 21);
+            this.btnAPKgeldig.TabIndex = 46;
+            this.btnAPKgeldig.Text = "APK geldig";
+            this.btnAPKgeldig.UseVisualStyleBackColor = true;
+            this.btnAPKgeldig.Click += new System.EventHandler(this.btnAPKgeldig_Click);
+            // 
+            // btnKilometerstand
+            // 
+            this.btnKilometerstand.Location = new System.Drawing.Point(421, 560);
+            this.btnKilometerstand.Name = "btnKilometerstand";
+            this.btnKilometerstand.Size = new System.Drawing.Size(137, 21);
+            this.btnKilometerstand.TabIndex = 45;
+            this.btnKilometerstand.Text = "Kilometerstand";
+            this.btnKilometerstand.UseVisualStyleBackColor = true;
+            this.btnKilometerstand.Click += new System.EventHandler(this.btnKilometerstand_Click);
+            // 
+            // btnTransmissie
+            // 
+            this.btnTransmissie.Location = new System.Drawing.Point(421, 532);
+            this.btnTransmissie.Name = "btnTransmissie";
+            this.btnTransmissie.Size = new System.Drawing.Size(137, 21);
+            this.btnTransmissie.TabIndex = 44;
+            this.btnTransmissie.Text = "Transmissie";
+            this.btnTransmissie.UseVisualStyleBackColor = true;
+            this.btnTransmissie.Click += new System.EventHandler(this.btnTransmissie_Click);
+            // 
+            // btnBrandstof
+            // 
+            this.btnBrandstof.Location = new System.Drawing.Point(421, 505);
+            this.btnBrandstof.Name = "btnBrandstof";
+            this.btnBrandstof.Size = new System.Drawing.Size(137, 21);
+            this.btnBrandstof.TabIndex = 43;
+            this.btnBrandstof.Text = "Brandstof";
+            this.btnBrandstof.UseVisualStyleBackColor = true;
+            this.btnBrandstof.Click += new System.EventHandler(this.btnBrandstof_Click);
+            // 
+            // btnBouwjaar
+            // 
+            this.btnBouwjaar.Location = new System.Drawing.Point(421, 478);
+            this.btnBouwjaar.Name = "btnBouwjaar";
+            this.btnBouwjaar.Size = new System.Drawing.Size(137, 21);
+            this.btnBouwjaar.TabIndex = 42;
+            this.btnBouwjaar.Text = "Bouwjaar";
+            this.btnBouwjaar.UseVisualStyleBackColor = true;
+            this.btnBouwjaar.Click += new System.EventHandler(this.btnBouwjaar_Click);
+            // 
+            // btnKleur
+            // 
+            this.btnKleur.Location = new System.Drawing.Point(727, 505);
+            this.btnKleur.Name = "btnKleur";
+            this.btnKleur.Size = new System.Drawing.Size(137, 21);
+            this.btnKleur.TabIndex = 41;
+            this.btnKleur.Text = "Kleur";
+            this.btnKleur.UseVisualStyleBackColor = true;
+            this.btnKleur.Click += new System.EventHandler(this.btnKleur_Click);
+            // 
             // frmAdminscherm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(890, 713);
+            this.Controls.Add(this.btnPrijs);
+            this.Controls.Add(this.btnLocatie);
+            this.Controls.Add(this.btnModel);
+            this.Controls.Add(this.btnMerk);
+            this.Controls.Add(this.btnSchadeverleden);
+            this.Controls.Add(this.btneigenaren);
+            this.Controls.Add(this.btnOnderhoudsboekje);
+            this.Controls.Add(this.btnExtras);
+            this.Controls.Add(this.btnTrekgewicht);
+            this.Controls.Add(this.btnCO2);
+            this.Controls.Add(this.btnVerbruik);
+            this.Controls.Add(this.Motorvermogen);
+            this.Controls.Add(this.btnAPKgeldig);
+            this.Controls.Add(this.btnKilometerstand);
+            this.Controls.Add(this.btnTransmissie);
+            this.Controls.Add(this.btnBrandstof);
+            this.Controls.Add(this.btnBouwjaar);
+            this.Controls.Add(this.btnKleur);
             this.Controls.Add(this.btnselect);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.btnadd);
             this.Controls.Add(this.pcbauto);
@@ -629,8 +415,6 @@
             this.Controls.Add(this.pcbBalk);
             this.Name = "frmAdminscherm";
             this.Text = "Adminscherm";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbauto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbLogo)).EndInit();
@@ -654,42 +438,24 @@
         private System.Windows.Forms.PictureBox pcbauto;
         private System.Windows.Forms.Button btnadd;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.CheckBox checkBox29;
-        private System.Windows.Forms.CheckBox checkBox30;
-        private System.Windows.Forms.CheckBox checkBox31;
-        private System.Windows.Forms.CheckBox checkBox32;
-        private System.Windows.Forms.CheckBox checkBox33;
-        private System.Windows.Forms.CheckBox checkBox34;
-        private System.Windows.Forms.CheckBox checkBox35;
-        private System.Windows.Forms.CheckBox checkBox22;
-        private System.Windows.Forms.CheckBox checkBox23;
-        private System.Windows.Forms.CheckBox checkBox24;
-        private System.Windows.Forms.CheckBox checkBox25;
-        private System.Windows.Forms.CheckBox checkBox26;
-        private System.Windows.Forms.CheckBox checkBox27;
-        private System.Windows.Forms.CheckBox checkBox28;
-        private System.Windows.Forms.CheckBox checkBox15;
-        private System.Windows.Forms.CheckBox checkBox16;
-        private System.Windows.Forms.CheckBox checkBox17;
-        private System.Windows.Forms.CheckBox checkBox18;
-        private System.Windows.Forms.CheckBox checkBox19;
-        private System.Windows.Forms.CheckBox checkBox20;
-        private System.Windows.Forms.CheckBox checkBox21;
-        private System.Windows.Forms.CheckBox checkBox8;
-        private System.Windows.Forms.CheckBox checkBox9;
-        private System.Windows.Forms.CheckBox checkBox10;
-        private System.Windows.Forms.CheckBox checkBox11;
-        private System.Windows.Forms.CheckBox checkBox12;
-        private System.Windows.Forms.CheckBox checkBox13;
-        private System.Windows.Forms.CheckBox checkBox14;
-        private System.Windows.Forms.CheckBox checkBox7;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button btnselect;
+        private System.Windows.Forms.Button btnPrijs;
+        private System.Windows.Forms.Button btnLocatie;
+        private System.Windows.Forms.Button btnModel;
+        private System.Windows.Forms.Button btnMerk;
+        private System.Windows.Forms.Button btnSchadeverleden;
+        private System.Windows.Forms.Button btneigenaren;
+        private System.Windows.Forms.Button btnOnderhoudsboekje;
+        private System.Windows.Forms.Button btnExtras;
+        private System.Windows.Forms.Button btnTrekgewicht;
+        private System.Windows.Forms.Button btnCO2;
+        private System.Windows.Forms.Button btnVerbruik;
+        private System.Windows.Forms.Button Motorvermogen;
+        private System.Windows.Forms.Button btnAPKgeldig;
+        private System.Windows.Forms.Button btnKilometerstand;
+        private System.Windows.Forms.Button btnTransmissie;
+        private System.Windows.Forms.Button btnBrandstof;
+        private System.Windows.Forms.Button btnBouwjaar;
+        private System.Windows.Forms.Button btnKleur;
     }
 }
