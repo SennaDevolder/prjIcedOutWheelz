@@ -52,9 +52,10 @@
             this.btnaccount.Location = new System.Drawing.Point(56, 416);
             this.btnaccount.Name = "btnaccount";
             this.btnaccount.Size = new System.Drawing.Size(168, 34);
-            this.btnaccount.TabIndex = 8;
+            this.btnaccount.TabIndex = 9;
             this.btnaccount.Text = "Maak account aan";
             this.btnaccount.UseVisualStyleBackColor = false;
+            this.btnaccount.Click += new System.EventHandler(this.btnaccount_Click);
             // 
             // txtwachtwoord
             // 
@@ -74,7 +75,7 @@
             this.txtherhaal.Location = new System.Drawing.Point(56, 388);
             this.txtherhaal.Name = "txtherhaal";
             this.txtherhaal.Size = new System.Drawing.Size(168, 20);
-            this.txtherhaal.TabIndex = 6;
+            this.txtherhaal.TabIndex = 8;
             this.txtherhaal.Enter += new System.EventHandler(this.txtherhaal_Enter);
             this.txtherhaal.Leave += new System.EventHandler(this.txtherhaal_Leave);
             // 
@@ -95,7 +96,7 @@
             this.txtadres.Location = new System.Drawing.Point(56, 330);
             this.txtadres.Name = "txtadres";
             this.txtadres.Size = new System.Drawing.Size(168, 20);
-            this.txtadres.TabIndex = 9;
+            this.txtadres.TabIndex = 6;
             this.txtadres.Enter += new System.EventHandler(this.txtadres_Enter);
             this.txtadres.Leave += new System.EventHandler(this.txtadres_Leave);
             // 
@@ -106,7 +107,7 @@
             this.txtstraatnr.Location = new System.Drawing.Point(56, 301);
             this.txtstraatnr.Name = "txtstraatnr";
             this.txtstraatnr.Size = new System.Drawing.Size(168, 20);
-            this.txtstraatnr.TabIndex = 10;
+            this.txtstraatnr.TabIndex = 5;
             this.txtstraatnr.Enter += new System.EventHandler(this.txtstraatnr_Enter);
             this.txtstraatnr.Leave += new System.EventHandler(this.txtstraatnr_Leave);
             // 
@@ -117,7 +118,7 @@
             this.txttelefoon.Location = new System.Drawing.Point(56, 272);
             this.txttelefoon.Name = "txttelefoon";
             this.txttelefoon.Size = new System.Drawing.Size(168, 20);
-            this.txttelefoon.TabIndex = 11;
+            this.txttelefoon.TabIndex = 4;
             this.txttelefoon.Enter += new System.EventHandler(this.txttelefoon_Enter);
             this.txttelefoon.Leave += new System.EventHandler(this.txttelefoon_Leave);
             // 
@@ -128,7 +129,7 @@
             this.txtemail.Location = new System.Drawing.Point(56, 243);
             this.txtemail.Name = "txtemail";
             this.txtemail.Size = new System.Drawing.Size(168, 20);
-            this.txtemail.TabIndex = 12;
+            this.txtemail.TabIndex = 3;
             this.txtemail.Enter += new System.EventHandler(this.txtemail_Enter);
             this.txtemail.Leave += new System.EventHandler(this.txtemail_Leave);
             // 
@@ -139,7 +140,7 @@
             this.txtvoornaam.Location = new System.Drawing.Point(56, 214);
             this.txtvoornaam.Name = "txtvoornaam";
             this.txtvoornaam.Size = new System.Drawing.Size(168, 20);
-            this.txtvoornaam.TabIndex = 13;
+            this.txtvoornaam.TabIndex = 2;
             this.txtvoornaam.Enter += new System.EventHandler(this.txtvoornaam_Enter);
             this.txtvoornaam.Leave += new System.EventHandler(this.txtvoornaam_Leave);
             // 
@@ -150,7 +151,7 @@
             this.txtnaam.Location = new System.Drawing.Point(56, 185);
             this.txtnaam.Name = "txtnaam";
             this.txtnaam.Size = new System.Drawing.Size(168, 20);
-            this.txtnaam.TabIndex = 14;
+            this.txtnaam.TabIndex = 1;
             this.txtnaam.Enter += new System.EventHandler(this.txtnaam_Enter);
             this.txtnaam.Leave += new System.EventHandler(this.txtnaam_Leave);
             // 

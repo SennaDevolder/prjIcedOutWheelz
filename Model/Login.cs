@@ -16,5 +16,6 @@ namespace prjIcedOutWheelz.Model
         public string TelNummer { get; set; }
         public string Straat_Num { get; set; }
         public string Gemeente_Postc { get; set; }
+        public string Soort_Gebruiker { get; set; }
     }
 }

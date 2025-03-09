@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using MySql.Data;
+using prjIcedOutWheelz.DA;
 using prjIcedOutWheelz.Properties;
 using System;
 using System.Collections.Generic;
@@ -16,65 +17,33 @@ namespace prjIcedOutWheelz
 {
     public partial class frmAdminscherm : Form
     {
+        string strMerk, strType, strKleur, strMotorvermogen, strBrandstof;
+        int intBouwjaar;
+        double dblPrijs;
+
         public frmAdminscherm()
         {
             InitializeComponent();
             this.CenterToScreen();
+
+            DataSet dsTypes = AutoDA.TypesOphalen();
+            DataTable dtTypes = dsTypes.Tables[0];
+
+            FillListBoxTypes(dsTypes.Tables[0]);
+        }
+
+        public void FillListBoxTypes(DataTable dtTypes)
+        {
+            //lsb vullen met DataSet
+            lsbautos.DataSource = dtTypes;
+            //haalt ID op van geselecteerde type
+            lsbautos.DisplayMember = "Merk";
+            lsbautos.ValueMember = "typeID";
+            lsbautos.Refresh();
         }
 
         private void btnaddimg_Click(object sender, EventArgs e)
         {
-            //    //maak een openfiledialog zodat je een img kan selecteren
-            //    OpenFileDialog openFileDialog = new OpenFileDialog();
-            //    openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.tiff"; // Filter
-            //    openFileDialog.Title = "Select an Image";
-
-
-            //    //toon en check of er een file is geselecteerd
-            //    if (openFileDialog.ShowDialog() == DialogResult.OK)
-            //    {
-            //        try
-            //        {
-            //            //file path
-            //            string selectedFilePath = openFileDialog.FileName;
-
-            //            //waar opslaan
-            //            string resourcesFolder = @"Z:\oefen\Sofo\Projecten\Eindwerk\Resources";
-
-            //            //check of locatie bestaat anders word er een gemaakt
-            //            if (!Directory.Exists(resourcesFolder))
-            //            {
-            //                Directory.CreateDirectory(resourcesFolder);
-            //            }
-
-            //            //naam file van path
-            //            string fileName = Path.GetFileName(selectedFilePath);
-            //            string destinationPath = Path.Combine(resourcesFolder, fileName);
-
-            //            //maak naam uniek als die al bestaat
-            //            int counter = 1;
-            //            while (File.Exists(destinationPath))
-            //            {
-            //                string newFileName = Path.GetFileNameWithoutExtension(fileName) + "_" + counter + Path.GetExtension(fileName);
-            //                destinationPath = Path.Combine(resourcesFolder, newFileName);
-            //                counter++;
-            //            }
-
-            //            //copieer file
-            //            File.Copy(selectedFilePath, destinationPath);
-
-            //            // img in picturebox
-            //            pcbauto.Image = System.Drawing.Image.FromFile(destinationPath);
-            //            //img aanpassen
-            //            pcbauto.SizeMode = PictureBoxSizeMode.StretchImage;
-            //            //messagebox om te melden dat de img is opgeslagen
-            //            MessageBox.Show($"Image saved to: {destinationPath}");
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            MessageBox.Show("Error loading or saving image: " + ex.Message);
-            //        }
-            //    }
             string eindwerkPath = FindEindwerkPath();
             string currentDirectory = Directory.GetCurrentDirectory();
             DirectoryInfo dir = new DirectoryInfo(currentDirectory);
@@ -115,11 +84,11 @@ namespace prjIcedOutWheelz
                     {
                         File.Copy(selectedFilePath, destinationPath, true); // Overwrite if exists
                         MessageBox.Show($"Image saved to: {destinationPath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        pcbauto.Image.Dispose();
+                        picAuto.Image.Dispose();
                         // img in picturebox
-                        pcbauto.Image = System.Drawing.Image.FromFile(destinationPath);
+                        picAuto.Image = System.Drawing.Image.FromFile(destinationPath);
                         //img aanpassen
-                        pcbauto.SizeMode = PictureBoxSizeMode.StretchImage;
+                        picAuto.SizeMode = PictureBoxSizeMode.StretchImage;
                     }
                     catch
                     {
@@ -140,6 +109,7 @@ namespace prjIcedOutWheelz
             }
 
         }
+
         private string FindEindwerkPath()
         {
             string currentDirectory = Directory.GetCurrentDirectory();
@@ -202,8 +172,8 @@ namespace prjIcedOutWheelz
                     //Check als file bestaat voor verwijderen
                     if (File.Exists(selectedFile))
                     {
-                        pcbauto.Image.Dispose();
-                        pcbauto.Image = Properties.Resources.placeholder_image;
+                        picAuto.Image.Dispose();
+                        picAuto.Image = Properties.Resources.placeholder_image;
                         File.Delete(selectedFile);
                         MessageBox.Show("File deleted successfully!");
                     }
@@ -232,8 +202,8 @@ namespace prjIcedOutWheelz
         {
             lsbautos.Items.Clear();
             lsbinfo.Items.Clear();
-            pcbauto.Image.Dispose();
-            pcbauto.Image = Properties.Resources.placeholder_image;
+            picAuto.Image.Dispose();
+            picAuto.Image = Properties.Resources.placeholder_image;
         }
         private void btnselect_Click(object sender, EventArgs e)
         {
@@ -258,7 +228,7 @@ namespace prjIcedOutWheelz
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 //laad img in picturebox
-                pcbauto.ImageLocation = openFileDialog.FileName;
+                picAuto.ImageLocation = openFileDialog.FileName;
             }
             else
             {
@@ -272,104 +242,146 @@ namespace prjIcedOutWheelz
 
         }
 
+
+        private void lsbautos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Index van auto in listbox ophalen
+            int selectedIndex = lsbautos.SelectedIndex;
+
+            // DataTable halen uit listbox
+            DataTable dtListBox = (DataTable)lsbautos.DataSource;
+
+            // AutoType waarde uit DataTable halen (eerste rij zijn indexen)
+            int autoType = Convert.ToInt32(dtListBox.Rows[selectedIndex]["typeID"]);
+
+            // Foto ophalen uit DA
+            DataSet dsFoto = AutoDA.FotoOphalen(autoType);
+
+            // Chekcen of DataSet rijen heeft
+            if (dsFoto.Tables[0].Rows.Count > 0)
+            {
+                // Foto data uit DataSet halen
+                byte[] photoData = dsFoto.Tables[0].Rows[0]["Foto"] as byte[];
+
+                if (photoData != null && photoData.Length > 0)
+                {
+                    try
+                    {
+                        // Foto laden
+                        using (MemoryStream ms = new MemoryStream(photoData))
+                        {
+                            picAuto.Image = Image.FromStream(ms);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Converteer error
+                        MessageBox.Show("Error tijdens het laden van de foto", "Error");
+                    }
+                }
+                else
+                {
+                    // Error als er geen foto is
+                    MessageBox.Show("Geen foto beschikbaar", "Geen foto");
+                }
+            }
+            else
+            {
+                // Error als er geen rij gereturnedt wordt uit DataSet
+                MessageBox.Show("Geen foto gevonden", "Geen foto");
+            }
+        }
+
+
         private void btnMerk_Click(object sender, EventArgs e)
         {
-            string strcontrole;
             do
             {
-                strcontrole = Interaction.InputBox("Gelieve het merk van de auto in te vullen", "Merk Auto");
+                strMerk = Interaction.InputBox("Gelieve het merk van de auto in te vullen", "Merk Auto");
 
-                if (strcontrole.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strcontrole))
+                if (strMerk.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strMerk))
                 {
                     MessageBox.Show("Gelieve alleen letters te gebruiken en het veld niet leeg te laten!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-            } while (strcontrole.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strcontrole)); // Herhaal als er cijfers zijn of als het leeg is
+            } while (strMerk.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strMerk)); // Herhaal als er cijfers zijn of als het leeg is
 
-            MessageBox.Show($"Merk opgeslagen: {strcontrole}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"Merk opgeslagen: {strMerk}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
 
         private void btnModel_Click(object sender, EventArgs e)
         {
-            Interaction.InputBox("Gelieve het model van de auto in te vullen", "Model Auto");
+            do
+            {
+                strType = Interaction.InputBox("Gelieve het Type van de auto in te vullen", "Model Auto");
 
+                if (strType.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strType))
+                {
+                    MessageBox.Show("Gelieve alleen letters te gebruiken en het veld niet leeg te laten!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
+            } while (strType.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strType)); // Herhaal als er cijfers zijn of als het leeg is
+
+            MessageBox.Show($"Model opgeslagen: {strType}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnBouwjaar_Click(object sender, EventArgs e)
         {
-            Interaction.InputBox("Voer het bouwjaar van de auto in (bijv. 2018)", "Bouwjaar");
+           
         }
 
         private void btnBrandstof_Click(object sender, EventArgs e)
         {
-            Interaction.InputBox("Welke brandstof gebruikt de auto? (Benzine, Diesel, Hybride, Elektrisch)", "Brandstof");
-        }
+            do
+            {
+                strBrandstof = Interaction.InputBox("Gelieve het brandstof van de auto in te vullen", "Brandstof Auto");
 
-        private void btnTransmissie_Click(object sender, EventArgs e)
-        {
-            Interaction.InputBox("Wat is de transmissie van de auto? (Handgeschakeld of Automaat)", "Transmissie");
-        }
+                if (strBrandstof.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strBrandstof))
+                {
+                    MessageBox.Show("Gelieve alleen letters te gebruiken en het veld niet leeg te laten!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
-        private void btnKilometerstand_Click(object sender, EventArgs e)
-        {
-            Interaction.InputBox("Voer de kilometerstand van de auto in", "Kilometerstand");
-        }
+            } while (strBrandstof.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strBrandstof)); // Herhaal als er cijfers zijn of als het leeg is
 
-        private void btnAPKgeldig_Click(object sender, EventArgs e)
-        {
-            Interaction.InputBox("Tot welke datum is de APK geldig?", "APK Geldig Tot");
+            MessageBox.Show($"Brandstof opgeslagen: {strBrandstof}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void Motorvermogen_Click(object sender, EventArgs e)
         {
-            Interaction.InputBox("Wat is het motorvermogen? (bijv. 110 pk)", "Motorvermogen");
-        }
+            do
+            {
+                strMotorvermogen = Interaction.InputBox("Gelieve het motor vermogen van de auto in te vullen", "Motor vermogen van auto");
 
-        private void btnVerbruik_Click(object sender, EventArgs e)
-        {
-            Interaction.InputBox("Wat is het brandstofverbruik? (bijv. 1 op 16 of 6,3L/100km)", "Verbruik");
-        }
+                if (strMotorvermogen.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strMotorvermogen))
+                {
+                    MessageBox.Show("Gelieve alleen letters te gebruiken en het veld niet leeg te laten!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
-        private void btnCO2_Click(object sender, EventArgs e)
-        {
-            Interaction.InputBox("Wat is de CO2-uitstoot van de auto? (bijv. 120 g/km)", "CO₂-uitstoot");
-        }
+            } while (strMotorvermogen.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strMotorvermogen)); // Herhaal als er cijfers zijn of als het leeg is
 
-        private void btnTrekgewicht_Click(object sender, EventArgs e)
-        {
-            Interaction.InputBox("Wat is het maximale trekgewicht van de auto? (bijv. 1500 kg)", "Trekgewicht");
+            MessageBox.Show($"Motor vermogen opgeslagen: {strMotorvermogen}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnExtras_Click(object sender, EventArgs e)
         {
-            Interaction.InputBox("Welke extra opties heeft de auto? (bijv. stoelverwarming, navigatie)", "Extra’s");
+            
         }
 
-        private void btnOnderhoudsboekje_Click(object sender, EventArgs e)
-        {
-            Interaction.InputBox("Is het onderhoudsboekje aanwezig? (Ja/Nee)", "Onderhoudsboekje");
-        }
-
-        private void btneigenaren_Click(object sender, EventArgs e)
-        {
-            Interaction.InputBox("Hoeveel eigenaren heeft de auto gehad?", "Aantal Eigenaren");
-        }
-
-        private void btnSchadeverleden_Click(object sender, EventArgs e)
-        {
-            Interaction.InputBox("Heeft de auto schade gehad? Zo ja, welke?", "Schadeverleden");
-        }
 
         private void btnKleur_Click(object sender, EventArgs e)
         {
-            Interaction.InputBox("Wat is de kleur van de auto?", "Kleur");
-        }
+            do
+            {
+                strKleur = Interaction.InputBox("Gelieve het kleur van de auto in te vullen", "kleur van auto");
 
-        private void btnLocatie_Click(object sender, EventArgs e)
-        {
-            Interaction.InputBox("Waar bevindt de auto zich? (Plaatsnaam)", "Locatie");
+                if (strKleur.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strKleur))
+                {
+                    MessageBox.Show("Gelieve alleen letters te gebruiken en het veld niet leeg te laten!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            } while (strKleur.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strKleur)); // Herhaal als er cijfers zijn of als het leeg is
+
+            MessageBox.Show($"Kleur opgeslagen: {strKleur}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnPrijs_Click(object sender, EventArgs e)

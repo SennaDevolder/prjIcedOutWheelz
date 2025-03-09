@@ -50,13 +50,16 @@ namespace prjIcedOutWheelz.DA
         {
             MySqlConnection conn = Database.MakeConnection();
 
-            string query = "INSERT INTO icedoutwheelz.tblKlant(Username, Password) VALUES (@Username, @Password)";
+            string query = "INSERT INTO `tblklant`(`Naam`, `Email`, `Wachtwoord`, `TelNummer`, `Straat_Num`, `Gemeente_Postc`) VALUES (@Naam,@Email,@Wachtwoord,@TelNummer,@Straat_Num,@Gemeente_Postc)";
             MySqlCommand sqlcmd = new MySqlCommand(query, conn);
-            //sqlcmd.Parameters.AddWithValue("@Username", L.Username);
-            //sqlcmd.Parameters.AddWithValue("@Password", L.Password);
+            sqlcmd.Parameters.AddWithValue("@Naam", L.Naam);
+            sqlcmd.Parameters.AddWithValue("@Email", L.Email);
+            sqlcmd.Parameters.AddWithValue("@Wachtwoord", L.Wachtwoord);
+            sqlcmd.Parameters.AddWithValue("@TelNummer", L.TelNummer);
+            sqlcmd.Parameters.AddWithValue("@Straat_Num", L.Straat_Num);
+            sqlcmd.Parameters.AddWithValue("@Gemeente_Postc", L.Gemeente_Postc);
 
             sqlcmd.ExecuteScalar();
-
 
             MessageBox.Show("Gebruiker succesvol toegevoegd!");
         }
@@ -81,14 +84,28 @@ namespace prjIcedOutWheelz.DA
         {
             MySqlConnection conn = Database.MakeConnection();
 
-            string query = "DELETE FROM login.tbllogin WHERE Username=@Username AND Password=@Password";
+            string query = "DELETE FROM icedoutwheelz.tblKlant WHERE Email=@Email AND Wachtwoord=@Wachtwoord";
             MySqlCommand sqlcmd = new MySqlCommand(query, conn);
-            //sqlcmd.Parameters.AddWithValue("@Username", L.Username);
-            //sqlcmd.Parameters.AddWithValue("@Password", L.Password);
+            sqlcmd.Parameters.AddWithValue("@Email", L.Email);
+            sqlcmd.Parameters.AddWithValue("@Wachtwoord", L.Wachtwoord);
 
             sqlcmd.ExecuteScalar();
 
             MessageBox.Show("Gebruiker werd verwijderd!");
+        }
+
+        public static string SoortGebruikerCheck(Login L)
+        {
+            MySqlConnection conn = Database.MakeConnection();
+
+            string query = "SELECT Soort_Gebruiker FROM icedoutwheelz.tblKlant WHERE Email=@Email AND Wachtwoord=@Wachtwoord";
+            MySqlCommand sqlcmd = new MySqlCommand(query, conn);
+            sqlcmd.Parameters.AddWithValue("@Email", L.Email);
+            sqlcmd.Parameters.AddWithValue("@Wachtwoord", L.Wachtwoord);
+
+            string SoortGebruiker = sqlcmd.ExecuteScalar().ToString();
+
+            return SoortGebruiker;
         }
 
         public static void Email2FAversturen(string recipientEmail, string subject, string body)
@@ -99,10 +116,20 @@ namespace prjIcedOutWheelz.DA
                 {
                     Port = 587,
                     Credentials = new NetworkCredential("icedoutwheelz.2fa@gmail.com", "kafe mqua douj epah"),
-                    EnableSsl = true,
+                    EnableSsl = true
                 };
 
-                smtpClient.Send("recipient-email@example.com", recipientEmail, subject, body);
+                var mailMessage = new MailMessage
+                {
+                    From = new MailAddress("icedoutwheelz.2fa@gmail.com", "IcedOutWheelz 2FA"),
+                    Subject = subject,
+                    Body = body,
+                    IsBodyHtml = true // Enable HTML email
+                };
+
+                mailMessage.To.Add(recipientEmail);
+
+                smtpClient.Send(mailMessage);
                 MessageBox.Show("Verification code sent to email.");
             }
             catch (Exception ex)

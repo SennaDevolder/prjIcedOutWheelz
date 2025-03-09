@@ -16,7 +16,7 @@ namespace prjIcedOutWheelz
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmAdminscherm/*frmStartscherm*/());
+            Application.Run(new frmAdminscherm());
         }
     }
 }

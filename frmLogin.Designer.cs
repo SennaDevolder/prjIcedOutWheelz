@@ -33,6 +33,7 @@
             this.txtWachtwoord = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnChangePass = new System.Windows.Forms.Button();
+            this.btnGebruikerVerwijderen = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,12 +101,29 @@
             this.btnChangePass.UseVisualStyleBackColor = false;
             this.btnChangePass.Click += new System.EventHandler(this.btnChangePass_Click);
             // 
+            // btnGebruikerVerwijderen
+            // 
+            this.btnGebruikerVerwijderen.BackColor = System.Drawing.Color.Cyan;
+            this.btnGebruikerVerwijderen.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnGebruikerVerwijderen.FlatAppearance.BorderSize = 4;
+            this.btnGebruikerVerwijderen.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnGebruikerVerwijderen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGebruikerVerwijderen.Font = new System.Drawing.Font("Bell MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGebruikerVerwijderen.Location = new System.Drawing.Point(64, 408);
+            this.btnGebruikerVerwijderen.Name = "btnGebruikerVerwijderen";
+            this.btnGebruikerVerwijderen.Size = new System.Drawing.Size(168, 55);
+            this.btnGebruikerVerwijderen.TabIndex = 5;
+            this.btnGebruikerVerwijderen.Text = "Gebruiker Verwijderen";
+            this.btnGebruikerVerwijderen.UseVisualStyleBackColor = false;
+            this.btnGebruikerVerwijderen.Click += new System.EventHandler(this.btnGebruikerVerwijderen_Click);
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(297, 408);
+            this.ClientSize = new System.Drawing.Size(297, 469);
+            this.Controls.Add(this.btnGebruikerVerwijderen);
             this.Controls.Add(this.btnChangePass);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtWachtwoord);
@@ -128,5 +146,6 @@
         private System.Windows.Forms.TextBox txtWachtwoord;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnChangePass;
+        private System.Windows.Forms.Button btnGebruikerVerwijderen;
     }
 }
