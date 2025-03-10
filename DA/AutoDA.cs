@@ -22,6 +22,7 @@ using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.draw;
 using System.Drawing.Imaging;
 using System.Globalization;
+using prjIcedOutWheelz.Model;
 
 
 namespace prjIcedOutWheelz.DA
@@ -168,8 +169,6 @@ namespace prjIcedOutWheelz.DA
                 cmd.Parameters.AddWithValue("@GeblindeerdeRamen", geblindeerdeRamen ? 1 : 0);
 
                 cmd.ExecuteNonQuery();
-
-                MessageBox.Show("Uw offerte is aangemaakt!");
             }
             catch (MySqlException ex)
             {
@@ -407,53 +406,53 @@ namespace prjIcedOutWheelz.DA
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("🔥 Fout bij het toevoegen van logo: " + ex.Message, "Waarschuwing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Fout bij het toevoegen van logo: " + ex.Message, "Waarschuwing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
-                // 🎉 Titel met een vleugje elegantie
+                // Titel
                 iTextSharp.text.Font titleFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 22, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
                 Paragraph title = new Paragraph("Uw offerte", titleFont);
                 title.Alignment = Element.ALIGN_CENTER;
                 document.Add(title);
                 document.Add(new Paragraph(" ")); // Ruimte tussen de titel en inhoud
 
-                // 🏅 Subtitel met flair
+                // Subtitel
                 iTextSharp.text.Font subheadingFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 14, iTextSharp.text.Font.BOLD, BaseColor.DARK_GRAY);
                 Paragraph subheading = new Paragraph("The Road is Calling - Answer in Style!", subheadingFont);
                 subheading.Alignment = Element.ALIGN_CENTER;
                 document.Add(subheading);
                 document.Add(new Chunk(new LineSeparator()));
 
-                // 🛠 Maak de detailtabel (Super strakke structuur)
+                // Maak de detailtabel
                 PdfPTable table = new PdfPTable(2); // Twee kolommen: Kenmerk, Waarde
                 table.WidthPercentage = 100;
                 table.SpacingBefore = 20f; // Ruimte voor de tabel
                 table.SpacingAfter = 20f;  // Ruimte na de tabel
                 table.SetWidths(new float[] { 1.5f, 3f });
 
-                // 🌟 Tabelkoppen (Donker marineblauw voor een strakke uitstraling)
+                // Tabelkoppen
                 iTextSharp.text.Font headerFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12, iTextSharp.text.Font.BOLD, BaseColor.WHITE);
-                BaseColor darkNavy = new BaseColor(0, 0, 102); // Donker marineblauw (krachtig en gedurfd!)
+                BaseColor darkNavy = new BaseColor(0, 0, 102); // Donker marineblauw
 
-                PdfPCell header1 = new PdfPCell(new Phrase("🔑 Kenmerk", headerFont)) { BackgroundColor = darkNavy, HorizontalAlignment = Element.ALIGN_CENTER, Padding = 8f };
-                PdfPCell header2 = new PdfPCell(new Phrase("📊 Waarde", headerFont)) { BackgroundColor = darkNavy, HorizontalAlignment = Element.ALIGN_CENTER, Padding = 8f };
+                PdfPCell header1 = new PdfPCell(new Phrase("Kenmerk", headerFont)) { BackgroundColor = darkNavy, HorizontalAlignment = Element.ALIGN_CENTER, Padding = 8f };
+                PdfPCell header2 = new PdfPCell(new Phrase("Waarde", headerFont)) { BackgroundColor = darkNavy, HorizontalAlignment = Element.ALIGN_CENTER, Padding = 8f };
                 table.AddCell(header1);
                 table.AddCell(header2);
 
-                decimal totalPrice = 0; // 💵 Houd de totale prijs bij
-                CultureInfo belgianCulture = new CultureInfo("nl-BE"); // Belgische euroformattering magie
+                decimal totalPrice = 0; // Houd de totale prijs bij
+                CultureInfo belgianCulture = new CultureInfo("nl-BE"); // Belgische euroformattering
 
-                bool alternateRow = false; // Wisselende rijkleuren - voor de verfijning
+                bool alternateRow = false; // Wisselende rijkleuren
 
-                // 🔄 Loop door de DataTable en vul de cellen in
+                // Loop door de DataTable en vul de cellen in
                 foreach (DataRow row in details.Rows)
                 {
                     iTextSharp.text.Font cellFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 11, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
 
                     BaseColor rowColor = alternateRow ? new BaseColor(240, 240, 240) : BaseColor.WHITE;
-                    alternateRow = !alternateRow; // Wissel de rijkleuren (chic)
+                    alternateRow = !alternateRow; // Wissel de rijkleuren
 
-                    // 📝 Dynamische gegevens toevoegen voor elke rij
+                    // Dynamische gegevens toevoegen voor elke rij
                     table.AddCell(new PdfPCell(new Phrase("Order Nummer", cellFont)) { BackgroundColor = rowColor, Padding = 8f });
                     table.AddCell(new PdfPCell(new Phrase(row["AutoOfferteID"].ToString(), cellFont)) { BackgroundColor = rowColor, Padding = 8f });
 
@@ -474,28 +473,28 @@ namespace prjIcedOutWheelz.DA
                     table.AddCell(new PdfPCell(new Phrase("Motor", cellFont)) { BackgroundColor = rowColor, Padding = 8f });
                     table.AddCell(new PdfPCell(new Phrase(row["Motor"].ToString(), cellFont)) { BackgroundColor = rowColor, Padding = 8f });
 
-                    // ✨ Formateren van "Extras" veld: Opsommingstekens voor extra's
+                    // Formateren van "Extras" veld: Opsommingstekens voor extra's
                     string extras = row["Extras"].ToString();
                     string formattedExtras = string.Join("\n• ", extras.Split(',').Select(extra => extra.Trim())); // Bullet-points
 
-                    // 📋 Voeg de extra's toe in een nette lijst
+                    // Voeg de extra's toe in een lijst
                     table.AddCell(new PdfPCell(new Phrase("Extra's", cellFont)) { BackgroundColor = rowColor, Rowspan = 2, Padding = 8f });
                     table.AddCell(new PdfPCell(new Phrase("• " + formattedExtras, cellFont)) { BackgroundColor = rowColor, Colspan = 2, Padding = 8f });
 
                 }
 
-                // 🌈 Voeg de tabel toe aan het document (De grote onthulling van de tabel)
+                // Voeg de tabel toe aan het document
                 document.Add(table);
 
-                // 💰 Totale prijs sectie met flair
+                // Totale prijs sectie
                 iTextSharp.text.Font totalPriceFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 14, iTextSharp.text.Font.BOLD, BaseColor.RED);
-                Paragraph totalPriceParagraph = new Paragraph($"💵 Totale Prijs: {totalPrice.ToString("C2", belgianCulture)}", totalPriceFont);
+                Paragraph totalPriceParagraph = new Paragraph($"Totale Prijs: {totalPrice.ToString("C2", belgianCulture)}", totalPriceFont);
                 totalPriceParagraph.Alignment = Element.ALIGN_RIGHT;
                 document.Add(totalPriceParagraph);
 
                 document.Add(new Chunk(new LineSeparator())); // Scheidingsteken om de secties te splitsen
 
-                // 📞 Contactinformatie sectie (Een vriendelijk geheugensteuntje)
+                // Contactinformatie sectie
                 iTextSharp.text.Font footerFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 11, iTextSharp.text.Font.ITALIC, BaseColor.GRAY);
                 Paragraph footer = new Paragraph("📞 Bedankt voor uw zaken! Neem contact met ons op als u vragen heeft.", footerFont);
                 footer.Alignment = Element.ALIGN_CENTER;
@@ -503,20 +502,20 @@ namespace prjIcedOutWheelz.DA
                 document.Add(footer);
                 document.Add(new Paragraph(" "));
 
-                // 🖊️ Handtekening (met extra charme)
+                // Handtekening
                 iTextSharp.text.Font signatureFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12, iTextSharp.text.Font.BOLD, BaseColor.DARK_GRAY);
                 Paragraph signature = new Paragraph("Met vriendelijke groet, \nIcedOutWheelz", signatureFont);
                 signature.Alignment = Element.ALIGN_RIGHT;
                 document.Add(signature);
 
-                // 🌟 Finaliseer het document (Epische afwerking!)
+                // Finaliseer het document 
                 document.Close();
                 memoryStream.Position = 0;
                 return memoryStream;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("🔥 Fout bij het genereren van de PDF: " + ex.Message, "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Fout bij het genereren van de PDF: " + ex.Message, "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
 

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -17,6 +18,18 @@ namespace prjIcedOutWheelz
 {
     public partial class frmhoofdpagina : Form
     {
+        /*  
+         *  TODO:
+         *  - Fix dubbel Fiat en Porsche in cmbType (filter)
+         *  - Fix geen status weergegeven on selection Volvo EX90 --> StatusID = 0 in DataBase in tblautoofferte
+         *  - Merk toevoegen in DataTable (details uit pdf creator AutoDA) om extra rij in PDF te hebben met Merk van voertuig
+         *  - 
+        */
+
+
+
+
+
         DataSet dsTypes = AutoDA.TypesOphalen();
         private Dictionary<string, DataRow> dataMap = new Dictionary<string, DataRow>();
 
@@ -34,6 +47,15 @@ namespace prjIcedOutWheelz
             foreach (DataRow row in dtTypes.Rows)
             {
                 cmbType.Items.Add(row[1].ToString());
+            }
+
+            if (LoginDA.SoortGebruikerCheck(frmLogin.log) == "A")
+            {
+                btnAdmin.Visible = true;
+            }
+            else
+            {
+                btnAdmin.Visible = false;
             }
         }
 
@@ -56,21 +78,6 @@ namespace prjIcedOutWheelz
             return filteredTable;
         }
 
-        private void PopulateComboBox()
-        {
-            // Get the DataTable
-            DataTable dtTypes = AutoDA.TypesOphalen().Tables[0];
-
-            // Get unique "Merk" values from the DataTable
-            DataTable dtUniqueMerk = dtTypes.DefaultView.ToTable(true, "Merk");
-
-            // Bind the ComboBox to the unique "Merk" values
-            cmbType.DataSource = dtUniqueMerk;
-            cmbType.DisplayMember = "Merk";  // Display the brand name
-            cmbType.ValueMember = "Merk";  // Use the brand name as value
-        }
-
-
         public void FillListBoxTypes(DataTable dtTypess)
         {
             // Get DataTable
@@ -91,18 +98,9 @@ namespace prjIcedOutWheelz
 
         private void btnAdmin_Click(object sender, EventArgs e)
         {
-            Login L = frmLogin.log;
-
-            if(LoginDA.SoortGebruikerCheck(L) == "A")
-            {
-                frmAdminscherm frm = new frmAdminscherm();
-                this.Hide();
-                frm.Show();
-            }
-            else
-            {
-               btnAdmin.Visible = false;
-            }
+            frmAdminscherm frm = new frmAdminscherm();
+            this.Hide();
+            frm.Show();
         }
 
         private void FillComboBoxMotor(int autoTypeID)
@@ -176,7 +174,7 @@ namespace prjIcedOutWheelz
                     catch (Exception ex)
                     {
                         // Converteer error
-                        MessageBox.Show("Error tijdens het laden van de foto", "Error");
+                        MessageBox.Show($"Error: {ex.Message}", "Error");
                     }
                 }
                 else
@@ -255,6 +253,9 @@ namespace prjIcedOutWheelz
 
         private void btnVraagOfferte_Click(object sender, EventArgs e)
         {
+            Login L = new Login();
+            L = frmLogin.log;
+
             // Retrieve the selected item from ListBox (lsbTypes)
             if (lsbTypes.SelectedItem != null)
             {
@@ -310,7 +311,7 @@ namespace prjIcedOutWheelz
                 if (pdfStream != null)
                 {
                     // Send email with the generated PDF as an attachment
-                    string toEmail = "softie04@gmail.com";
+                    string toEmail = L.Email;
                     string subject = "Your Offerte Details";
                     string body = "<h3>Dear Customer,</h3><p>Attached are the details of your offerte.</p>";
 

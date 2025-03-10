@@ -80,25 +80,29 @@
             // 
             // lsbautos
             // 
+            this.lsbautos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lsbautos.FormattingEnabled = true;
+            this.lsbautos.ItemHeight = 16;
             this.lsbautos.Location = new System.Drawing.Point(12, 132);
             this.lsbautos.Name = "lsbautos";
-            this.lsbautos.Size = new System.Drawing.Size(120, 563);
+            this.lsbautos.Size = new System.Drawing.Size(180, 548);
             this.lsbautos.TabIndex = 7;
             this.lsbautos.SelectedIndexChanged += new System.EventHandler(this.lsbautos_SelectedIndexChanged);
             // 
             // lsbinfo
             // 
+            this.lsbinfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lsbinfo.FormattingEnabled = true;
-            this.lsbinfo.Location = new System.Drawing.Point(147, 132);
+            this.lsbinfo.ItemHeight = 16;
+            this.lsbinfo.Location = new System.Drawing.Point(198, 548);
             this.lsbinfo.Name = "lsbinfo";
-            this.lsbinfo.Size = new System.Drawing.Size(255, 407);
+            this.lsbinfo.Size = new System.Drawing.Size(695, 132);
             this.lsbinfo.TabIndex = 8;
             // 
             // btnremove
             // 
             this.btnremove.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnremove.Location = new System.Drawing.Point(147, 669);
+            this.btnremove.Location = new System.Drawing.Point(995, 698);
             this.btnremove.Name = "btnremove";
             this.btnremove.Size = new System.Drawing.Size(255, 32);
             this.btnremove.TabIndex = 9;
@@ -109,7 +113,7 @@
             // btnclear
             // 
             this.btnclear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnclear.Location = new System.Drawing.Point(147, 615);
+            this.btnclear.Location = new System.Drawing.Point(995, 644);
             this.btnclear.Name = "btnclear";
             this.btnclear.Size = new System.Drawing.Size(255, 32);
             this.btnclear.TabIndex = 10;
@@ -120,7 +124,7 @@
             // btnaddimg
             // 
             this.btnaddimg.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnaddimg.Location = new System.Drawing.Point(147, 561);
+            this.btnaddimg.Location = new System.Drawing.Point(995, 590);
             this.btnaddimg.Name = "btnaddimg";
             this.btnaddimg.Size = new System.Drawing.Size(255, 32);
             this.btnaddimg.TabIndex = 12;
@@ -131,7 +135,7 @@
             // btnadd
             // 
             this.btnadd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnadd.Location = new System.Drawing.Point(413, 669);
+            this.btnadd.Location = new System.Drawing.Point(919, 561);
             this.btnadd.Name = "btnadd";
             this.btnadd.Size = new System.Drawing.Size(461, 32);
             this.btnadd.TabIndex = 16;
@@ -143,14 +147,14 @@
             this.pictureBox3.BackColor = System.Drawing.Color.Black;
             this.pictureBox3.Location = new System.Drawing.Point(-191, 116);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(1278, 10);
+            this.pictureBox3.Size = new System.Drawing.Size(1084, 10);
             this.pictureBox3.TabIndex = 20;
             this.pictureBox3.TabStop = false;
             // 
             // picAuto
             // 
             this.picAuto.Image = global::prjIcedOutWheelz.Properties.Resources.placeholder_image;
-            this.picAuto.Location = new System.Drawing.Point(413, 132);
+            this.picAuto.Location = new System.Drawing.Point(919, 24);
             this.picAuto.Name = "picAuto";
             this.picAuto.Size = new System.Drawing.Size(461, 258);
             this.picAuto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -179,7 +183,7 @@
             // btnselect
             // 
             this.btnselect.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnselect.Location = new System.Drawing.Point(413, 622);
+            this.btnselect.Location = new System.Drawing.Point(919, 514);
             this.btnselect.Name = "btnselect";
             this.btnselect.Size = new System.Drawing.Size(461, 32);
             this.btnselect.TabIndex = 22;
@@ -190,7 +194,7 @@
             // btnPrijs
             // 
             this.btnPrijs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrijs.Location = new System.Drawing.Point(413, 588);
+            this.btnPrijs.Location = new System.Drawing.Point(919, 480);
             this.btnPrijs.Name = "btnPrijs";
             this.btnPrijs.Size = new System.Drawing.Size(455, 21);
             this.btnPrijs.TabIndex = 58;
@@ -201,7 +205,7 @@
             // btnType
             // 
             this.btnType.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnType.Location = new System.Drawing.Point(413, 423);
+            this.btnType.Location = new System.Drawing.Point(919, 315);
             this.btnType.Name = "btnType";
             this.btnType.Size = new System.Drawing.Size(455, 21);
             this.btnType.TabIndex = 56;
@@ -212,7 +216,7 @@
             // btnMerk
             // 
             this.btnMerk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMerk.Location = new System.Drawing.Point(413, 396);
+            this.btnMerk.Location = new System.Drawing.Point(919, 288);
             this.btnMerk.Name = "btnMerk";
             this.btnMerk.Size = new System.Drawing.Size(455, 21);
             this.btnMerk.TabIndex = 55;
@@ -223,7 +227,7 @@
             // btnExtras
             // 
             this.btnExtras.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExtras.Location = new System.Drawing.Point(413, 504);
+            this.btnExtras.Location = new System.Drawing.Point(919, 396);
             this.btnExtras.Name = "btnExtras";
             this.btnExtras.Size = new System.Drawing.Size(455, 21);
             this.btnExtras.TabIndex = 51;
@@ -234,7 +238,7 @@
             // Motorvermogen
             // 
             this.Motorvermogen.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Motorvermogen.Location = new System.Drawing.Point(413, 531);
+            this.Motorvermogen.Location = new System.Drawing.Point(919, 423);
             this.Motorvermogen.Name = "Motorvermogen";
             this.Motorvermogen.Size = new System.Drawing.Size(455, 21);
             this.Motorvermogen.TabIndex = 47;
@@ -245,7 +249,7 @@
             // btnBrandstof
             // 
             this.btnBrandstof.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrandstof.Location = new System.Drawing.Point(413, 559);
+            this.btnBrandstof.Location = new System.Drawing.Point(919, 451);
             this.btnBrandstof.Name = "btnBrandstof";
             this.btnBrandstof.Size = new System.Drawing.Size(455, 21);
             this.btnBrandstof.TabIndex = 43;
@@ -256,7 +260,7 @@
             // btnBouwjaar
             // 
             this.btnBouwjaar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBouwjaar.Location = new System.Drawing.Point(413, 450);
+            this.btnBouwjaar.Location = new System.Drawing.Point(919, 342);
             this.btnBouwjaar.Name = "btnBouwjaar";
             this.btnBouwjaar.Size = new System.Drawing.Size(455, 21);
             this.btnBouwjaar.TabIndex = 42;
@@ -267,7 +271,7 @@
             // btnKleur
             // 
             this.btnKleur.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKleur.Location = new System.Drawing.Point(413, 477);
+            this.btnKleur.Location = new System.Drawing.Point(919, 369);
             this.btnKleur.Name = "btnKleur";
             this.btnKleur.Size = new System.Drawing.Size(455, 21);
             this.btnKleur.TabIndex = 41;
@@ -280,7 +284,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(880, 713);
+            this.ClientSize = new System.Drawing.Size(1333, 697);
             this.Controls.Add(this.btnPrijs);
             this.Controls.Add(this.btnType);
             this.Controls.Add(this.btnMerk);

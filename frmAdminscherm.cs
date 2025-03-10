@@ -17,6 +17,15 @@ namespace prjIcedOutWheelz
 {
     public partial class frmAdminscherm : Form
     {
+        /*
+         *  TODO:
+         * - informatie weergeven in lsbinfo. Enkel selected auto EN selected engine, niet allemaal!
+         * - Engine selection filter cmb toevoegen
+         * - 
+         */
+
+
+
         string strMerk, strType, strKleur, strMotorvermogen, strBrandstof;
         int intBouwjaar;
         double dblPrijs;
@@ -29,17 +38,24 @@ namespace prjIcedOutWheelz
             DataSet dsTypes = AutoDA.TypesOphalen();
             DataTable dtTypes = dsTypes.Tables[0];
 
-            FillListBoxTypes(dsTypes.Tables[0]);
+            FillListBoxTypes();
         }
 
-        public void FillListBoxTypes(DataTable dtTypes)
+        public void FillListBoxTypes()
         {
-            //lsb vullen met DataSet
+            // Get DataTable
+            DataTable dtTypes = AutoDA.TypesOphalen().Tables[0];
+
+            // Add a new computed column for the combined display text (Merk | Type | Jaar)
+            if (!dtTypes.Columns.Contains("DisplayText"))
+            {
+                dtTypes.Columns.Add("DisplayText", typeof(string), "Merk + ' | ' + Type + ' | ' + Jaar");
+            }
+
+            // Bind directly to DataTable
             lsbautos.DataSource = dtTypes;
-            //haalt ID op van geselecteerde type
-            lsbautos.DisplayMember = "Merk";
-            lsbautos.ValueMember = "typeID";
-            lsbautos.Refresh();
+            lsbautos.DisplayMember = "DisplayText";  // Show the combined text (Merk | Type | Jaar)
+            lsbautos.ValueMember = "typeID";  // Store the unique ID (typeID or other unique identifier)
         }
 
         private void btnaddimg_Click(object sender, EventArgs e)
@@ -127,13 +143,6 @@ namespace prjIcedOutWheelz
             return null;
         }
 
-        [STAThread]
-        static void start()
-        {
-            Application.EnableVisualStyles();
-            Application.Run(new frmAdminscherm());
-        }
-
         private void txthooftdpagina_Click(object sender, EventArgs e)
         {
             //openen van de form frmhoofdpagina
@@ -200,8 +209,6 @@ namespace prjIcedOutWheelz
 
         private void btnclear_Click(object sender, EventArgs e)
         {
-            lsbautos.Items.Clear();
-            lsbinfo.Items.Clear();
             picAuto.Image.Dispose();
             picAuto.Image = Properties.Resources.placeholder_image;
         }
@@ -276,7 +283,7 @@ namespace prjIcedOutWheelz
                     catch (Exception ex)
                     {
                         // Converteer error
-                        MessageBox.Show("Error tijdens het laden van de foto", "Error");
+                        MessageBox.Show($"Error: {ex.Message}", "Error");
                     }
                 }
                 else
