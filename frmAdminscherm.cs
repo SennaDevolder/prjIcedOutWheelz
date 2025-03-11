@@ -26,7 +26,7 @@ namespace prjIcedOutWheelz
 
 
 
-        string strMerk, strType, strKleur, strMotorvermogen, strBrandstof;
+        string strMerk, strType, strKleur, strMotorvermogen, strBrandstof, strextras;
         int intBouwjaar;
         double dblPrijs;
 
@@ -57,7 +57,6 @@ namespace prjIcedOutWheelz
             lsbautos.DisplayMember = "DisplayText";  // Show the combined text (Merk | Type | Jaar)
             lsbautos.ValueMember = "typeID";  // Store the unique ID (typeID or other unique identifier)
         }
-
         private void btnaddimg_Click(object sender, EventArgs e)
         {
             string eindwerkPath = FindEindwerkPath();
@@ -353,6 +352,11 @@ namespace prjIcedOutWheelz
             MessageBox.Show($"Brandstof opgeslagen: {strBrandstof}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private void btnadd_Click(object sender, EventArgs e)
+        {
+            
+        }
+
         private void Motorvermogen_Click(object sender, EventArgs e)
         {
             do
@@ -371,7 +375,19 @@ namespace prjIcedOutWheelz
 
         private void btnExtras_Click(object sender, EventArgs e)
         {
-            
+            do
+            {
+                strextras = Interaction.InputBox("Gelieve de extra eigenschappen van de auto in te vullen", "Extra eigenschappen van de auto");
+
+
+                if (strextras.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strextras))
+                {
+                    MessageBox.Show("Gelieve alleen letters te gebruiken en het veld niet leeg te laten!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            } while (strextras.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strextras)); // Herhaal als er cijfers zijn of als het leeg is
+
+            MessageBox.Show($"Extras opgeslagen: {strextras}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 

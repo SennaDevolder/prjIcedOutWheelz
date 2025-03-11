@@ -41,14 +41,14 @@
             this.pcbLogo = new System.Windows.Forms.PictureBox();
             this.pcbBalk = new System.Windows.Forms.PictureBox();
             this.btnselect = new System.Windows.Forms.Button();
-            this.btnPrijs = new System.Windows.Forms.Button();
-            this.btnType = new System.Windows.Forms.Button();
             this.btnMerk = new System.Windows.Forms.Button();
-            this.btnExtras = new System.Windows.Forms.Button();
-            this.Motorvermogen = new System.Windows.Forms.Button();
-            this.btnBrandstof = new System.Windows.Forms.Button();
-            this.btnBouwjaar = new System.Windows.Forms.Button();
-            this.btnKleur = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAuto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbLogo)).BeginInit();
@@ -70,7 +70,7 @@
             // 
             this.txthooftdpagina.BackColor = System.Drawing.Color.Cyan;
             this.txthooftdpagina.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.txthooftdpagina.Location = new System.Drawing.Point(755, 34);
+            this.txthooftdpagina.Location = new System.Drawing.Point(780, 38);
             this.txthooftdpagina.Name = "txthooftdpagina";
             this.txthooftdpagina.Size = new System.Drawing.Size(113, 46);
             this.txthooftdpagina.TabIndex = 6;
@@ -85,7 +85,7 @@
             this.lsbautos.ItemHeight = 16;
             this.lsbautos.Location = new System.Drawing.Point(12, 132);
             this.lsbautos.Name = "lsbautos";
-            this.lsbautos.Size = new System.Drawing.Size(180, 548);
+            this.lsbautos.Size = new System.Drawing.Size(221, 404);
             this.lsbautos.TabIndex = 7;
             this.lsbautos.SelectedIndexChanged += new System.EventHandler(this.lsbautos_SelectedIndexChanged);
             // 
@@ -94,17 +94,17 @@
             this.lsbinfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lsbinfo.FormattingEnabled = true;
             this.lsbinfo.ItemHeight = 16;
-            this.lsbinfo.Location = new System.Drawing.Point(198, 548);
+            this.lsbinfo.Location = new System.Drawing.Point(12, 542);
             this.lsbinfo.Name = "lsbinfo";
-            this.lsbinfo.Size = new System.Drawing.Size(695, 132);
+            this.lsbinfo.Size = new System.Drawing.Size(881, 132);
             this.lsbinfo.TabIndex = 8;
             // 
             // btnremove
             // 
             this.btnremove.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnremove.Location = new System.Drawing.Point(995, 698);
+            this.btnremove.Location = new System.Drawing.Point(240, 424);
             this.btnremove.Name = "btnremove";
-            this.btnremove.Size = new System.Drawing.Size(255, 32);
+            this.btnremove.Size = new System.Drawing.Size(187, 53);
             this.btnremove.TabIndex = 9;
             this.btnremove.Text = "Remove";
             this.btnremove.UseVisualStyleBackColor = true;
@@ -113,9 +113,9 @@
             // btnclear
             // 
             this.btnclear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnclear.Location = new System.Drawing.Point(995, 644);
+            this.btnclear.Location = new System.Drawing.Point(239, 336);
             this.btnclear.Name = "btnclear";
-            this.btnclear.Size = new System.Drawing.Size(255, 32);
+            this.btnclear.Size = new System.Drawing.Size(186, 38);
             this.btnclear.TabIndex = 10;
             this.btnclear.Text = "Clear";
             this.btnclear.UseVisualStyleBackColor = true;
@@ -124,9 +124,9 @@
             // btnaddimg
             // 
             this.btnaddimg.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnaddimg.Location = new System.Drawing.Point(995, 590);
+            this.btnaddimg.Location = new System.Drawing.Point(240, 380);
             this.btnaddimg.Name = "btnaddimg";
-            this.btnaddimg.Size = new System.Drawing.Size(255, 32);
+            this.btnaddimg.Size = new System.Drawing.Size(186, 38);
             this.btnaddimg.TabIndex = 12;
             this.btnaddimg.Text = "Add img";
             this.btnaddimg.UseVisualStyleBackColor = true;
@@ -134,29 +134,34 @@
             // 
             // btnadd
             // 
+            this.btnadd.BackColor = System.Drawing.Color.Cyan;
+            this.btnadd.FlatAppearance.BorderColor = System.Drawing.Color.Cyan;
+            this.btnadd.FlatAppearance.BorderSize = 0;
+            this.btnadd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnadd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnadd.Location = new System.Drawing.Point(919, 561);
+            this.btnadd.Location = new System.Drawing.Point(239, 483);
             this.btnadd.Name = "btnadd";
-            this.btnadd.Size = new System.Drawing.Size(461, 32);
+            this.btnadd.Size = new System.Drawing.Size(654, 53);
             this.btnadd.TabIndex = 16;
             this.btnadd.Text = "Add";
-            this.btnadd.UseVisualStyleBackColor = true;
+            this.btnadd.UseVisualStyleBackColor = false;
+            this.btnadd.Click += new System.EventHandler(this.btnadd_Click);
             // 
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Black;
             this.pictureBox3.Location = new System.Drawing.Point(-191, 116);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(1084, 10);
+            this.pictureBox3.Size = new System.Drawing.Size(1102, 10);
             this.pictureBox3.TabIndex = 20;
             this.pictureBox3.TabStop = false;
             // 
             // picAuto
             // 
             this.picAuto.Image = global::prjIcedOutWheelz.Properties.Resources.placeholder_image;
-            this.picAuto.Location = new System.Drawing.Point(919, 24);
+            this.picAuto.Location = new System.Drawing.Point(432, 132);
             this.picAuto.Name = "picAuto";
-            this.picAuto.Size = new System.Drawing.Size(461, 258);
+            this.picAuto.Size = new System.Drawing.Size(461, 286);
             this.picAuto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picAuto.TabIndex = 13;
             this.picAuto.TabStop = false;
@@ -176,123 +181,123 @@
             this.pcbBalk.BackColor = System.Drawing.Color.Cyan;
             this.pcbBalk.Location = new System.Drawing.Point(-4, -2);
             this.pcbBalk.Name = "pcbBalk";
-            this.pcbBalk.Size = new System.Drawing.Size(897, 128);
+            this.pcbBalk.Size = new System.Drawing.Size(914, 128);
             this.pcbBalk.TabIndex = 3;
             this.pcbBalk.TabStop = false;
             // 
             // btnselect
             // 
             this.btnselect.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnselect.Location = new System.Drawing.Point(919, 514);
+            this.btnselect.Location = new System.Drawing.Point(433, 424);
             this.btnselect.Name = "btnselect";
-            this.btnselect.Size = new System.Drawing.Size(461, 32);
+            this.btnselect.Size = new System.Drawing.Size(461, 53);
             this.btnselect.TabIndex = 22;
             this.btnselect.Text = "Select img";
             this.btnselect.UseVisualStyleBackColor = true;
             this.btnselect.Click += new System.EventHandler(this.btnselect_Click);
             // 
-            // btnPrijs
-            // 
-            this.btnPrijs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrijs.Location = new System.Drawing.Point(919, 480);
-            this.btnPrijs.Name = "btnPrijs";
-            this.btnPrijs.Size = new System.Drawing.Size(455, 21);
-            this.btnPrijs.TabIndex = 58;
-            this.btnPrijs.Text = "Prijs";
-            this.btnPrijs.UseVisualStyleBackColor = true;
-            this.btnPrijs.Click += new System.EventHandler(this.btnPrijs_Click);
-            // 
-            // btnType
-            // 
-            this.btnType.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnType.Location = new System.Drawing.Point(919, 315);
-            this.btnType.Name = "btnType";
-            this.btnType.Size = new System.Drawing.Size(455, 21);
-            this.btnType.TabIndex = 56;
-            this.btnType.Text = "Type";
-            this.btnType.UseVisualStyleBackColor = true;
-            this.btnType.Click += new System.EventHandler(this.btnModel_Click);
-            // 
             // btnMerk
             // 
             this.btnMerk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMerk.Location = new System.Drawing.Point(919, 288);
+            this.btnMerk.Location = new System.Drawing.Point(239, 132);
             this.btnMerk.Name = "btnMerk";
-            this.btnMerk.Size = new System.Drawing.Size(455, 21);
+            this.btnMerk.Size = new System.Drawing.Size(90, 45);
             this.btnMerk.TabIndex = 55;
             this.btnMerk.Text = "Merk";
             this.btnMerk.UseVisualStyleBackColor = true;
             this.btnMerk.Click += new System.EventHandler(this.btnMerk_Click);
             // 
-            // btnExtras
+            // button1
             // 
-            this.btnExtras.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExtras.Location = new System.Drawing.Point(919, 396);
-            this.btnExtras.Name = "btnExtras";
-            this.btnExtras.Size = new System.Drawing.Size(455, 21);
-            this.btnExtras.TabIndex = 51;
-            this.btnExtras.Text = "Extras";
-            this.btnExtras.UseVisualStyleBackColor = true;
-            this.btnExtras.Click += new System.EventHandler(this.btnExtras_Click);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(336, 234);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 45);
+            this.button1.TabIndex = 41;
+            this.button1.Text = "Kleur";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnKleur_Click);
             // 
-            // Motorvermogen
+            // button2
             // 
-            this.Motorvermogen.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Motorvermogen.Location = new System.Drawing.Point(919, 423);
-            this.Motorvermogen.Name = "Motorvermogen";
-            this.Motorvermogen.Size = new System.Drawing.Size(455, 21);
-            this.Motorvermogen.TabIndex = 47;
-            this.Motorvermogen.Text = "Motorvermogen";
-            this.Motorvermogen.UseVisualStyleBackColor = true;
-            this.Motorvermogen.Click += new System.EventHandler(this.Motorvermogen_Click);
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(336, 132);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(90, 45);
+            this.button2.TabIndex = 42;
+            this.button2.Text = "Bouwjaar";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.btnBouwjaar_Click);
             // 
-            // btnBrandstof
+            // button3
             // 
-            this.btnBrandstof.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrandstof.Location = new System.Drawing.Point(919, 451);
-            this.btnBrandstof.Name = "btnBrandstof";
-            this.btnBrandstof.Size = new System.Drawing.Size(455, 21);
-            this.btnBrandstof.TabIndex = 43;
-            this.btnBrandstof.Text = "Brandstof";
-            this.btnBrandstof.UseVisualStyleBackColor = true;
-            this.btnBrandstof.Click += new System.EventHandler(this.btnBrandstof_Click);
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(240, 234);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(90, 45);
+            this.button3.TabIndex = 43;
+            this.button3.Text = "Brandstof";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.btnBrandstof_Click);
             // 
-            // btnBouwjaar
+            // button4
             // 
-            this.btnBouwjaar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBouwjaar.Location = new System.Drawing.Point(919, 342);
-            this.btnBouwjaar.Name = "btnBouwjaar";
-            this.btnBouwjaar.Size = new System.Drawing.Size(455, 21);
-            this.btnBouwjaar.TabIndex = 42;
-            this.btnBouwjaar.Text = "Bouwjaar";
-            this.btnBouwjaar.UseVisualStyleBackColor = true;
-            this.btnBouwjaar.Click += new System.EventHandler(this.btnBouwjaar_Click);
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(336, 183);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(90, 45);
+            this.button4.TabIndex = 47;
+            this.button4.Text = "Motor";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Motorvermogen_Click);
             // 
-            // btnKleur
+            // button5
             // 
-            this.btnKleur.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKleur.Location = new System.Drawing.Point(919, 369);
-            this.btnKleur.Name = "btnKleur";
-            this.btnKleur.Size = new System.Drawing.Size(455, 21);
-            this.btnKleur.TabIndex = 41;
-            this.btnKleur.Text = "Kleur";
-            this.btnKleur.UseVisualStyleBackColor = true;
-            this.btnKleur.Click += new System.EventHandler(this.btnKleur_Click);
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.Location = new System.Drawing.Point(240, 285);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(90, 45);
+            this.button5.TabIndex = 51;
+            this.button5.Text = "Extras";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.btnExtras_Click);
+            // 
+            // button6
+            // 
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.Location = new System.Drawing.Point(239, 183);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(90, 45);
+            this.button6.TabIndex = 56;
+            this.button6.Text = "Type";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.btnModel_Click);
+            // 
+            // button7
+            // 
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.Location = new System.Drawing.Point(336, 285);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(90, 45);
+            this.button7.TabIndex = 58;
+            this.button7.Text = "Prijs";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.btnPrijs_Click);
             // 
             // frmAdminscherm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(1333, 697);
-            this.Controls.Add(this.btnPrijs);
-            this.Controls.Add(this.btnType);
+            this.ClientSize = new System.Drawing.Size(906, 682);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.btnMerk);
-            this.Controls.Add(this.btnExtras);
-            this.Controls.Add(this.Motorvermogen);
-            this.Controls.Add(this.btnBrandstof);
-            this.Controls.Add(this.btnBouwjaar);
-            this.Controls.Add(this.btnKleur);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnselect);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.btnadd);
@@ -332,13 +337,13 @@
         private System.Windows.Forms.Button btnadd;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button btnselect;
-        private System.Windows.Forms.Button btnPrijs;
-        private System.Windows.Forms.Button btnType;
         private System.Windows.Forms.Button btnMerk;
-        private System.Windows.Forms.Button btnExtras;
-        private System.Windows.Forms.Button Motorvermogen;
-        private System.Windows.Forms.Button btnBrandstof;
-        private System.Windows.Forms.Button btnBouwjaar;
-        private System.Windows.Forms.Button btnKleur;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
     }
 }

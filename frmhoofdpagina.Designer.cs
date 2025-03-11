@@ -111,7 +111,7 @@
             this.panel1.Controls.Add(this.chkStuurVerwarming);
             this.panel1.Location = new System.Drawing.Point(742, 518);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(311, 182);
+            this.panel1.Size = new System.Drawing.Size(298, 182);
             this.panel1.TabIndex = 20;
             // 
             // btnVraagOfferte
@@ -237,7 +237,7 @@
             // picAuto
             // 
             this.picAuto.Image = ((System.Drawing.Image)(resources.GetObject("picAuto.Image")));
-            this.picAuto.Location = new System.Drawing.Point(291, 164);
+            this.picAuto.Location = new System.Drawing.Point(278, 152);
             this.picAuto.Name = "picAuto";
             this.picAuto.Size = new System.Drawing.Size(762, 338);
             this.picAuto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -296,7 +296,7 @@
             this.cmbType.FormattingEnabled = true;
             this.cmbType.Items.AddRange(new object[] {
             "Types"});
-            this.cmbType.Location = new System.Drawing.Point(12, 154);
+            this.cmbType.Location = new System.Drawing.Point(12, 152);
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(256, 21);
             this.cmbType.TabIndex = 6;
