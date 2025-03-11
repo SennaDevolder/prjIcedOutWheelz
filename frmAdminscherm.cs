@@ -26,7 +26,7 @@ namespace prjIcedOutWheelz
 
 
 
-        string strMerk, strType, strKleur, strMotorvermogen, strBrandstof, strextras;
+        string strMerk, strType, strKleur, strMotorvermogen, strBrandstof, strextras, stropvang;
         int intBouwjaar;
         double dblPrijs;
 
@@ -333,7 +333,19 @@ namespace prjIcedOutWheelz
 
         private void btnBouwjaar_Click(object sender, EventArgs e)
         {
-           
+           do
+            {
+                stropvang = Interaction.InputBox("Wat is de vraagprijs van de auto?", "Prijs");
+
+                // Controleer of de invoer leeg is of niet omgezet kan worden naar een double
+                if (string.IsNullOrWhiteSpace(stropvang) || !int.TryParse(stropvang, out intBouwjaar))
+                {
+                    MessageBox.Show("Gelieve een geldige prijs in te voeren!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+           } while (string.IsNullOrWhiteSpace(stropvang) || !int.TryParse(stropvang, out intBouwjaar)) ;
+
+            MessageBox.Show($"Prijs opgeslagen: {intBouwjaar} EUR", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnBrandstof_Click(object sender, EventArgs e)
@@ -395,7 +407,7 @@ namespace prjIcedOutWheelz
         {
             do
             {
-                strKleur = Interaction.InputBox("Gelieve het kleur van de auto in te vullen", "kleur van auto");
+                strKleur = Interaction.InputBox("Wat is de vraagprijs van de auto?", "Prijs");
 
                 if (strKleur.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strKleur))
                 {
@@ -405,12 +417,24 @@ namespace prjIcedOutWheelz
             } while (strKleur.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strKleur)); // Herhaal als er cijfers zijn of als het leeg is
 
             MessageBox.Show($"Kleur opgeslagen: {strKleur}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
 
         private void btnPrijs_Click(object sender, EventArgs e)
         {
-            Interaction.InputBox("Wat is de vraagprijs van de auto?", "Prijs");
+            do
+            {
+                stropvang = Interaction.InputBox("Wat is de vraagprijs van de auto?", "Prijs");
+
+                // Controleer of de invoer leeg is of niet omgezet kan worden naar een double
+                if (string.IsNullOrWhiteSpace(stropvang) || !double.TryParse(stropvang, out dblPrijs))
+                {
+                    MessageBox.Show("Gelieve een geldige prijs in te voeren!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            } while (string.IsNullOrWhiteSpace(stropvang) || !double.TryParse(stropvang, out dblPrijs));
+
+            MessageBox.Show($"Prijs opgeslagen: {dblPrijs} EUR", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-    }
-    
+    }    
 }

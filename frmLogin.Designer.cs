@@ -64,6 +64,7 @@
             this.txtWachtwoord.ForeColor = System.Drawing.Color.Black;
             this.txtWachtwoord.Location = new System.Drawing.Point(64, 263);
             this.txtWachtwoord.Name = "txtWachtwoord";
+            this.txtWachtwoord.PasswordChar = '*';
             this.txtWachtwoord.Size = new System.Drawing.Size(168, 20);
             this.txtWachtwoord.TabIndex = 2;
             this.txtWachtwoord.Enter += new System.EventHandler(this.txtWachtwoord_Enter);
@@ -131,7 +132,7 @@
             this.Controls.Add(this.picLogo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmLogin";
-            this.Text = "frmLogin";
+            this.Text = "Login";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmLogin_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);

@@ -173,7 +173,7 @@
             this.Controls.Add(this.picLogo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmRegistreer";
-            this.Text = "frmRegistreer";
+            this.Text = "Registreer";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmRegistreer_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
