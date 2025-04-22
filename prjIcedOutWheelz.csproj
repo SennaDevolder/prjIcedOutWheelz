@@ -164,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DA\AutoDA.cs" />
+    <Compile Include="DA\OfferteDA.cs" />
     <Compile Include="frmAdminscherm.cs">
       <SubType>Form</SubType>
     </Compile>

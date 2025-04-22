@@ -301,12 +301,12 @@ namespace prjIcedOutWheelz
                 MessageBox.Show("Selecteer eerst een auto type uit de lijst.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            DataTable offerteDetails = AutoDA.OfferteDetailsOphalen().Tables[0];
+            DataTable offerteDetails = OfferteDA.OfferteDetailsOphalen().Tables[0];
 
             if (offerteDetails.Rows.Count > 0)
             {
                 // Generate the PDF in memory
-                MemoryStream pdfStream = AutoDA.GeneratePdfInMemory(offerteDetails); // Adjust the method name if necessary
+                MemoryStream pdfStream = OfferteDA.GeneratePdfInMemory(offerteDetails); // Adjust the method name if necessary
 
                 if (pdfStream != null)
                 {
@@ -316,7 +316,7 @@ namespace prjIcedOutWheelz
                     string body = "<h3>Dear Customer,</h3><p>Attached are the details of your offerte.</p>";
 
                     // Send the email with PDF attachment
-                    AutoDA.SendEmailWithPdf(toEmail, subject, body, pdfStream);
+                    OfferteDA.SendEmailWithPdf(toEmail, subject, body, pdfStream);
                 }
             }
             else
