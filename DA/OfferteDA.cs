@@ -190,7 +190,7 @@ namespace prjIcedOutWheelz.DA
 
                 // Contactinformatie sectie
                 iTextSharp.text.Font footerFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 11, iTextSharp.text.Font.ITALIC, BaseColor.GRAY);
-                Paragraph footer = new Paragraph("📞 Bedankt voor uw zaken! Neem contact met ons op als u vragen heeft.", footerFont);
+                Paragraph footer = new Paragraph("📞 Bedankt voor uw zaken! Neem contact met ons op als u vragen heeft. Via het telefoonnummer +32 468 28 59 22 of het e-mailadres contact.icedoutwheelz@gmail.com ", footerFont);
                 footer.Alignment = Element.ALIGN_CENTER;
                 footer.SpacingBefore = 10f;
                 document.Add(footer);

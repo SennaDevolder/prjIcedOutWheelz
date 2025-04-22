@@ -197,7 +197,17 @@
       <DependentUpon>frmRegistreer.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\Database.cs" />
+    <Compile Include="Model\AutoOfferte.cs" />
+    <Compile Include="Model\Extras.cs" />
+    <Compile Include="Model\Kleuren.cs" />
+    <Compile Include="Model\Kleurpertype.cs" />
     <Compile Include="Model\Login.cs" />
+    <Compile Include="Model\Motoren.cs" />
+    <Compile Include="Model\Motorpertype.cs" />
+    <Compile Include="Model\Offertes.cs" />
+    <Compile Include="Model\Status.cs" />
+    <Compile Include="Model\Statuspertype.cs" />
+    <Compile Include="Model\Type.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAdminscherm.resx">
