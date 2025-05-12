@@ -348,6 +348,13 @@ namespace prjIcedOutWheelz
             MessageBox.Show($"Prijs opgeslagen: {intBouwjaar} EUR", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private void btnLoguit_Click(object sender, EventArgs e)
+        {
+            frmStartscherm frmStartscherm = new frmStartscherm();
+            frmStartscherm.Show();
+            this.Close();
+        }
+
         private void btnBrandstof_Click(object sender, EventArgs e)
         {
             do

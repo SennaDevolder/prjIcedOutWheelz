@@ -324,5 +324,12 @@ namespace prjIcedOutWheelz
                 MessageBox.Show("No offerte details found for this car!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnLoguit_Click(object sender, EventArgs e)
+        {
+            frmStartscherm frmStartscherm = new frmStartscherm();
+            frmStartscherm.Show();
+            this.Close();
+        }
     }
 }

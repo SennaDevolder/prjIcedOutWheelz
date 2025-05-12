@@ -296,6 +296,7 @@
             this.btnLoguit.TabIndex = 59;
             this.btnLoguit.Text = "Log uit";
             this.btnLoguit.UseVisualStyleBackColor = false;
+            this.btnLoguit.Click += new System.EventHandler(this.btnLoguit_Click);
             // 
             // frmAdminscherm
             // 
