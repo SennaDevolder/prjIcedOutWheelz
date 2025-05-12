@@ -15,6 +15,8 @@ namespace prjIcedOutWheelz
         public Over_Ons()
         {
             InitializeComponent();
+            //form midden in beeld laten verschijnen
+            this.CenterToScreen();
         }
     }
 }

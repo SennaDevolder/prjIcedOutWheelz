@@ -182,7 +182,7 @@
             this.Controls.Add(this.lblOverons);
             this.Controls.Add(this.pcbBalk);
             this.Name = "Over_Ons";
-            this.Text = "Over_Ons";
+            this.Text = "Over Ons";
             ((System.ComponentModel.ISupportInitialize)(this.pcbLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbBalk)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbbalkdoen)).EndInit();
