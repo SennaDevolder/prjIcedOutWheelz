@@ -52,6 +52,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lsbTypes = new System.Windows.Forms.ListBox();
             this.cmbType = new System.Windows.Forms.ComboBox();
+            this.btnLoguit = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAuto)).BeginInit();
@@ -77,7 +78,7 @@
             this.btnAdmin.BackColor = System.Drawing.Color.Cyan;
             this.btnAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdmin.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAdmin.Location = new System.Drawing.Point(766, 48);
+            this.btnAdmin.Location = new System.Drawing.Point(779, 48);
             this.btnAdmin.Name = "btnAdmin";
             this.btnAdmin.Size = new System.Drawing.Size(143, 26);
             this.btnAdmin.TabIndex = 8;
@@ -200,9 +201,9 @@
             this.chkZetelverwarming.AutoSize = true;
             this.chkZetelverwarming.Location = new System.Drawing.Point(8, 58);
             this.chkZetelverwarming.Name = "chkZetelverwarming";
-            this.chkZetelverwarming.Size = new System.Drawing.Size(105, 17);
+            this.chkZetelverwarming.Size = new System.Drawing.Size(104, 17);
             this.chkZetelverwarming.TabIndex = 23;
-            this.chkZetelverwarming.Text = "Zeterverwarming";
+            this.chkZetelverwarming.Text = "Zetelverwarming";
             this.chkZetelverwarming.UseVisualStyleBackColor = true;
             // 
             // chkCruiseControl
@@ -303,12 +304,25 @@
             this.cmbType.Text = "Type";
             this.cmbType.SelectedIndexChanged += new System.EventHandler(this.cmbType_SelectedIndexChanged);
             // 
+            // btnLoguit
+            // 
+            this.btnLoguit.BackColor = System.Drawing.Color.Cyan;
+            this.btnLoguit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnLoguit.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnLoguit.Location = new System.Drawing.Point(779, 86);
+            this.btnLoguit.Name = "btnLoguit";
+            this.btnLoguit.Size = new System.Drawing.Size(143, 26);
+            this.btnLoguit.TabIndex = 21;
+            this.btnLoguit.Text = "Log uit";
+            this.btnLoguit.UseVisualStyleBackColor = false;
+            // 
             // frmhoofdpagina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1052, 710);
+            this.Controls.Add(this.btnLoguit);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.lsbInformatie);
@@ -361,5 +375,6 @@
         private System.Windows.Forms.CheckBox chkStuurVerwarming;
         private System.Windows.Forms.ListBox lsbTypes;
         private System.Windows.Forms.ComboBox cmbType;
+        private System.Windows.Forms.Button btnLoguit;
     }
 }

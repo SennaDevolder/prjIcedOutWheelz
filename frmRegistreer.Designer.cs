@@ -63,6 +63,7 @@
             this.txtwachtwoord.ForeColor = System.Drawing.Color.Black;
             this.txtwachtwoord.Location = new System.Drawing.Point(56, 359);
             this.txtwachtwoord.Name = "txtwachtwoord";
+            this.txtwachtwoord.PasswordChar = '*';
             this.txtwachtwoord.Size = new System.Drawing.Size(168, 20);
             this.txtwachtwoord.TabIndex = 7;
             this.txtwachtwoord.Enter += new System.EventHandler(this.txtwachtwoord_Enter);
@@ -74,6 +75,7 @@
             this.txtherhaal.ForeColor = System.Drawing.Color.Black;
             this.txtherhaal.Location = new System.Drawing.Point(56, 388);
             this.txtherhaal.Name = "txtherhaal";
+            this.txtherhaal.PasswordChar = '*';
             this.txtherhaal.Size = new System.Drawing.Size(168, 20);
             this.txtherhaal.TabIndex = 8;
             this.txtherhaal.Enter += new System.EventHandler(this.txtherhaal_Enter);

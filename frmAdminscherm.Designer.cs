@@ -49,6 +49,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
+            this.btnLoguit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAuto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbLogo)).BeginInit();
@@ -70,7 +71,7 @@
             // 
             this.txthooftdpagina.BackColor = System.Drawing.Color.Cyan;
             this.txthooftdpagina.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.txthooftdpagina.Location = new System.Drawing.Point(780, 38);
+            this.txthooftdpagina.Location = new System.Drawing.Point(781, 18);
             this.txthooftdpagina.Name = "txthooftdpagina";
             this.txthooftdpagina.Size = new System.Drawing.Size(113, 46);
             this.txthooftdpagina.TabIndex = 6;
@@ -284,12 +285,25 @@
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.btnPrijs_Click);
             // 
+            // btnLoguit
+            // 
+            this.btnLoguit.BackColor = System.Drawing.Color.Cyan;
+            this.btnLoguit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnLoguit.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnLoguit.Location = new System.Drawing.Point(781, 70);
+            this.btnLoguit.Name = "btnLoguit";
+            this.btnLoguit.Size = new System.Drawing.Size(113, 26);
+            this.btnLoguit.TabIndex = 59;
+            this.btnLoguit.Text = "Log uit";
+            this.btnLoguit.UseVisualStyleBackColor = false;
+            // 
             // frmAdminscherm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(906, 682);
+            this.Controls.Add(this.btnLoguit);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
@@ -345,5 +359,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button btnLoguit;
     }
 }
