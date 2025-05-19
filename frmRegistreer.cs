@@ -43,11 +43,11 @@ namespace prjIcedOutWheelz
 
         private void btnaccount_Click(object sender, EventArgs e)
         {
-            if (txtwachtwoord.Text == txtherhaal.Text)
+            if (txtwachtwoord.Text == txtherhaal.Text && txtnaam.Text != "Naam" && txtvoornaam.Text != "Voornaam" && txtemail.Text != "Email" && txttelefoon.Text != "Telefoonnummer" && txtstraatnr.Text != "Straatnaam + nummer" & txtadres.Text != "Gemeente + postcode")
             {
                 Login L = new Login();
 
-                L.Naam = txtnaam.Text;
+                L.Naam = txtvoornaam.Text + " " + txtnaam.Text;
                 L.Email = txtemail.Text;
                 L.Wachtwoord = txtwachtwoord.Text;
                 L.TelNummer = txttelefoon.Text;

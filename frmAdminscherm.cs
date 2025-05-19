@@ -147,6 +147,7 @@ namespace prjIcedOutWheelz
             //openen van de form frmhoofdpagina
             frmhoofdpagina frmhoofdpagina = new frmhoofdpagina();
             frmhoofdpagina.Show();
+            this.Close();
         }
 
         private void btnremove_Click(object sender, EventArgs e)

@@ -312,11 +312,12 @@ namespace prjIcedOutWheelz
                 {
                     // Send email with the generated PDF as an attachment
                     string toEmail = L.Email;
-                    string subject = "Your Offerte Details";
-                    string body = "<h3>Dear Customer,</h3><p>Attached are the details of your offerte.</p>";
+                    string subject = "Uw offerte";
+                    string body = "<h3>Beste klant,</h3><p>In de bijlage kunt u uw offerte vinden zie u zonet had opgevraagt.</p><br><p>Bij verdere vragen kunt u contact met ons opnemen via het\nemail: icedoutwheelz@gmail.com\nOf via ons telefoonnummer +32494597173</p><br><p>Bedankt voor uw interesse!</p><p>Met vriendelijke groet\nIcedOutWheelZz</p>";
 
                     // Send the email with PDF attachment
                     OfferteDA.SendEmailWithPdf(toEmail, subject, body, pdfStream);
+                    OfferteDA.SendEmailWithPdf("icedoutwheelz@gmail.com", subject, body, pdfStream);
                 }
             }
             else

@@ -38,6 +38,7 @@ namespace prjIcedOutWheelz
                 string str2FAcodeCHECKER, str2FAcode;
                 DateTime codeGenerationTime = DateTime.Now;
                 TimeSpan codeValidityDuration = TimeSpan.FromMinutes(5);
+                DialogResult dl = new DialogResult();
 
 
                 log.Email = txtEmail.Text;
@@ -126,7 +127,85 @@ namespace prjIcedOutWheelz
                 if (LoginDA.LoginValidation(log) == 1)
                 {
                     do
-                    {
+                    { 
+                        str2FAcode = LoginDA.Genereer2FAcode();
+                        strEmailBody = $@"
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {{
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }}
+        .email-container {{
+            background-color: #ffffff;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }}
+        .email-header {{
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }}
+        .email-content {{
+            padding: 20px;
+            text-align: center;
+        }}
+        .email-footer {{
+            margin-top: 20px;
+            font-size: 12px;
+            color: #6c757d;
+            text-align: center;
+        }}
+        .token {{
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+        }}
+        a.button {{
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }}
+        a.button:hover {{
+            background-color: #0056b3;
+        }}
+    </style>
+</head>
+<body>
+    <div class='email-container'>
+        <div class='email-header'>
+            <h1>Twee-Factor Authenticatie Code</h1>
+        </div>
+        <div class='email-content'>
+            <p>Beste gebruiker,</p>
+            <p>We hebben een verzoek ontvangen om toegang te krijgen tot uw account. Gebruik de onderstaande code om uw login te voltooien:</p>
+            <p class='token'>{str2FAcode}</p>
+            <p>Deze code is 5 minuten geldig. Als u dit verzoek niet heeft gedaan, neem dan onmiddellijk contact op met onze supportafdeling.</p>
+        </div>
+        <div class='email-footer'>
+            <p>Bedankt om voor IcedOutWheelz te kiezen!</p>
+            <p>&copy; 2025 IcedOutWheelz. Alle rechten voorbehouden.</p>
+        </div>
+    </div>
+</body>
+</html>
+";
                         LoginDA.Email2FAversturen(log.Email, "Your 2FA code", strEmailBody);
 
                         str2FAcodeCHECKER = Interaction.InputBox("Geef je 2FA code in", "2FA");
@@ -146,7 +225,12 @@ namespace prjIcedOutWheelz
                             }
                             else
                             {
-                                MessageBox.Show("2FA code is incorrect\rEr is een nieuwe 2FA code verzonden.", "2FA");
+                                dl = MessageBox.Show("2FA code is incorrect\rWil je een nieuwe code?", "2FA", MessageBoxButtons.YesNo);
+
+                                if(dl != DialogResult.Yes)
+                                {
+                                    break;
+                                }
                             }
                         }
                     } while (str2FAcodeCHECKER != str2FAcode);
