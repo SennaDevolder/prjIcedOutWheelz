@@ -110,7 +110,7 @@
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="mysql.data">
-      <HintPath>Y:\6AD\0-opdrachten\Softwareontwikkeling\mysql.data.dll</HintPath>
+      <HintPath>..\..\..\Desktop\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -163,6 +163,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DA\AdminDA.cs" />
     <Compile Include="DA\AutoDA.cs" />
     <Compile Include="DA\OfferteDA.cs" />
     <Compile Include="frmAdminscherm.cs">

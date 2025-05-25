@@ -92,56 +92,66 @@ namespace prjIcedOutWheelz.DA
             return dsKleurPerAuto;
         }
 
-        public static DataSet StatusPerAutoOphalen(int intAutoType)
-        {
-            DataSet dsStatsuPerAuto = new DataSet();
+        // Haalt de status(sen) op die gekoppeld zijn aan een bepaald auto type
+            public static DataSet StatusPerAutoOphalen(int intAutoType)
+            {
+                DataSet dsStatsuPerAuto = new DataSet();
 
-            string sql = "SELECT ST.StatusPerTypeID, S.Status FROM tblstatuspertype ST INNER JOIN tblstatus S ON ST.StatusID = S.StatusID WHERE ST.TypeID=@AutoType";
+                // Query om de status per type op te halen via een INNER JOIN
+                string sql = "SELECT ST.StatusPerTypeID, S.Status FROM tblstatuspertype ST INNER JOIN tblstatus S ON ST.StatusID = S.StatusID WHERE ST.TypeID=@AutoType";
 
-            MySqlConnection conn = Database.MakeConnection();
+                MySqlConnection conn = Database.MakeConnection();
 
-            MySqlCommand cmd = new MySqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@AutoType", intAutoType);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@AutoType", intAutoType);
 
-            MySqlDataAdapter daStatusPerAuto = new MySqlDataAdapter(cmd);
+                MySqlDataAdapter daStatusPerAuto = new MySqlDataAdapter(cmd);
 
-            daStatusPerAuto.Fill(dsStatsuPerAuto);
+                // Vul het DataSet met de resultaten van de query
+                daStatusPerAuto.Fill(dsStatsuPerAuto);
 
-            return dsStatsuPerAuto;
-        }
+                return dsStatsuPerAuto;
+            }
 
-        public static DataSet FotoOphalen(int AutoType)
-        {
-            DataSet dsFoto = new DataSet();
-            string sql = "SELECT Foto FROM tbltype WHERE typeID=@typeID";
+            // Haalt de foto op van een auto op basis van het typeID
+            public static DataSet FotoOphalen(int AutoType)
+            {
+                DataSet dsFoto = new DataSet();
+                string sql = "SELECT Foto FROM tbltype WHERE typeID=@typeID";
 
-            MySqlConnection conn = Database.MakeConnection();
+                MySqlConnection conn = Database.MakeConnection();
 
-            MySqlDataAdapter daFoto = new MySqlDataAdapter(sql, conn);
+                MySqlDataAdapter daFoto = new MySqlDataAdapter(sql, conn);
 
-            daFoto.SelectCommand.Parameters.AddWithValue("@typeID", AutoType);
+                // Voeg het typeID toe als parameter
+                daFoto.SelectCommand.Parameters.AddWithValue("@typeID", AutoType);
 
-            daFoto.Fill(dsFoto);
+                // Vul het DataSet met de foto
+                daFoto.Fill(dsFoto);
 
-            return dsFoto;
-        }
+                return dsFoto;
+            }
 
-        public static DataSet AutoInfoOphalen(int AutoType, int MotorType)
-        {
-            DataSet dsAutoInfo = new DataSet();
+            // Haalt alle info op van een auto en de gekoppelde motor op basis van type en motor
+            public static DataSet AutoInfoOphalen(int AutoType, int MotorType)
+            {
+                DataSet dsAutoInfo = new DataSet();
 
-            string sql = "SELECT t.Merk, t.Type, t.Jaar, m.MotorType, m.BrandstofType, m.Vermogen, m.Koppel, m.Batterijcapaciteit FROM tblmotoren m INNER JOIN tbltype t ON m.AutoID = t.typeID WHERE m.AutoID=@AutoType";
+                // Query om alle relevante info van auto en motor op te halen
+                string sql = "SELECT t.Merk, t.Type, t.Jaar, m.MotorType, m.BrandstofType, m.Vermogen, m.Koppel, m.Batterijcapaciteit FROM tblmotoren m INNER JOIN tbltype t ON m.AutoID = t.typeID WHERE m.AutoID=@AutoType";
 
-            MySqlConnection conn = Database.MakeConnection();
-            MySqlDataAdapter daAutoInfo = new MySqlDataAdapter(sql, conn);
+                MySqlConnection conn = Database.MakeConnection();
+                MySqlDataAdapter daAutoInfo = new MySqlDataAdapter(sql, conn);
 
-            daAutoInfo.SelectCommand.Parameters.AddWithValue("@AutoType", AutoType);
-            daAutoInfo.SelectCommand.Parameters.AddWithValue("@MotorType", MotorType);
+                // Voeg parameters toe voor de query
+                daAutoInfo.SelectCommand.Parameters.AddWithValue("@AutoType", AutoType);
+                daAutoInfo.SelectCommand.Parameters.AddWithValue("@MotorType", MotorType);
 
-            daAutoInfo.Fill(dsAutoInfo);
+                // Vul het DataSet met de resultaten
+                daAutoInfo.Fill(dsAutoInfo);
 
-            return dsAutoInfo;
-        }
+                return dsAutoInfo;
+            }
 
         public static void AutoOfferteAanmaken(double prijs, int kleurID, int statusID, int typeID, int motorID, bool stuurVerwarming, bool cruiseControl, bool zetelverwarming, bool parkeersensoren, bool trekHaak, bool xenonlampen, bool geblindeerdeRamen)
         {

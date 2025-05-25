@@ -31,7 +31,6 @@
             this.lblSlogan = new System.Windows.Forms.Label();
             this.txthooftdpagina = new System.Windows.Forms.Button();
             this.lsbautos = new System.Windows.Forms.ListBox();
-            this.lsbinfo = new System.Windows.Forms.ListBox();
             this.btnremove = new System.Windows.Forms.Button();
             this.btnclear = new System.Windows.Forms.Button();
             this.btnaddimg = new System.Windows.Forms.Button();
@@ -46,10 +45,10 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.btnLoguit = new System.Windows.Forms.Button();
+            this.btnAddStatus = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAuto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbLogo)).BeginInit();
@@ -89,16 +88,6 @@
             this.lsbautos.Size = new System.Drawing.Size(221, 404);
             this.lsbautos.TabIndex = 7;
             this.lsbautos.SelectedIndexChanged += new System.EventHandler(this.lsbautos_SelectedIndexChanged);
-            // 
-            // lsbinfo
-            // 
-            this.lsbinfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lsbinfo.FormattingEnabled = true;
-            this.lsbinfo.ItemHeight = 16;
-            this.lsbinfo.Location = new System.Drawing.Point(12, 542);
-            this.lsbinfo.Name = "lsbinfo";
-            this.lsbinfo.Size = new System.Drawing.Size(881, 132);
-            this.lsbinfo.TabIndex = 8;
             // 
             // btnremove
             // 
@@ -142,7 +131,7 @@
             this.btnadd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnadd.Location = new System.Drawing.Point(239, 483);
             this.btnadd.Name = "btnadd";
-            this.btnadd.Size = new System.Drawing.Size(654, 53);
+            this.btnadd.Size = new System.Drawing.Size(654, 50);
             this.btnadd.TabIndex = 16;
             this.btnadd.Text = "Add";
             this.btnadd.UseVisualStyleBackColor = false;
@@ -252,17 +241,6 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.Motorvermogen_Click);
             // 
-            // button5
-            // 
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(240, 285);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(90, 45);
-            this.button5.TabIndex = 51;
-            this.button5.Text = "Extras";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.btnExtras_Click);
-            // 
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -277,7 +255,7 @@
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(336, 285);
+            this.button7.Location = new System.Drawing.Point(240, 285);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(90, 45);
             this.button7.TabIndex = 58;
@@ -298,16 +276,27 @@
             this.btnLoguit.UseVisualStyleBackColor = false;
             this.btnLoguit.Click += new System.EventHandler(this.btnLoguit_Click);
             // 
+            // btnAddStatus
+            // 
+            this.btnAddStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddStatus.Location = new System.Drawing.Point(337, 285);
+            this.btnAddStatus.Name = "btnAddStatus";
+            this.btnAddStatus.Size = new System.Drawing.Size(90, 45);
+            this.btnAddStatus.TabIndex = 60;
+            this.btnAddStatus.Text = "Status";
+            this.btnAddStatus.UseVisualStyleBackColor = true;
+            this.btnAddStatus.Click += new System.EventHandler(this.btnAddStatus_Click);
+            // 
             // frmAdminscherm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(906, 682);
+            this.ClientSize = new System.Drawing.Size(906, 546);
+            this.Controls.Add(this.btnAddStatus);
             this.Controls.Add(this.btnLoguit);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.btnMerk);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -320,7 +309,6 @@
             this.Controls.Add(this.btnaddimg);
             this.Controls.Add(this.btnclear);
             this.Controls.Add(this.btnremove);
-            this.Controls.Add(this.lsbinfo);
             this.Controls.Add(this.lsbautos);
             this.Controls.Add(this.txthooftdpagina);
             this.Controls.Add(this.lblSlogan);
@@ -344,7 +332,6 @@
         private System.Windows.Forms.Label lblSlogan;
         private System.Windows.Forms.Button txthooftdpagina;
         private System.Windows.Forms.ListBox lsbautos;
-        private System.Windows.Forms.ListBox lsbinfo;
         private System.Windows.Forms.Button btnremove;
         private System.Windows.Forms.Button btnclear;
         private System.Windows.Forms.Button btnaddimg;
@@ -357,9 +344,9 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button btnLoguit;
+        private System.Windows.Forms.Button btnAddStatus;
     }
 }

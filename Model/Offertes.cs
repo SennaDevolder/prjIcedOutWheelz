@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace prjIcedOutWheelz.Model
 {
-    internal class Offertes
+    public class Offertes
     {
         public string Offerteid { get; set; }
         public string Autoofferteid { get; set; }

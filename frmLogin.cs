@@ -27,12 +27,11 @@ namespace prjIcedOutWheelz
             txtEmail.ForeColor = Color.Gray;
             txtWachtwoord.Text = "Wachtwoord";
             txtWachtwoord.ForeColor = Color.Gray;
-
-
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            // Controleer of de velden niet op de standaardwaarde staan
             if(txtEmail.Text != "Email" && txtWachtwoord.Text != "Wachtwoord")
             {
                 string str2FAcodeCHECKER, str2FAcode;
@@ -40,12 +39,12 @@ namespace prjIcedOutWheelz
                 TimeSpan codeValidityDuration = TimeSpan.FromMinutes(5);
                 DialogResult dl = new DialogResult();
 
-
                 log.Email = txtEmail.Text;
                 log.Wachtwoord = txtWachtwoord.Text;
 
                 str2FAcode = LoginDA.Genereer2FAcode();
 
+                // Stel de e-mailbody samen voor de 2FA-code
                 string strEmailBody = $@"
 <!DOCTYPE html>
 <html>
@@ -206,10 +205,12 @@ namespace prjIcedOutWheelz
 </body>
 </html>
 ";
-                        LoginDA.Email2FAversturen(log.Email, "Your 2FA code", strEmailBody);
+                        // Verstuur de 2FA-code per e-mail
+                        LoginDA.Email2FAversturen(log.Email, "Uw 2FA code", strEmailBody);
 
                         str2FAcodeCHECKER = Interaction.InputBox("Geef je 2FA code in", "2FA");
 
+                        // Controleer of de code nog geldig is
                         if (DateTime.Now - codeGenerationTime > codeValidityDuration)
                         {
                             MessageBox.Show("Je 2FA is verlopen!\nGelieve opnieuw in te loggen om opnieuw een code te krijgen.");
@@ -249,17 +250,20 @@ namespace prjIcedOutWheelz
 
         private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
+            // Sluit de applicatie volledig af als het loginvenster wordt gesloten
             Environment.Exit(0);
         }
 
         private void txtEmail_Enter(object sender, EventArgs e)
         {
+            // Maak het tekstvak leeg en zet de tekstkleur op zwart als de gebruiker het veld selecteert
             txtEmail.Text = "";
             txtEmail.ForeColor = Color.Black;
         }
 
         private void txtEmail_Leave(object sender, EventArgs e)
         {
+            // Zet de standaardtekst terug als het veld leeg is bij het verlaten
             if (string.IsNullOrEmpty(txtEmail.Text))
             {
                 txtEmail.Text = "Email";
@@ -269,12 +273,14 @@ namespace prjIcedOutWheelz
 
         private void txtWachtwoord_Enter(object sender, EventArgs e)
         {
+            // Maak het tekstvak leeg en zet de tekstkleur op zwart als de gebruiker het veld selecteert
             txtWachtwoord.Text = "";
             txtWachtwoord.ForeColor = Color.Black;
         }
 
         private void txtWachtwoord_Leave(object sender, EventArgs e)
         {
+            // Zet de standaardtekst terug als het veld leeg is bij het verlaten
             if (string.IsNullOrEmpty(txtWachtwoord.Text))
             {
                 txtWachtwoord.Text = "Wachtwoord";
@@ -289,6 +295,7 @@ namespace prjIcedOutWheelz
             L.Email = txtEmail.Text;
             L.Wachtwoord = txtWachtwoord.Text;
 
+            // Controleer of de inloggegevens correct zijn voor het wijzigen van het wachtwoord
             if(LoginDA.LoginValidation(L) == 1)
             {
                 string strNewPass, strPassConfirm;
@@ -323,6 +330,7 @@ namespace prjIcedOutWheelz
 
         private void btnGebruikerVerwijderen_Click(object sender, EventArgs e)
         {
+            // Controleer of de velden niet op de standaardwaarde staan
             if (txtEmail.Text != "Email" && txtWachtwoord.Text != "Wachtwoord")
             {
                 Login L = new Login();
@@ -330,12 +338,12 @@ namespace prjIcedOutWheelz
                 DateTime codeGenerationTime = DateTime.Now;
                 TimeSpan codeValidityDuration = TimeSpan.FromMinutes(5);
 
-
                 L.Email = txtEmail.Text;
                 L.Wachtwoord = txtWachtwoord.Text;
 
                 str2FAcode = LoginDA.Genereer2FAcode();
 
+                // Stel de e-mailbody samen voor de 2FA-code
                 string strEmailBody = $@"
 <!DOCTYPE html>
 <html>
@@ -418,10 +426,12 @@ namespace prjIcedOutWheelz
                 {
                     do
                     {
-                        LoginDA.Email2FAversturen(L.Email, "Your 2FA code", strEmailBody);
+                        // Verstuur de 2FA-code per e-mail
+                        LoginDA.Email2FAversturen(L.Email, "Uw 2FA code", strEmailBody);
 
                         str2FAcodeCHECKER = Interaction.InputBox("Geef je 2FA code in", "2FA");
 
+                        // Controleer of de code nog geldig is
                         if (DateTime.Now - codeGenerationTime > codeValidityDuration)
                         {
                             MessageBox.Show("Je 2FA is verlopen!\nGelieve opnieuw in te loggen om opnieuw een code te krijgen.");

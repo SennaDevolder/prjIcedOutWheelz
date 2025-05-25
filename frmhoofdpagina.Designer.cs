@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmhoofdpagina));
             this.lblSlogan = new System.Windows.Forms.Label();
             this.btnAdmin = new System.Windows.Forms.Button();
-            this.lsbInformatie = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnVraagOfferte = new System.Windows.Forms.Button();
             this.cmbstatus = new System.Windows.Forms.ComboBox();
@@ -86,17 +85,6 @@
             this.btnAdmin.UseVisualStyleBackColor = false;
             this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click);
             // 
-            // lsbInformatie
-            // 
-            this.lsbInformatie.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lsbInformatie.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lsbInformatie.FormattingEnabled = true;
-            this.lsbInformatie.ItemHeight = 20;
-            this.lsbInformatie.Location = new System.Drawing.Point(12, 518);
-            this.lsbInformatie.Name = "lsbInformatie";
-            this.lsbInformatie.Size = new System.Drawing.Size(724, 180);
-            this.lsbInformatie.TabIndex = 11;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnVraagOfferte);
@@ -110,7 +98,7 @@
             this.panel1.Controls.Add(this.chkZetelverwarming);
             this.panel1.Controls.Add(this.chkCruiseControl);
             this.panel1.Controls.Add(this.chkStuurVerwarming);
-            this.panel1.Location = new System.Drawing.Point(742, 518);
+            this.panel1.Location = new System.Drawing.Point(12, 516);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(298, 182);
             this.panel1.TabIndex = 20;
@@ -238,9 +226,9 @@
             // picAuto
             // 
             this.picAuto.Image = ((System.Drawing.Image)(resources.GetObject("picAuto.Image")));
-            this.picAuto.Location = new System.Drawing.Point(278, 152);
+            this.picAuto.Location = new System.Drawing.Point(330, 175);
             this.picAuto.Name = "picAuto";
-            this.picAuto.Size = new System.Drawing.Size(762, 338);
+            this.picAuto.Size = new System.Drawing.Size(710, 485);
             this.picAuto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picAuto.TabIndex = 9;
             this.picAuto.TabStop = false;
@@ -288,7 +276,7 @@
             this.lsbTypes.ItemHeight = 20;
             this.lsbTypes.Location = new System.Drawing.Point(12, 190);
             this.lsbTypes.Name = "lsbTypes";
-            this.lsbTypes.Size = new System.Drawing.Size(256, 300);
+            this.lsbTypes.Size = new System.Drawing.Size(298, 300);
             this.lsbTypes.TabIndex = 10;
             this.lsbTypes.SelectedIndexChanged += new System.EventHandler(this.lsbTypes_SelectedIndexChanged);
             // 
@@ -299,9 +287,9 @@
             "Types"});
             this.cmbType.Location = new System.Drawing.Point(12, 152);
             this.cmbType.Name = "cmbType";
-            this.cmbType.Size = new System.Drawing.Size(256, 21);
+            this.cmbType.Size = new System.Drawing.Size(298, 21);
             this.cmbType.TabIndex = 6;
-            this.cmbType.Text = "Type";
+            this.cmbType.Text = "Types";
             this.cmbType.SelectedIndexChanged += new System.EventHandler(this.cmbType_SelectedIndexChanged);
             // 
             // btnLoguit
@@ -326,7 +314,6 @@
             this.Controls.Add(this.btnLoguit);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.lsbInformatie);
             this.Controls.Add(this.lsbTypes);
             this.Controls.Add(this.picAuto);
             this.Controls.Add(this.btnAdmin);
@@ -360,7 +347,6 @@
         private System.Windows.Forms.Label lblSlogan;
         private System.Windows.Forms.Button btnAdmin;
         private System.Windows.Forms.PictureBox picAuto;
-        private System.Windows.Forms.ListBox lsbInformatie;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnVraagOfferte;

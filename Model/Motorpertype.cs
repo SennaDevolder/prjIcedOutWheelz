@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace prjIcedOutWheelz.Model
 {
-    internal class Motorpertype
+    public class Motorpertype
     {
         public string Motorpertypeid { get; set; }
         public string Typeid { get; set; }

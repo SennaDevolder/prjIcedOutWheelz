@@ -18,9 +18,10 @@ namespace prjIcedOutWheelz
         {
             InitializeComponent();
             this.CenterToScreen();
-            SetTxts();
+            SetTxts(); // Zet de standaardtekst in de tekstvakken
         }
 
+        // Zet de standaardtekst en kleur in alle tekstvakken
         private void SetTxts()
         {
             txtnaam.Text = "Naam";
@@ -41,12 +42,15 @@ namespace prjIcedOutWheelz
             txtherhaal.ForeColor = Color.Gray;
         }
 
+        // Verwerkt het aanmaken van een nieuw account
         private void btnaccount_Click(object sender, EventArgs e)
         {
+            // Controleer of alle velden correct zijn ingevuld en wachtwoorden overeenkomen
             if (txtwachtwoord.Text == txtherhaal.Text && txtnaam.Text != "Naam" && txtvoornaam.Text != "Voornaam" && txtemail.Text != "Email" && txttelefoon.Text != "Telefoonnummer" && txtstraatnr.Text != "Straatnaam + nummer" & txtadres.Text != "Gemeente + postcode")
             {
                 Login L = new Login();
 
+                // Zet de gegevens uit de tekstvakken in het Login-object
                 L.Naam = txtvoornaam.Text + " " + txtnaam.Text;
                 L.Email = txtemail.Text;
                 L.Wachtwoord = txtwachtwoord.Text;
@@ -54,8 +58,10 @@ namespace prjIcedOutWheelz
                 L.Straat_Num = txtstraatnr.Text;
                 L.Gemeente_Postc = txtadres.Text;
 
+                // Voeg de gebruiker toe aan de database
                 LoginDA.GebruikerToevoegen(L);
 
+                // Vraag of de gebruiker direct wil inloggen
                 DialogResult dlr = MessageBox.Show("Wil je naar de inlog?", "Inloggen", MessageBoxButtons.YesNo);
 
                 if(dlr == DialogResult.Yes)
@@ -66,22 +72,22 @@ namespace prjIcedOutWheelz
                 }
                 else if(dlr == DialogResult.No)
                 {
-                    SetTxts();
+                    SetTxts(); // Reset de tekstvakken
                 }
             }
             else
             {
                 MessageBox.Show("Wachtwoorden komen niet overeen!", "Incorrecte wachtwoorden");
             }
-            
-
         }
 
+        // Sluit de applicatie volledig af als het registratievenster wordt gesloten
         private void frmRegistreer_FormClosed(object sender, FormClosedEventArgs e)
         {
             Environment.Exit(0);
         }
 
+        // Verwijdert de standaardtekst bij focus op het naamveld
         private void txtnaam_Enter(object sender, EventArgs e)
         {
             if(txtnaam.Text == "Naam")
@@ -91,6 +97,7 @@ namespace prjIcedOutWheelz
             } 
         }
 
+        // Zet de standaardtekst terug als het naamveld leeg is bij verlaten
         private void txtnaam_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtnaam.Text))

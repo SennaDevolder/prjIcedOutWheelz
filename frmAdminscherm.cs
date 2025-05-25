@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -17,114 +18,92 @@ namespace prjIcedOutWheelz
 {
     public partial class frmAdminscherm : Form
     {
-        /*
-         *  TODO:
-         * - informatie weergeven in lsbinfo. Enkel selected auto EN selected engine, niet allemaal!
-         * - Engine selection filter cmb toevoegen
-         * - 
-         */
+        // Objecten voor het opslaan van tijdelijke gegevens van het type, motor, kleur en status
+        Model.Type autoType = new Model.Type();
+        Model.Motoren motorType = new Model.Motoren();
+        Model.Kleuren kleurType = new Model.Kleuren();
+        Model.Status statusType = new Model.Status();
 
-
-
-        string strMerk, strType, strKleur, strMotorvermogen, strBrandstof, strextras, stropvang;
+        // Variabelen voor gebruikersinvoer
+        string strMerk, strType, strKleur, strBrandstof, strextras, stropvang, strStatus;
         int intBouwjaar;
         double dblPrijs;
+        string[] strKleurenLijst = { "Cream", "Lavendel", "Wit", "Grijs", "Paars", "Geel", "Roze", "Blauw", "Goud", "Groen", "Zalm" };
+        string[] strStatusLijst = { "Nieuw", "Tweedehands" };
 
         public frmAdminscherm()
         {
             InitializeComponent();
             this.CenterToScreen();
 
+            // Ophalen van alle types bij het openen van het scherm
             DataSet dsTypes = AutoDA.TypesOphalen();
             DataTable dtTypes = dsTypes.Tables[0];
 
             FillListBoxTypes();
         }
 
+        // Vult de lijst met beschikbare autotypes
         public void FillListBoxTypes()
         {
-            // Get DataTable
             DataTable dtTypes = AutoDA.TypesOphalen().Tables[0];
 
-            // Add a new computed column for the combined display text (Merk | Type | Jaar)
+            // Voeg een samengestelde kolom toe voor weergave in de lijst
             if (!dtTypes.Columns.Contains("DisplayText"))
             {
                 dtTypes.Columns.Add("DisplayText", typeof(string), "Merk + ' | ' + Type + ' | ' + Jaar");
             }
 
-            // Bind directly to DataTable
             lsbautos.DataSource = dtTypes;
-            lsbautos.DisplayMember = "DisplayText";  // Show the combined text (Merk | Type | Jaar)
-            lsbautos.ValueMember = "typeID";  // Store the unique ID (typeID or other unique identifier)
+            lsbautos.DisplayMember = "DisplayText";  // Toon samengestelde tekst
+            lsbautos.ValueMember = "typeID";         // Gebruik typeID als waarde
         }
+
+        // Afbeelding toevoegen aan een auto
         private void btnaddimg_Click(object sender, EventArgs e)
         {
             string eindwerkPath = FindEindwerkPath();
-            string currentDirectory = Directory.GetCurrentDirectory();
-            DirectoryInfo dir = new DirectoryInfo(currentDirectory);
-
             if (eindwerkPath == null)
             {
-                MessageBox.Show("Eindwerk folder not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Eindwerk map niet gevonden.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
-
-            string resourcesPath = FindEindwerkPath();
-
-            if (resourcesPath == null)
-            {
-                MessageBox.Show("Resources folder not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (!Directory.Exists(resourcesPath))
-            {
-                Directory.CreateDirectory(resourcesPath);
-                MessageBox.Show("Resources directory created.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
-                openFileDialog.Title = "Select an Image File";
+                openFileDialog.Filter = "Afbeeldingsbestanden|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+                openFileDialog.Title = "Selecteer een afbeeldingsbestand";
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string selectedFilePath = openFileDialog.FileName;
-                    string fileName = Path.GetFileName(selectedFilePath);
-
-                    string destinationPath = Path.Combine(resourcesPath, fileName);
-
                     try
                     {
-                        File.Copy(selectedFilePath, destinationPath, true); // Overwrite if exists
-                        MessageBox.Show($"Image saved to: {destinationPath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        picAuto.Image.Dispose();
-                        // img in picturebox
-                        picAuto.Image = System.Drawing.Image.FromFile(destinationPath);
-                        //img aanpassen
+                        // Laad afbeelding in PictureBox en sla op als byte array
+                        picAuto.Image?.Dispose();
+                        picAuto.Image = System.Drawing.Image.FromFile(selectedFilePath);
                         picAuto.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            using (Bitmap clone = new Bitmap(picAuto.Image))
+                            {
+                                clone.Save(ms, picAuto.Image.RawFormat);
+                            }
+                            autoType.Foto = ms.ToArray();
+                        }
+
+                        MessageBox.Show("Afbeelding geselecteerd en opgeslagen in het object.", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch
                     {
-                        MessageBox.Show("This image is already added", "Add" ,MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-
-                   
-                }
-                else
-                {
-                    DialogResult resultaat = MessageBox.Show("No file selected.\nWilt u file explorer sluiten", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                    if (resultaat == DialogResult.No)
-                    {
-                        btnaddimg.PerformClick();
+                        MessageBox.Show("Fout bij het laden van de afbeelding.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
-
         }
 
+        // Zoekt het pad naar de Resources-map
         private string FindEindwerkPath()
         {
             string currentDirectory = Directory.GetCurrentDirectory();
@@ -142,63 +121,59 @@ namespace prjIcedOutWheelz
             return null;
         }
 
+        // Gaat terug naar het hoofdscherm
         private void txthooftdpagina_Click(object sender, EventArgs e)
         {
-            //openen van de form frmhoofdpagina
             frmhoofdpagina frmhoofdpagina = new frmhoofdpagina();
             frmhoofdpagina.Show();
             this.Close();
         }
 
+        // Verwijdert een afbeelding uit de resources en reset de PictureBox
         private void btnremove_Click(object sender, EventArgs e)
         {
             string eindwerkPath = FindEindwerkPath();
 
             if (eindwerkPath == null)
             {
-                MessageBox.Show("Resources folder not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Resources map niet gevonden.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            //maak een openfiledialog
             OpenFileDialog openFileDialog = new OpenFileDialog()
             {
-                InitialDirectory = eindwerkPath // folder locatie
-
+                InitialDirectory = eindwerkPath
             };
 
-            //filter op specifieke image types
-            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.tiff";
+            openFileDialog.Filter = "Afbeeldingsbestanden|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.tiff";
 
-
-            //toon dialog en check als de gebruiker een file heeft geselecteerd
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string selectedFile = openFileDialog.FileName;
 
                 try
                 {
-                    //Check als file bestaat voor verwijderen
+                    // Controleer of het bestand bestaat en verwijder het
                     if (File.Exists(selectedFile))
                     {
                         picAuto.Image.Dispose();
                         picAuto.Image = Properties.Resources.placeholder_image;
                         File.Delete(selectedFile);
-                        MessageBox.Show("File deleted successfully!");
+                        MessageBox.Show("Bestand succesvol verwijderd!");
                     }
                     else
                     {
-                        MessageBox.Show("File does not exist.");
+                        MessageBox.Show("Bestand bestaat niet.");
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error: {ex.Message}");
+                    MessageBox.Show($"Fout: {ex.Message}");
                 }
             }
             else
             {
-                DialogResult resultaat = MessageBox.Show("No file selected.\nWilt u file explorer sluiten", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult resultaat = MessageBox.Show("Geen bestand geselecteerd.\nWilt u de verkenner sluiten?", "Waarschuwing", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (resultaat == DialogResult.No)
                 {
@@ -207,74 +182,63 @@ namespace prjIcedOutWheelz
             }
         }
 
+        // Reset de afbeelding naar de standaardafbeelding
         private void btnclear_Click(object sender, EventArgs e)
         {
             picAuto.Image.Dispose();
             picAuto.Image = Properties.Resources.placeholder_image;
         }
+
+        // Selecteert een afbeelding uit de resources
         private void btnselect_Click(object sender, EventArgs e)
         {
             string eindwerkPath = FindEindwerkPath();
 
             if (eindwerkPath == null)
             {
-                MessageBox.Show("Resources folder not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Resources map niet gevonden.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            //maak OpenFileDialog
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                Title = "Select an Image",
-                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif",
-
-                InitialDirectory = eindwerkPath // folder locatie
+                Title = "Selecteer een afbeelding",
+                Filter = "Afbeeldingsbestanden|*.jpg;*.jpeg;*.png;*.bmp;*.gif",
+                InitialDirectory = eindwerkPath
             };
 
-            //toon dialog en get result
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                //laad img in picturebox
                 picAuto.ImageLocation = openFileDialog.FileName;
             }
             else
             {
-                DialogResult resultaat = MessageBox.Show("No file selected.\nWilt u file explorer sluiten", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult resultaat = MessageBox.Show("Geen bestand geselecteerd.\nWilt u de verkenner sluiten?", "Waarschuwing", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (resultaat == DialogResult.No)
                 {
                     btnselect.PerformClick();
                 }
             }
-
         }
 
-
+        // Toont de afbeelding van de geselecteerde auto in de lijst
         private void lsbautos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Index van auto in listbox ophalen
             int selectedIndex = lsbautos.SelectedIndex;
-
-            // DataTable halen uit listbox
             DataTable dtListBox = (DataTable)lsbautos.DataSource;
-
-            // AutoType waarde uit DataTable halen (eerste rij zijn indexen)
             int autoType = Convert.ToInt32(dtListBox.Rows[selectedIndex]["typeID"]);
 
-            // Foto ophalen uit DA
             DataSet dsFoto = AutoDA.FotoOphalen(autoType);
 
-            // Chekcen of DataSet rijen heeft
             if (dsFoto.Tables[0].Rows.Count > 0)
             {
-                // Foto data uit DataSet halen
                 byte[] photoData = dsFoto.Tables[0].Rows[0]["Foto"] as byte[];
 
                 if (photoData != null && photoData.Length > 0)
                 {
                     try
                     {
-                        // Foto laden
                         using (MemoryStream ms = new MemoryStream(photoData))
                         {
                             picAuto.Image = Image.FromStream(ms);
@@ -282,24 +246,21 @@ namespace prjIcedOutWheelz
                     }
                     catch (Exception ex)
                     {
-                        // Converteer error
-                        MessageBox.Show($"Error: {ex.Message}", "Error");
+                        MessageBox.Show($"Fout: {ex.Message}", "Fout");
                     }
                 }
                 else
                 {
-                    // Error als er geen foto is
                     MessageBox.Show("Geen foto beschikbaar", "Geen foto");
                 }
             }
             else
             {
-                // Error als er geen rij gereturnedt wordt uit DataSet
                 MessageBox.Show("Geen foto gevonden", "Geen foto");
             }
         }
 
-
+        // Voert een dialoog voor het invoeren van het merk van de auto
         private void btnMerk_Click(object sender, EventArgs e)
         {
             do
@@ -310,45 +271,59 @@ namespace prjIcedOutWheelz
                 {
                     MessageBox.Show("Gelieve alleen letters te gebruiken en het veld niet leeg te laten!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                else
+                {
+                    autoType.Merk = strMerk;
+                }
 
-            } while (strMerk.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strMerk)); // Herhaal als er cijfers zijn of als het leeg is
+            } while (strMerk.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strMerk));
 
             MessageBox.Show($"Merk opgeslagen: {strMerk}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        // Voert een dialoog voor het invoeren van het model van de auto
         private void btnModel_Click(object sender, EventArgs e)
         {
             do
             {
                 strType = Interaction.InputBox("Gelieve het Type van de auto in te vullen", "Model Auto");
 
-                if (strType.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strType))
+                if (string.IsNullOrWhiteSpace(strType))
                 {
-                    MessageBox.Show("Gelieve alleen letters te gebruiken en het veld niet leeg te laten!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Gelieve het veld niet leeg te laten!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    autoType._Type = strType;
                 }
 
-            } while (strType.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strType)); // Herhaal als er cijfers zijn of als het leeg is
+            } while (string.IsNullOrWhiteSpace(strType));
 
             MessageBox.Show($"Model opgeslagen: {strType}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        // Voert een dialoog voor het invoeren van het bouwjaar van de auto
         private void btnBouwjaar_Click(object sender, EventArgs e)
         {
            do
             {
-                stropvang = Interaction.InputBox("Wat is de vraagprijs van de auto?", "Prijs");
+                stropvang = Interaction.InputBox("Wat is het bouwjaar van de auto?", "Bouwjaar");
 
-                // Controleer of de invoer leeg is of niet omgezet kan worden naar een double
                 if (string.IsNullOrWhiteSpace(stropvang) || !int.TryParse(stropvang, out intBouwjaar))
                 {
-                    MessageBox.Show("Gelieve een geldige prijs in te voeren!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Gelieve een geldig bouwjaar in te voeren!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    autoType.Jaar = stropvang;
                 }
 
-           } while (string.IsNullOrWhiteSpace(stropvang) || !int.TryParse(stropvang, out intBouwjaar)) ;
+           } while (string.IsNullOrWhiteSpace(stropvang) || !int.TryParse(stropvang, out intBouwjaar));
 
-            MessageBox.Show($"Prijs opgeslagen: {intBouwjaar} EUR", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"Bouwjaar opgeslagen: {intBouwjaar}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        // Logt uit en keert terug naar het startscherm
         private void btnLoguit_Click(object sender, EventArgs e)
         {
             frmStartscherm frmStartscherm = new frmStartscherm();
@@ -356,6 +331,7 @@ namespace prjIcedOutWheelz
             this.Close();
         }
 
+        // Voert een dialoog voor het invoeren van het brandstoftype
         private void btnBrandstof_Click(object sender, EventArgs e)
         {
             do
@@ -366,78 +342,181 @@ namespace prjIcedOutWheelz
                 {
                     MessageBox.Show("Gelieve alleen letters te gebruiken en het veld niet leeg te laten!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                else
+                {
+                    motorType.Brandstoftype = strBrandstof;
+                }
 
-            } while (strBrandstof.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strBrandstof)); // Herhaal als er cijfers zijn of als het leeg is
+            } while (strBrandstof.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strBrandstof));
 
             MessageBox.Show($"Brandstof opgeslagen: {strBrandstof}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void btnadd_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void Motorvermogen_Click(object sender, EventArgs e)
+        // Voert een dialoog voor het invoeren van de status van de auto
+        private void btnAddStatus_Click(object sender, EventArgs e)
         {
             do
             {
-                strMotorvermogen = Interaction.InputBox("Gelieve het motor vermogen van de auto in te vullen", "Motor vermogen van auto");
+                strStatus = Interaction.InputBox("Maak een keuze voor de status van de auto:\nNieuw | Tweedehands", "Status Auto");
 
-                if (strMotorvermogen.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strMotorvermogen))
+                if (strStatus.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strStatus) || !strStatusLijst.Contains(strStatus, StringComparer.OrdinalIgnoreCase))
                 {
                     MessageBox.Show("Gelieve alleen letters te gebruiken en het veld niet leeg te laten!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                else
+                {
+                    if (!char.IsUpper(strStatus[0]))
+                    {
+                        strStatus = char.ToUpper(strStatus[0]) + strStatus.Substring(1);
+                    }
+                }
 
-            } while (strMotorvermogen.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strMotorvermogen)); // Herhaal als er cijfers zijn of als het leeg is
-
-            MessageBox.Show($"Motor vermogen opgeslagen: {strMotorvermogen}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            } while (strBrandstof.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strBrandstof) || !strStatusLijst.Contains(strStatus, StringComparer.OrdinalIgnoreCase));
+            statusType._Status = strStatus;
+            MessageBox.Show($"Status opgeslagen: {strStatus}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        // Voegt een nieuwe auto toe aan de database met alle gekoppelde gegevens
+        private void btnadd_Click(object sender, EventArgs e)
+        {
+            // Zet de huidige afbeelding om naar een byte array
+            if (picAuto.Image != null)
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (Bitmap clone = new Bitmap(picAuto.Image))
+                    {
+                        clone.Save(ms, picAuto.Image.RawFormat);
+                    }
+                    autoType.Foto = ms.ToArray();
+                }
+            }
+            else
+            {
+                autoType.Foto = null;
+            }
+
+            AdminDA.TypeToevoegen(autoType);
+            autoType.Typeid = AdminDA.GetAutoIdByMerkAndType(autoType.Merk, autoType._Type).ToString();
+            motorType.Autoid = autoType.Typeid;
+            AdminDA.MotorToevoegen(motorType);
+
+            int typeidkleur = AdminDA.GetAutoIdByMerkAndType(autoType.Merk, autoType._Type);
+            int kleuriddd = AdminDA.KleurIDOphalen(kleurType.Kleur);
+            AdminDA.KleurPerTypeToevoegen(typeidkleur, kleuriddd);
+            int typeidstatus = AdminDA.GetAutoIdByMerkAndType(autoType.Merk, autoType._Type);
+            int statusiddd = AdminDA.StatusIDOphalen(statusType._Status);
+            AdminDA.StatusPerTypeToevoegen(typeidstatus, statusiddd);
+            FillListBoxTypes();
+        }
+
+        // Voert een dialoog voor het invoeren van motorgegevens
+        private void Motorvermogen_Click(object sender, EventArgs e)
+        {
+            // Motortype opvragen
+            string inputMotortype;
+            do
+            {
+                inputMotortype = Interaction.InputBox("Gelieve het motortype van de auto in te vullen", "Motortype");
+                if (string.IsNullOrWhiteSpace(inputMotortype))
+                {
+                    MessageBox.Show("Motortype mag niet leeg zijn!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            } while (string.IsNullOrWhiteSpace(inputMotortype));
+            motorType.Motortype = inputMotortype;
+
+            // Haal TypeID op uit de database
+            int inputAutoid;
+            inputAutoid = AdminDA.GetAutoIdByMerkAndType(autoType.Merk, autoType._Type);
+            motorType.Autoid = inputAutoid.ToString();
+
+            // Vermogen opvragen
+            string inputVermogen;
+            do
+            {
+                inputVermogen = Interaction.InputBox("Gelieve het motorvermogen van de auto in te vullen | formaat VB 11pk (9kw)", "Vermogen");
+                if (string.IsNullOrWhiteSpace(inputVermogen))
+                {
+                    MessageBox.Show("Vermogen mag niet leeg zijn!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            } while (string.IsNullOrWhiteSpace(inputVermogen));
+            motorType.Vermogen = inputVermogen;
+
+            // Koppel opvragen
+            string inputKoppel;
+            do
+            {
+                inputKoppel = Interaction.InputBox("Gelieve het koppel van de auto in te vullen | formaat VB 9Nm ", "Koppel");
+                if (string.IsNullOrWhiteSpace(inputKoppel))
+                {
+                    MessageBox.Show("Koppel mag niet leeg zijn!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            } while (string.IsNullOrWhiteSpace(inputKoppel));
+            motorType.Koppel = inputKoppel;
+
+            // Batterijcapaciteit opvragen (optioneel)
+            string inputBatterij = Interaction.InputBox("Gelieve de batterijcapaciteit in te vullen (enkel in te vullen bij elektrische motor)", "Batterijcapaciteit");
+            motorType.Batterijcapaciteit = inputBatterij;
+
+            MessageBox.Show("Motorgegevens opgeslagen!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        // Voert een dialoog voor het invoeren van extra eigenschappen
         private void btnExtras_Click(object sender, EventArgs e)
         {
             do
             {
                 strextras = Interaction.InputBox("Gelieve de extra eigenschappen van de auto in te vullen", "Extra eigenschappen van de auto");
 
-
                 if (strextras.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strextras))
                 {
                     MessageBox.Show("Gelieve alleen letters te gebruiken en het veld niet leeg te laten!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-            } while (strextras.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strextras)); // Herhaal als er cijfers zijn of als het leeg is
+            } while (strextras.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strextras));
 
             MessageBox.Show($"Extras opgeslagen: {strextras}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-
+        // Voert een dialoog voor het kiezen van een kleur
         private void btnKleur_Click(object sender, EventArgs e)
         {
             do
             {
-                strKleur = Interaction.InputBox("Wat is de vraagprijs van de auto?", "Prijs");
+                strKleur = Interaction.InputBox("Maak een keuze van kleur:\nCream | Lanvendel | Wit | Grijs | Paars | Geel | Roze | Blauw | Goud |Groen | Zalm", "Kleuren keuze");
 
-                if (strKleur.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strKleur))
+                if (strKleur.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strKleur) || !strKleurenLijst.Contains(strKleur, StringComparer.OrdinalIgnoreCase))
                 {
-                    MessageBox.Show("Gelieve alleen letters te gebruiken en het veld niet leeg te laten!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Gelieve een kleur te kiezen uit de lijst!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    if (!char.IsUpper(strKleur[0]))
+                    {
+                        strKleur = char.ToUpper(strKleur[0]) + strKleur.Substring(1);
+                    }
                 }
 
-            } while (strKleur.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strKleur)); // Herhaal als er cijfers zijn of als het leeg is
-
+            } while (strKleur.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strKleur) || !strKleurenLijst.Contains(strKleur, StringComparer.OrdinalIgnoreCase));
+            kleurType.Kleur = strKleur;
             MessageBox.Show($"Kleur opgeslagen: {strKleur}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
 
+        // Voert een dialoog voor het invoeren van de prijs
         private void btnPrijs_Click(object sender, EventArgs e)
         {
             do
             {
                 stropvang = Interaction.InputBox("Wat is de vraagprijs van de auto?", "Prijs");
 
-                // Controleer of de invoer leeg is of niet omgezet kan worden naar een double
                 if (string.IsNullOrWhiteSpace(stropvang) || !double.TryParse(stropvang, out dblPrijs))
                 {
                     MessageBox.Show("Gelieve een geldige prijs in te voeren!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    autoType.Prijs = dblPrijs;
                 }
 
             } while (string.IsNullOrWhiteSpace(stropvang) || !double.TryParse(stropvang, out dblPrijs));

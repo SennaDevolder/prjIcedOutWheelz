@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace prjIcedOutWheelz.Model
 {
-    internal class Kleuren
+    public class Kleuren
     {
         public string Kleurid { get; set; }
         public string Kleur { get; set; }
