@@ -225,7 +225,7 @@ namespace prjIcedOutWheelz.DA
                     else if (!string.IsNullOrWhiteSpace(extras))
                     {
                         // fallback: show only names
-                        formattedExtras = string.join("\n• ", extras.Split(',').Select(extra => extra.Trim()));
+                        formattedExtras = string.Join("\n• ", extras.Split(',').Select(extra => extra.Trim()));
                     }
 
                     table.AddCell(new PdfPCell(new Phrase("Extra's", cellFont)) { BackgroundColor = rowColor, Rowspan = 2, Padding = 8f });

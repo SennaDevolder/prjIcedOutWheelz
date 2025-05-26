@@ -118,11 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Knegtel_Kense_3_garage_1920_200119" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Knegtel_Kense_3_garage_1920_200119.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Porsche-Turbo-S-Grijs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Porsche-Turbo-S-Grijs.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="placeholder-image" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\placeholder-image.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Porsche-Turbo-S-Goud" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Porsche-Turbo-S-Goud.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="McLarenSenna-Grijs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\McLarenSenna-Grijs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Porsche-Turbo-S-Blauw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Porsche-Turbo-S-Blauw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="man-adult-customer-male-buyer-600nw-2126039087" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\man-adult-customer-male-buyer-600nw-2126039087.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="McLarenSenna-Oranje" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\McLarenSenna-Oranje.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,13 +151,7 @@
   <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Logo.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Porsche-Turbo-S-Blauw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Porsche-Turbo-S-Blauw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Porsche-Turbo-S-Goud" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Porsche-Turbo-S-Goud.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Porsche-Turbo-S-Grijs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Porsche-Turbo-S-Grijs.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="highly-realistic-image-depicting-chinese-600nw-2483386693" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\highly-realistic-image-depicting-chinese-600nw-2483386693.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

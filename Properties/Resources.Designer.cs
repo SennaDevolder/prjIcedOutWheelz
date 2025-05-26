@@ -73,9 +73,39 @@ namespace prjIcedOutWheelz.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap highly_realistic_image_depicting_chinese_600nw_2483386693 {
+            get {
+                object obj = ResourceManager.GetObject("highly-realistic-image-depicting-chinese-600nw-2483386693", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Knegtel_Kense_3_garage_1920_200119 {
+            get {
+                object obj = ResourceManager.GetObject("Knegtel_Kense_3_garage_1920_200119", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Logo {
             get {
                 object obj = ResourceManager.GetObject("Logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap man_adult_customer_male_buyer_600nw_2126039087 {
+            get {
+                object obj = ResourceManager.GetObject("man-adult-customer-male-buyer-600nw-2126039087", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
