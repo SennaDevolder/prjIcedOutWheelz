@@ -45,46 +45,56 @@ namespace prjIcedOutWheelz
         // Verwerkt het aanmaken van een nieuw account
         private void btnaccount_Click(object sender, EventArgs e)
         {
-            // Controleer of alle velden correct zijn ingevuld en wachtwoorden overeenkomen
-            if (txtwachtwoord.Text == txtherhaal.Text && txtnaam.Text != "Naam" && txtvoornaam.Text != "Voornaam" && txtemail.Text != "Email" && txttelefoon.Text != "Telefoonnummer" && txtstraatnr.Text != "Straatnaam + nummer" & txtadres.Text != "Gemeente + postcode")
+            if (!LoginDA.BestaandeGebruikenChecken(txtemail.Text))
             {
-                Login L = new Login();
-
-                // Zet de gegevens uit de tekstvakken in het Login-object
-                L.Naam = txtvoornaam.Text + " " + txtnaam.Text;
-                L.Email = txtemail.Text;
-                L.Wachtwoord = txtwachtwoord.Text;
-                L.TelNummer = txttelefoon.Text;
-                L.Straat_Num = txtstraatnr.Text;
-                L.Gemeente_Postc = txtadres.Text;
-
-                // Voeg de gebruiker toe aan de database
-                LoginDA.GebruikerToevoegen(L);
-
-                // Vraag of de gebruiker direct wil inloggen
-                DialogResult dlr = MessageBox.Show("Wil je naar de inlog?", "Inloggen", MessageBoxButtons.YesNo);
-
-                if(dlr == DialogResult.Yes)
+                // Controleer of alle velden correct zijn ingevuld en wachtwoorden overeenkomen
+                if (txtwachtwoord.Text == txtherhaal.Text && txtnaam.Text != "Naam" && txtvoornaam.Text != "Voornaam" && txtemail.Text != "Email" && txttelefoon.Text != "Telefoonnummer" && txtstraatnr.Text != "Straatnaam + nummer" & txtadres.Text != "Gemeente + postcode")
                 {
-                    frmLogin frm = new frmLogin();
-                    this.Hide();
-                    frm.Show();
+                    Login L = new Login();
+
+                    // Zet de gegevens uit de tekstvakken in het Login-object
+                    L.Naam = txtvoornaam.Text + " " + txtnaam.Text;
+                    L.Email = txtemail.Text;
+                    L.Wachtwoord = txtwachtwoord.Text;
+                    L.TelNummer = txttelefoon.Text;
+                    L.Straat_Num = txtstraatnr.Text;
+                    L.Gemeente_Postc = txtadres.Text;
+
+                    // Voeg de gebruiker toe aan de database
+                    LoginDA.GebruikerToevoegen(L);
+
+                    // Vraag of de gebruiker direct wil inloggen
+                    DialogResult dlr = MessageBox.Show("Wil je naar de inlog?", "Inloggen", MessageBoxButtons.YesNo);
+
+                    if (dlr == DialogResult.Yes)
+                    {
+                        frmLogin frm = new frmLogin();
+                        this.Hide();
+                        frm.Show();
+                    }
+                    else if (dlr == DialogResult.No)
+                    {
+                        SetTxts(); // Reset de tekstvakken
+                    }
                 }
-                else if(dlr == DialogResult.No)
+                else
                 {
-                    SetTxts(); // Reset de tekstvakken
+                    MessageBox.Show("Gelieve alle velden in te vullen!", "Incorrecte ingave");
                 }
             }
             else
             {
-                MessageBox.Show("Gelieve alle velden in te vullen!", "Incorrecte ingave");
+                MessageBox.Show("Deze email is al in gebruik!", "Email bestaat al");
             }
+            
         }
 
         // Sluit de applicatie volledig af als het registratievenster wordt gesloten
         private void frmRegistreer_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Environment.Exit(0);
+            frmStartscherm frm = new frmStartscherm();
+            this.Hide();
+            frm.Show();
         }
 
         // Verwijdert de standaardtekst bij focus op het naamveld

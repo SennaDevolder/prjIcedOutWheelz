@@ -290,7 +290,7 @@
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(298, 21);
             this.cmbType.TabIndex = 6;
-            this.cmbType.Text = "Types";
+            this.cmbType.Text = "Merken";
             this.cmbType.SelectedIndexChanged += new System.EventHandler(this.cmbType_SelectedIndexChanged);
             // 
             // btnLoguit

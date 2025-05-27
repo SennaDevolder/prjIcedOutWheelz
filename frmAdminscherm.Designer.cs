@@ -97,7 +97,7 @@
             this.btnremove.Name = "btnremove";
             this.btnremove.Size = new System.Drawing.Size(187, 53);
             this.btnremove.TabIndex = 9;
-            this.btnremove.Text = "Remove";
+            this.btnremove.Text = "Foto verwijderen";
             this.btnremove.UseVisualStyleBackColor = true;
             this.btnremove.Click += new System.EventHandler(this.btnremove_Click);
             // 
@@ -108,7 +108,7 @@
             this.btnclear.Name = "btnclear";
             this.btnclear.Size = new System.Drawing.Size(186, 38);
             this.btnclear.TabIndex = 10;
-            this.btnclear.Text = "Clear";
+            this.btnclear.Text = "Leegmaken";
             this.btnclear.UseVisualStyleBackColor = true;
             this.btnclear.Click += new System.EventHandler(this.btnclear_Click);
             // 
@@ -119,7 +119,7 @@
             this.btnaddimg.Name = "btnaddimg";
             this.btnaddimg.Size = new System.Drawing.Size(186, 38);
             this.btnaddimg.TabIndex = 12;
-            this.btnaddimg.Text = "Add img";
+            this.btnaddimg.Text = "Voeg foto toe";
             this.btnaddimg.UseVisualStyleBackColor = true;
             this.btnaddimg.Click += new System.EventHandler(this.btnaddimg_Click);
             // 
@@ -134,7 +134,7 @@
             this.btnadd.Name = "btnadd";
             this.btnadd.Size = new System.Drawing.Size(333, 50);
             this.btnadd.TabIndex = 16;
-            this.btnadd.Text = "Add";
+            this.btnadd.Text = "Toevoegen";
             this.btnadd.UseVisualStyleBackColor = false;
             this.btnadd.Click += new System.EventHandler(this.btnadd_Click);
             // 
@@ -183,7 +183,7 @@
             this.btnselect.Name = "btnselect";
             this.btnselect.Size = new System.Drawing.Size(461, 53);
             this.btnselect.TabIndex = 22;
-            this.btnselect.Text = "Select img";
+            this.btnselect.Text = "Foto selecteren";
             this.btnselect.UseVisualStyleBackColor = true;
             this.btnselect.Click += new System.EventHandler(this.btnselect_Click);
             // 

@@ -391,37 +391,45 @@ namespace prjIcedOutWheelz
         // Voegt een nieuwe auto toe aan de database met alle gekoppelde gegevens
         private void btnadd_Click(object sender, EventArgs e)
         {
-            // Zet de huidige afbeelding om naar een byte array
-            if (picAuto.Image != null)
+            if(!AdminDA.DuplicateCarCheck(autoType.Merk, autoType._Type, autoType.Jaar))
             {
-                using (MemoryStream ms = new MemoryStream())
+                // Zet de huidige afbeelding om naar een byte array
+                if (picAuto.Image != null)
                 {
-                    using (Bitmap clone = new Bitmap(picAuto.Image))
+                    using (MemoryStream ms = new MemoryStream())
                     {
-                        clone.Save(ms, picAuto.Image.RawFormat);
+                        using (Bitmap clone = new Bitmap(picAuto.Image))
+                        {
+                            clone.Save(ms, picAuto.Image.RawFormat);
+                        }
+                        autoType.Foto = ms.ToArray();
                     }
-                    autoType.Foto = ms.ToArray();
                 }
+                else
+                {
+                    autoType.Foto = null;
+                }
+
+                AdminDA.TypeToevoegen(autoType);
+                autoType.Typeid = AdminDA.GetAutoIdByMerkAndType(autoType.Merk, autoType._Type).ToString();
+                motorType.Autoid = autoType.Typeid;
+                AdminDA.MotorToevoegen(motorType);
+                motorType.Motorid = AdminDA.GetMotorIdByAutoId(Convert.ToInt32(motorType.Autoid)).ToString();
+                AdminDA.MotorPerTypeToevoegen(Convert.ToInt32(motorType.Autoid), Convert.ToInt32(motorType.Motorid));
+
+                int typeidkleur = AdminDA.GetAutoIdByMerkAndType(autoType.Merk, autoType._Type);
+                int kleuriddd = AdminDA.KleurIDOphalen(kleurType.Kleur);
+                AdminDA.KleurPerTypeToevoegen(typeidkleur, kleuriddd);
+                int typeidstatus = AdminDA.GetAutoIdByMerkAndType(autoType.Merk, autoType._Type);
+                int statusiddd = AdminDA.StatusIDOphalen(statusType._Status);
+                AdminDA.StatusPerTypeToevoegen(typeidstatus, statusiddd);
+                FillListBoxTypes();
             }
             else
             {
-                autoType.Foto = null;
+                MessageBox.Show("Deze auto bestaat al in de database!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            AdminDA.TypeToevoegen(autoType);
-            autoType.Typeid = AdminDA.GetAutoIdByMerkAndType(autoType.Merk, autoType._Type).ToString();
-            motorType.Autoid = autoType.Typeid;
-            AdminDA.MotorToevoegen(motorType);
-            motorType.Motorid = AdminDA.GetMotorIdByAutoId(Convert.ToInt32(motorType.Autoid)).ToString();
-            AdminDA.MotorPerTypeToevoegen(Convert.ToInt32(motorType.Autoid), Convert.ToInt32(motorType.Motorid));
-
-            int typeidkleur = AdminDA.GetAutoIdByMerkAndType(autoType.Merk, autoType._Type);
-            int kleuriddd = AdminDA.KleurIDOphalen(kleurType.Kleur);
-            AdminDA.KleurPerTypeToevoegen(typeidkleur, kleuriddd);
-            int typeidstatus = AdminDA.GetAutoIdByMerkAndType(autoType.Merk, autoType._Type);
-            int statusiddd = AdminDA.StatusIDOphalen(statusType._Status);
-            AdminDA.StatusPerTypeToevoegen(typeidstatus, statusiddd);
-            FillListBoxTypes();
+            
         }
 
         // Voert een dialoog voor het invoeren van motorgegevens

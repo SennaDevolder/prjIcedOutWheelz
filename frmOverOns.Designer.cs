@@ -203,7 +203,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(711, 684);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox4);
@@ -220,6 +220,7 @@
             this.Controls.Add(this.pcbLogo);
             this.Controls.Add(this.lblOverons);
             this.Controls.Add(this.pcbBalk);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Over_Ons";
             this.Text = "Over Ons";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();

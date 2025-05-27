@@ -250,8 +250,9 @@ namespace prjIcedOutWheelz
 
         private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // Sluit de applicatie volledig af als het loginvenster wordt gesloten
-            Environment.Exit(0);
+            frmStartscherm frm = new frmStartscherm();
+            this.Hide();
+            frm.Show();
         }
 
         private void txtEmail_Enter(object sender, EventArgs e)
@@ -291,6 +292,7 @@ namespace prjIcedOutWheelz
         private void btnChangePass_Click(object sender, EventArgs e)
         {
             Login L = new Login();
+            DialogResult dlr2;
 
             L.Email = txtEmail.Text;
             L.Wachtwoord = txtWachtwoord.Text;
@@ -304,27 +306,43 @@ namespace prjIcedOutWheelz
                 strNewPass = Interaction.InputBox("Voer nieuw wachtwoord in:", "Wachtwoord wijzigen");
                 strPassConfirm = Interaction.InputBox("Voer wachtwoord opnieuw in.", "Wachtwoord wijzigen");
 
-                if (strNewPass == strPassConfirm)
+                if(strNewPass != "" || strPassConfirm != "")
                 {
-                    LoginDA.WachtwoordVeranderen(L, strNewPass);
+                    if (strNewPass == strPassConfirm)
+                    {
+                        LoginDA.WachtwoordVeranderen(L, strNewPass);
+                    }
+                    else
+                    {
+                        DialogResult dlr = MessageBox.Show("Wachtwoorden komen niet overeen", "Wachtwoord wijzigen", MessageBoxButtons.RetryCancel);
+
+                        switch (dlr)
+                        {
+                            case DialogResult.Cancel:
+                                {
+                                    return;
+                                }
+                            case DialogResult.Retry:
+                                {
+                                    goto c;
+                                }
+                        }
+                    }
+                    txtEmail.Clear();
                 }
                 else
                 {
-                    DialogResult dlr = MessageBox.Show("Wachtwoorden komen niet overeen", "Wachtwoord wijzigen", MessageBoxButtons.RetryCancel);
-
-                    switch (dlr)
+                    dlr2 = MessageBox.Show("U heeft geen nieuw wachtwoord ingevuld.\nWilt u stoppen met uw wachtwoord veranderen?", "Lege velden", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if(dlr2 == DialogResult.No)
                     {
-                        case DialogResult.Cancel:
-                            {
-                                return;
-                            }
-                        case DialogResult.Retry:
-                            {
-                                goto c;
-                            }
+                        goto c;
                     }
+                    
                 }
-                txtEmail.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Email en/of wachtwoord komen niet overeen!", "Wachtwoord wijzigen");
             }
         }
 
@@ -337,6 +355,7 @@ namespace prjIcedOutWheelz
                 string str2FAcodeCHECKER, str2FAcode;
                 DateTime codeGenerationTime = DateTime.Now;
                 TimeSpan codeValidityDuration = TimeSpan.FromMinutes(5);
+                DialogResult dlr;
 
                 L.Email = txtEmail.Text;
                 L.Wachtwoord = txtWachtwoord.Text;
@@ -444,7 +463,12 @@ namespace prjIcedOutWheelz
                             }
                             else
                             {
-                                MessageBox.Show("2FA code is incorrect\rEr is een nieuwe 2FA code verzonden.", "2FA");
+                                dlr = MessageBox.Show("2FA code is incorrect\rWil je een nieuwe code?", "2FA", MessageBoxButtons.YesNo);
+
+                                if (dlr != DialogResult.Yes)
+                                {
+                                    break;
+                                }
                             }
                         }
                     } while (str2FAcodeCHECKER != str2FAcode);

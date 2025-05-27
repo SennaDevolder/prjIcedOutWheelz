@@ -190,5 +190,18 @@ namespace prjIcedOutWheelz.DA
             sqlcmd.ExecuteNonQuery();
             MessageBox.Show("Auto succesvol verwijderd uit de database!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        public static bool DuplicateCarCheck(string strMerk, string strType, string strBouwjaar)
+        {
+            MySqlConnection conn = Database.MakeConnection();
+
+            string query = "SELECT COUNT(1) FROM `tbltype` WHERE `Merk` = @Merk AND `Type` = @Type AND `Jaar` = @Jaar";
+            MySqlCommand sqlcmd = new MySqlCommand(query, conn);
+            sqlcmd.Parameters.AddWithValue("@Merk", strMerk);
+            sqlcmd.Parameters.AddWithValue("@Type", strType);
+            sqlcmd.Parameters.AddWithValue("@Jaar", strBouwjaar);
+            int count = Convert.ToInt32(sqlcmd.ExecuteScalar());
+            return count > 0;
+        }
     }
 }

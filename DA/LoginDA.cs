@@ -45,6 +45,18 @@ namespace prjIcedOutWheelz.DA
 
         }
 
+        public static bool BestaandeGebruikenChecken(string strEmail)
+        {
+            MySqlConnection conn = Database.MakeConnection();
+
+            string query = "SELECT COUNT(1) FROM tblklant WHERE Email=@Email";
+            MySqlCommand sqlcmd = new MySqlCommand(query, conn);
+            sqlcmd.Parameters.AddWithValue("@Email", strEmail);
+            int count = Convert.ToInt32(sqlcmd.ExecuteScalar());
+            // Als count groter is dan 0, bestaat de gebruiker al
+            return count > 0;
+        }
+
         // Voegt een nieuwe gebruiker toe aan de database
         public static void GebruikerToevoegen(Login L)
         {

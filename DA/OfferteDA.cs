@@ -130,7 +130,7 @@ namespace prjIcedOutWheelz.DA
                 // Maak de detailtabel
                 PdfPTable table = new PdfPTable(2); // Twee kolommen: Kenmerk, Waarde
                 table.WidthPercentage = 100;
-                table.SpacingBefore = 20f; // Ruimte voor de tabel
+                table.SpacingBefore = 10f; // Ruimte voor de tabel
                 table.SpacingAfter = 20f;  // Ruimte na de tabel
                 table.SetWidths(new float[] { 1.5f, 3f });
 
