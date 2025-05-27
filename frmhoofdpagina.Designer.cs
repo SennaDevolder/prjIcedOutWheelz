@@ -52,6 +52,7 @@
             this.lsbTypes = new System.Windows.Forms.ListBox();
             this.cmbType = new System.Windows.Forms.ComboBox();
             this.btnLoguit = new System.Windows.Forms.Button();
+            this.lsbInformatie = new System.Windows.Forms.ListBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAuto)).BeginInit();
@@ -98,7 +99,7 @@
             this.panel1.Controls.Add(this.chkZetelverwarming);
             this.panel1.Controls.Add(this.chkCruiseControl);
             this.panel1.Controls.Add(this.chkStuurVerwarming);
-            this.panel1.Location = new System.Drawing.Point(12, 516);
+            this.panel1.Location = new System.Drawing.Point(742, 516);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(298, 182);
             this.panel1.TabIndex = 20;
@@ -226,9 +227,9 @@
             // picAuto
             // 
             this.picAuto.Image = ((System.Drawing.Image)(resources.GetObject("picAuto.Image")));
-            this.picAuto.Location = new System.Drawing.Point(330, 175);
+            this.picAuto.Location = new System.Drawing.Point(330, 148);
             this.picAuto.Name = "picAuto";
-            this.picAuto.Size = new System.Drawing.Size(710, 485);
+            this.picAuto.Size = new System.Drawing.Size(710, 362);
             this.picAuto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picAuto.TabIndex = 9;
             this.picAuto.TabStop = false;
@@ -276,7 +277,7 @@
             this.lsbTypes.ItemHeight = 20;
             this.lsbTypes.Location = new System.Drawing.Point(12, 190);
             this.lsbTypes.Name = "lsbTypes";
-            this.lsbTypes.Size = new System.Drawing.Size(298, 300);
+            this.lsbTypes.Size = new System.Drawing.Size(298, 320);
             this.lsbTypes.TabIndex = 10;
             this.lsbTypes.SelectedIndexChanged += new System.EventHandler(this.lsbTypes_SelectedIndexChanged);
             // 
@@ -305,12 +306,24 @@
             this.btnLoguit.UseVisualStyleBackColor = false;
             this.btnLoguit.Click += new System.EventHandler(this.btnLoguit_Click);
             // 
+            // lsbInformatie
+            // 
+            this.lsbInformatie.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lsbInformatie.FormattingEnabled = true;
+            this.lsbInformatie.ItemHeight = 20;
+            this.lsbInformatie.Location = new System.Drawing.Point(12, 525);
+            this.lsbInformatie.Name = "lsbInformatie";
+            this.lsbInformatie.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lsbInformatie.Size = new System.Drawing.Size(724, 164);
+            this.lsbInformatie.TabIndex = 22;
+            // 
             // frmhoofdpagina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1052, 710);
+            this.Controls.Add(this.lsbInformatie);
             this.Controls.Add(this.btnLoguit);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox3);
@@ -363,5 +376,6 @@
         private System.Windows.Forms.ListBox lsbTypes;
         private System.Windows.Forms.ComboBox cmbType;
         private System.Windows.Forms.Button btnLoguit;
+        private System.Windows.Forms.ListBox lsbInformatie;
     }
 }

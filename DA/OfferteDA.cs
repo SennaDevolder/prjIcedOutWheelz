@@ -181,7 +181,7 @@ namespace prjIcedOutWheelz.DA
                     totalPrice = basePrice + extrasTotal;
 
                     table.AddCell(new PdfPCell(new Phrase("Prijs (€)", cellFont)) { BackgroundColor = rowColor, Padding = 8f });
-                    table.AddCell(new PdfPCell(new Phrase(totalPrice.ToString("C2", nbnFormat), cellFont)) { BackgroundColor = rowColor, Padding = 8f });
+                    table.AddCell(new PdfPCell(new Phrase(basePrice.ToString("C2", nbnFormat), cellFont)) { BackgroundColor = rowColor, Padding = 8f });
 
                     table.AddCell(new PdfPCell(new Phrase("Kleur", cellFont)) { BackgroundColor = rowColor, Padding = 8f });
                     table.AddCell(new PdfPCell(new Phrase(row["Kleur"].ToString(), cellFont)) { BackgroundColor = rowColor, Padding = 8f });
@@ -245,7 +245,7 @@ namespace prjIcedOutWheelz.DA
 
                 // Contactinformatie sectie
                 iTextSharp.text.Font footerFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 11, iTextSharp.text.Font.ITALIC, BaseColor.GRAY);
-                Paragraph footer = new Paragraph("Bedankt voor uw zaken! Neem contact met ons op als u vragen heeft. Via het telefoonnummer +32 494 59 71 73 of het e-mailadres icedoutwheelz@gmail.com ", footerFont);
+                Paragraph footer = new Paragraph("Bedankt voor uw interesse! Neem contact met ons op als u vragen heeft. Via het telefoonnummer +32 494 59 71 73 of het e-mailadres icedoutwheelz@gmail.com ", footerFont);
                 footer.Alignment = Element.ALIGN_CENTER;
                 footer.SpacingBefore = 10f;
                 document.Add(footer);

@@ -77,7 +77,7 @@ namespace prjIcedOutWheelz
             }
             else
             {
-                MessageBox.Show("Wachtwoorden komen niet overeen!", "Incorrecte wachtwoorden");
+                MessageBox.Show("Gelieve alle velden in te vullen!", "Incorrecte ingave");
             }
         }
 

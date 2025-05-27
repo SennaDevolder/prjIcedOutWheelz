@@ -352,6 +352,18 @@ namespace prjIcedOutWheelz
             MessageBox.Show($"Brandstof opgeslagen: {strBrandstof}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            if (lsbautos.SelectedItem is DataRowView selectedRow)
+            {
+                string strSelectedMerk = selectedRow["Merk"].ToString();
+                string strSelectedType = selectedRow["Type"].ToString();
+
+                AdminDA.AutoVerwijderen(strSelectedMerk, strSelectedType);
+                FillListBoxTypes();
+            }
+        }
+
         // Voert een dialoog voor het invoeren van de status van de auto
         private void btnAddStatus_Click(object sender, EventArgs e)
         {
@@ -400,6 +412,8 @@ namespace prjIcedOutWheelz
             autoType.Typeid = AdminDA.GetAutoIdByMerkAndType(autoType.Merk, autoType._Type).ToString();
             motorType.Autoid = autoType.Typeid;
             AdminDA.MotorToevoegen(motorType);
+            motorType.Motorid = AdminDA.GetMotorIdByAutoId(Convert.ToInt32(motorType.Autoid)).ToString();
+            AdminDA.MotorPerTypeToevoegen(Convert.ToInt32(motorType.Autoid), Convert.ToInt32(motorType.Motorid));
 
             int typeidkleur = AdminDA.GetAutoIdByMerkAndType(autoType.Merk, autoType._Type);
             int kleuriddd = AdminDA.KleurIDOphalen(kleurType.Kleur);

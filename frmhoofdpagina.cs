@@ -245,6 +245,7 @@ namespace prjIcedOutWheelz
                 string displayText = $"{row["Merk"]}  |  {row["Type"]}  |  {row["Jaar"]}  |  {row["MotorType"]}  |  {row["BrandstofType"]}  |  {row["Vermogen"]}  |  {row["Koppel"]}  |  {row["Batterijcapaciteit"]}";
                 listItems.Add(displayText);
             }
+            lsbInformatie.DataSource = listItems;
         }
 
         // Verwerkt het aanvragen van een offerte en stuurt deze per mail

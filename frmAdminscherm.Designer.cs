@@ -49,6 +49,7 @@
             this.button7 = new System.Windows.Forms.Button();
             this.btnLoguit = new System.Windows.Forms.Button();
             this.btnAddStatus = new System.Windows.Forms.Button();
+            this.btnDel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAuto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbLogo)).BeginInit();
@@ -129,9 +130,9 @@
             this.btnadd.FlatAppearance.BorderSize = 0;
             this.btnadd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnadd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnadd.Location = new System.Drawing.Point(239, 483);
+            this.btnadd.Location = new System.Drawing.Point(240, 484);
             this.btnadd.Name = "btnadd";
-            this.btnadd.Size = new System.Drawing.Size(654, 50);
+            this.btnadd.Size = new System.Drawing.Size(333, 50);
             this.btnadd.TabIndex = 16;
             this.btnadd.Text = "Add";
             this.btnadd.UseVisualStyleBackColor = false;
@@ -287,12 +288,28 @@
             this.btnAddStatus.UseVisualStyleBackColor = true;
             this.btnAddStatus.Click += new System.EventHandler(this.btnAddStatus_Click);
             // 
+            // btnDel
+            // 
+            this.btnDel.BackColor = System.Drawing.Color.Cyan;
+            this.btnDel.FlatAppearance.BorderColor = System.Drawing.Color.Cyan;
+            this.btnDel.FlatAppearance.BorderSize = 0;
+            this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDel.Location = new System.Drawing.Point(579, 483);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(314, 50);
+            this.btnDel.TabIndex = 61;
+            this.btnDel.Text = "Verwijderen";
+            this.btnDel.UseVisualStyleBackColor = false;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
+            // 
             // frmAdminscherm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(906, 546);
+            this.Controls.Add(this.btnDel);
             this.Controls.Add(this.btnAddStatus);
             this.Controls.Add(this.btnLoguit);
             this.Controls.Add(this.button7);
@@ -348,5 +365,6 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button btnLoguit;
         private System.Windows.Forms.Button btnAddStatus;
+        private System.Windows.Forms.Button btnDel;
     }
 }

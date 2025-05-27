@@ -55,6 +55,27 @@ namespace prjIcedOutWheelz.DA
             return typeID;
         }
 
+        public static int GetMotorIdByAutoId(int autoID)
+        {
+            int motorID = 0;
+
+            MySqlConnection conn = Database.MakeConnection();
+
+            // Selecteert het laatste motorID uit de tabel
+            string query = "SELECT MotorID FROM tblmotoren WHERE AutoID = @AutoID;";
+
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@AutoID", autoID);
+
+            object result = cmd.ExecuteScalar();
+            if (result != null)
+            {
+                motorID = Convert.ToInt32(result);
+            }
+
+            return motorID;
+        }
+
         // Voegt een nieuw type auto toe aan de database
         public static void TypeToevoegen(Model.Type type)
         {
@@ -90,6 +111,18 @@ namespace prjIcedOutWheelz.DA
 
             sqlcmd.ExecuteScalar();
             MessageBox.Show("Motor succesvol toegevoegd aan de database!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public static void MotorPerTypeToevoegen(int TypeID, int MotorID)
+        {
+            MySqlConnection conn = Database.MakeConnection();
+            string query  = "INSERT INTO `tblmotorpertype`(`TypeID`, `MotorID`) VALUES (@TypeID, @MotorID)";
+
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@TypeID", TypeID);
+            cmd.Parameters.AddWithValue("@MotorID", MotorID);
+
+            cmd.ExecuteScalar();
         }
 
         // Koppelt een kleur aan een type auto
@@ -142,6 +175,20 @@ namespace prjIcedOutWheelz.DA
             int kleurID = Convert.ToInt32(sqlcmd.ExecuteScalar());
 
             return kleurID;
+        }
+
+        public static void AutoVerwijderen(string strMerk, string strType)
+        {
+            MySqlConnection conn = Database.MakeConnection();
+
+            // Verwijdert de auto op basis van het AutoID
+            string query = "DELETE FROM `tbltype` WHERE `Merk` = @Merk AND `Type` = @Type";
+            MySqlCommand sqlcmd = new MySqlCommand(query, conn);
+            sqlcmd.Parameters.AddWithValue("@Merk", strMerk);
+            sqlcmd.Parameters.AddWithValue("@Type", strType);
+
+            sqlcmd.ExecuteNonQuery();
+            MessageBox.Show("Auto succesvol verwijderd uit de database!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
