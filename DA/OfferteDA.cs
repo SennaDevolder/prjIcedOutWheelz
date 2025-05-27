@@ -78,24 +78,30 @@ namespace prjIcedOutWheelz.DA
             return dsOfferteDetails;
         }
 
+        /// <summary>
+        /// Genereert een offerte-PDF in het geheugen op basis van de opgegeven details.
+        /// </summary>
+        /// <param name="details">DataTable met offertetdetails (één rij)</param>
+        /// <returns>MemoryStream met de PDF (klaar om te versturen of op te slaan)</returns>
         public static MemoryStream GeneratePdfInMemory(DataTable details)
         {
             try
             {
-                // Maak een MemoryStream om de PDF-gegevens in het geheugen vast te houden
+                // Maak een MemoryStream aan waarin de PDF in het geheugen wordt opgebouwd
                 MemoryStream memoryStream = new MemoryStream();
 
-                // Maak een document en koppel het aan de MemoryStream
+                // Maak een nieuw PDF-document aan en koppel deze aan de MemoryStream
                 Document document = new Document(PageSize.A4, 40f, 40f, 50f, 50f);
                 PdfWriter writer = PdfWriter.GetInstance(document, memoryStream);
-                writer.CloseStream = false;
+                writer.CloseStream = false; // Laat de stream open zodat we deze later kunnen uitlezen
 
-                // Open het document om inhoud toe te voegen
+                // Open het document zodat we er inhoud aan kunnen toevoegen
                 document.Open();
 
-                // Voeg het bedrijfslogo toe vanuit de bronnen
+                // --- LOGO TOEVOEGEN ---
                 try
                 {
+                    // Zet het logo uit de resources om naar een byte-array en voeg toe aan de PDF
                     using (MemoryStream ms = new MemoryStream())
                     {
                         Properties.Resources.Logo.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
@@ -105,38 +111,39 @@ namespace prjIcedOutWheelz.DA
                         logo.ScaleToFit(150f, 150f);
 
                         document.Add(logo);
-                        document.Add(new Paragraph(" "));
+                        document.Add(new Paragraph(" ")); // Voeg witruimte toe
                     }
                 }
                 catch (Exception ex)
                 {
+                    // Als het logo niet kan worden toegevoegd, toon een waarschuwing maar ga verder
                     MessageBox.Show("Fout bij het toevoegen van logo: " + ex.Message, "Waarschuwing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
-                // Titel
+                // --- TITEL EN SUBTITEL ---
                 iTextSharp.text.Font titleFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 22, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
                 Paragraph title = new Paragraph("Uw offerte", titleFont);
                 title.Alignment = Element.ALIGN_CENTER;
                 document.Add(title);
-                document.Add(new Paragraph(" ")); // Ruimte tussen de titel en inhoud
+                document.Add(new Paragraph(" ")); // Extra witruimte
 
-                // Subtitel
                 iTextSharp.text.Font subheadingFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 14, iTextSharp.text.Font.BOLD, BaseColor.DARK_GRAY);
                 Paragraph subheading = new Paragraph("The Road is Calling - Answer in Style!", subheadingFont);
                 subheading.Alignment = Element.ALIGN_CENTER;
                 document.Add(subheading);
-                document.Add(new Chunk(new LineSeparator()));
+                document.Add(new Chunk(new LineSeparator())); // Lijn onder de subtitel
 
-                // Maak de detailtabel
-                PdfPTable table = new PdfPTable(2); // Twee kolommen: Kenmerk, Waarde
+                // --- DETAILTABEL ---
+                // Maak een tabel met 2 kolommen: Kenmerk | Waarde
+                PdfPTable table = new PdfPTable(2);
                 table.WidthPercentage = 100;
-                table.SpacingBefore = 10f; // Ruimte voor de tabel
-                table.SpacingAfter = 20f;  // Ruimte na de tabel
+                table.SpacingBefore = 10f;
+                table.SpacingAfter = 20f;
                 table.SetWidths(new float[] { 1.5f, 3f });
 
-                // Tabelkoppen
+                // Tabelkoppen (donkerblauw met witte tekst)
                 iTextSharp.text.Font headerFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12, iTextSharp.text.Font.BOLD, BaseColor.WHITE);
-                BaseColor darkNavy = new BaseColor(0, 0, 102); // Donker marineblauw
+                BaseColor darkNavy = new BaseColor(0, 0, 102);
 
                 PdfPCell header1 = new PdfPCell(new Phrase("Kenmerk", headerFont)) { BackgroundColor = darkNavy, HorizontalAlignment = Element.ALIGN_CENTER, Padding = 8f };
                 PdfPCell header2 = new PdfPCell(new Phrase("Waarde", headerFont)) { BackgroundColor = darkNavy, HorizontalAlignment = Element.ALIGN_CENTER, Padding = 8f };
@@ -146,16 +153,16 @@ namespace prjIcedOutWheelz.DA
                 decimal totalPrice = 0; // Houd de totale prijs bij
                 CultureInfo belgianCulture = new CultureInfo("nl-BE"); // Belgische euroformattering
 
-                // Clone and customize NumberFormat for NBN
+                // Pas het euro-formaat aan voor Belgische notatie
                 NumberFormatInfo nbnFormat = (NumberFormatInfo)belgianCulture.NumberFormat.Clone();
-                nbnFormat.CurrencyGroupSeparator = " "; // space for thousands
-                nbnFormat.CurrencyDecimalSeparator = ","; // comma for decimals
+                nbnFormat.CurrencyGroupSeparator = " ";
+                nbnFormat.CurrencyDecimalSeparator = ",";
                 nbnFormat.CurrencySymbol = "€";
                 nbnFormat.CurrencyPositivePattern = 3; // € n
 
-                bool alternateRow = false; // Wisselende rijkleuren
+                bool alternateRow = false; // Voor afwisselende rij-kleuren
 
-                // Loop door de DataTable en vul de cellen in
+                // Loop door de DataTable (meestal 1 rij) en vul de tabel
                 foreach (DataRow row in details.Rows)
                 {
                     iTextSharp.text.Font cellFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 11, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
@@ -163,13 +170,15 @@ namespace prjIcedOutWheelz.DA
                     BaseColor rowColor = alternateRow ? new BaseColor(240, 240, 240) : BaseColor.WHITE;
                     alternateRow = !alternateRow;
 
+                    // Ordernummer
                     table.AddCell(new PdfPCell(new Phrase("Order Nummer", cellFont)) { BackgroundColor = rowColor, Padding = 8f });
                     table.AddCell(new PdfPCell(new Phrase(row["AutoOfferteID"].ToString(), cellFont)) { BackgroundColor = rowColor, Padding = 8f });
 
+                    // Auto (merk + type)
                     table.AddCell(new PdfPCell(new Phrase("Auto", cellFont)) { BackgroundColor = rowColor, Padding = 8f });
                     table.AddCell(new PdfPCell(new Phrase($"{row["Merk"]} {row["Type"]}", cellFont)) { BackgroundColor = rowColor, Padding = 8f });
 
-                    // Calculate total price
+                    // Prijsberekening
                     decimal basePrice = row["TypePrijs"] != DBNull.Value ? Convert.ToDecimal(row["TypePrijs"]) : 0;
                     decimal extrasTotal = 0;
                     if (row.Table.Columns.Contains("ExtraPrijzen") && row["ExtraPrijzen"] != DBNull.Value && !string.IsNullOrWhiteSpace(row["ExtraPrijzen"].ToString()))
@@ -180,19 +189,23 @@ namespace prjIcedOutWheelz.DA
                     }
                     totalPrice = basePrice + extrasTotal;
 
+                    // Prijs
                     table.AddCell(new PdfPCell(new Phrase("Prijs (€)", cellFont)) { BackgroundColor = rowColor, Padding = 8f });
                     table.AddCell(new PdfPCell(new Phrase(basePrice.ToString("C2", nbnFormat), cellFont)) { BackgroundColor = rowColor, Padding = 8f });
 
+                    // Kleur
                     table.AddCell(new PdfPCell(new Phrase("Kleur", cellFont)) { BackgroundColor = rowColor, Padding = 8f });
                     table.AddCell(new PdfPCell(new Phrase(row["Kleur"].ToString(), cellFont)) { BackgroundColor = rowColor, Padding = 8f });
 
+                    // Status
                     table.AddCell(new PdfPCell(new Phrase("Status", cellFont)) { BackgroundColor = rowColor, Padding = 8f });
                     table.AddCell(new PdfPCell(new Phrase(row["Status"].ToString(), cellFont)) { BackgroundColor = rowColor, Padding = 8f });
 
+                    // Motor
                     table.AddCell(new PdfPCell(new Phrase("Motor", cellFont)) { BackgroundColor = rowColor, Padding = 8f });
                     table.AddCell(new PdfPCell(new Phrase(row["Motor"].ToString(), cellFont)) { BackgroundColor = rowColor, Padding = 8f });
 
-                    // Extras
+                    // Extra's (met prijs per extra)
                     string extras = row["Extras"] != DBNull.Value ? row["Extras"].ToString() : "";
                     string extraPrijzen = row.Table.Columns.Contains("ExtraPrijzen") && row["ExtraPrijzen"] != DBNull.Value
                         ? row["ExtraPrijzen"].ToString()
@@ -208,7 +221,6 @@ namespace prjIcedOutWheelz.DA
                             return decimal.TryParse(p, out prijs) ? prijs : 0;
                         }).ToList();
 
-                        var culture = belgianCulture;
                         var lines = new List<string>();
                         for (int i = 0; i < extrasList.Count; i++)
                         {
@@ -224,10 +236,11 @@ namespace prjIcedOutWheelz.DA
                     }
                     else if (!string.IsNullOrWhiteSpace(extras))
                     {
-                        // fallback: show only names
+                        // fallback: alleen namen tonen
                         formattedExtras = string.Join("\n• ", extras.Split(',').Select(extra => extra.Trim()));
                     }
 
+                    // Voeg de extra's toe aan de tabel
                     table.AddCell(new PdfPCell(new Phrase("Extra's", cellFont)) { BackgroundColor = rowColor, Rowspan = 2, Padding = 8f });
                     table.AddCell(new PdfPCell(new Phrase(formattedExtras, cellFont)) { BackgroundColor = rowColor, Colspan = 2, Padding = 8f });
                 }
@@ -235,15 +248,15 @@ namespace prjIcedOutWheelz.DA
                 // Voeg de tabel toe aan het document
                 document.Add(table);
 
-                // Totale prijs sectie
+                // --- TOTALE PRIJS ---
                 iTextSharp.text.Font totalPriceFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 14, iTextSharp.text.Font.BOLD, BaseColor.RED);
                 Paragraph totalPriceParagraph = new Paragraph($"Totale Prijs: {totalPrice.ToString("C2", nbnFormat)}", totalPriceFont);
                 totalPriceParagraph.Alignment = Element.ALIGN_RIGHT;
                 document.Add(totalPriceParagraph);
 
-                document.Add(new Chunk(new LineSeparator())); // Scheidingsteken om de secties te splitsen
+                document.Add(new Chunk(new LineSeparator())); // Scheidingsteken
 
-                // Contactinformatie sectie
+                // --- CONTACTINFORMATIE ---
                 iTextSharp.text.Font footerFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 11, iTextSharp.text.Font.ITALIC, BaseColor.GRAY);
                 Paragraph footer = new Paragraph("Bedankt voor uw interesse! Neem contact met ons op als u vragen heeft. Via het telefoonnummer +32 494 59 71 73 of het e-mailadres icedoutwheelz@gmail.com ", footerFont);
                 footer.Alignment = Element.ALIGN_CENTER;
@@ -251,13 +264,13 @@ namespace prjIcedOutWheelz.DA
                 document.Add(footer);
                 document.Add(new Paragraph(" "));
 
-                // Handtekening
+                // --- HANDTEKENING ---
                 iTextSharp.text.Font signatureFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12, iTextSharp.text.Font.BOLD, BaseColor.DARK_GRAY);
                 Paragraph signature = new Paragraph("Met vriendelijke groet, \nIcedOutWheelz", signatureFont);
                 signature.Alignment = Element.ALIGN_RIGHT;
                 document.Add(signature);
 
-                // Finaliseer het document 
+                // Sluit het document af en zet de stream terug naar het begin
                 document.Close();
                 memoryStream.Position = 0;
                 return memoryStream;
@@ -267,40 +280,46 @@ namespace prjIcedOutWheelz.DA
                 MessageBox.Show("Fout bij het genereren van de PDF: " + ex.Message, "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
-
         }
 
-
+        /// <summary>
+        /// Verstuurt een e-mail met een PDF-bijlage naar het opgegeven e-mailadres.
+        /// </summary>
+        /// <param name="toEmail">Bestemmeling</param>
+        /// <param name="subject">Onderwerp</param>
+        /// <param name="body">HTML-body van de e-mail</param>
+        /// <param name="pdfStream">MemoryStream met de PDF-bijlage</param>
         public static void SendEmailWithPdf(string toEmail, string subject, string body, MemoryStream pdfStream)
         {
             try
             {
-                // Convert MemoryStream to byte array
+                // Zet de MemoryStream om naar een byte-array voor de bijlage
                 byte[] pdfData = pdfStream.ToArray();
 
-                // Create a new mail message
+                // Maak een nieuw e-mailbericht aan
                 MailMessage mail = new MailMessage();
-                mail.From = new MailAddress("icedoutwheelz.2fa@gmail.com"); // Your email address
-                mail.To.Add(toEmail);
-                mail.Subject = subject;
-                mail.Body = body;
-                mail.IsBodyHtml = true; // Set to true to send HTML content
+                mail.From = new MailAddress("icedoutwheelz.2fa@gmail.com"); // Afzender
+                mail.To.Add(toEmail); // Ontvanger
+                mail.Subject = subject; // Onderwerp
+                mail.Body = body; // HTML-body
+                mail.IsBodyHtml = true; // Geef aan dat de body HTML is
 
-                // Attach the PDF file
+                // Voeg de PDF als bijlage toe aan de e-mail
                 MemoryStream attachmentStream = new MemoryStream(pdfData);
                 mail.Attachments.Add(new Attachment(attachmentStream, "offerte.pdf", "application/pdf"));
 
-                // SMTP server setup
+                // Stel de SMTP-server in (Gmail in dit geval)
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com");
-                smtp.Port = 587;  // Or use the appropriate port
+                smtp.Port = 587;  // Standaard poort voor TLS
                 smtp.Credentials = new NetworkCredential("icedoutwheelz.2fa@gmail.com", "kafe mqua douj epah");
-                smtp.EnableSsl = true; // Use SSL if required
+                smtp.EnableSsl = true; // Gebruik SSL/TLS
 
-                // Send the email
+                // Verstuur de e-mail met bijlage
                 smtp.Send(mail);
             }
             catch (Exception ex)
             {
+                // Toon een foutmelding als het versturen mislukt
                 MessageBox.Show("Error sending email: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

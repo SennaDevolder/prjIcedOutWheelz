@@ -34,7 +34,7 @@
             this.picBanner = new System.Windows.Forms.PictureBox();
             this.lblvulling = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnOverOns = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picBanner)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,21 +112,21 @@
             this.label2.Size = new System.Drawing.Size(254, 1);
             this.label2.TabIndex = 5;
             // 
-            // button1
+            // btnOverOns
             // 
-            this.button1.BackColor = System.Drawing.Color.Cyan;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button1.FlatAppearance.BorderSize = 4;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Bell MT", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(384, 369);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(225, 51);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Over ons";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnOverOns.BackColor = System.Drawing.Color.Cyan;
+            this.btnOverOns.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnOverOns.FlatAppearance.BorderSize = 4;
+            this.btnOverOns.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnOverOns.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOverOns.Font = new System.Drawing.Font("Bell MT", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOverOns.Location = new System.Drawing.Point(384, 369);
+            this.btnOverOns.Name = "btnOverOns";
+            this.btnOverOns.Size = new System.Drawing.Size(225, 51);
+            this.btnOverOns.TabIndex = 6;
+            this.btnOverOns.Text = "Over ons";
+            this.btnOverOns.UseVisualStyleBackColor = false;
+            this.btnOverOns.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmStartscherm
             // 
@@ -134,7 +134,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(760, 467);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnOverOns);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblvulling);
             this.Controls.Add(this.btnRegistreer);
@@ -144,6 +144,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmStartscherm";
             this.Text = "Startscherm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmStartscherm_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.picBanner)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -158,7 +159,7 @@
         private System.Windows.Forms.Button btnRegistreer;
         private System.Windows.Forms.Label lblvulling;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnOverOns;
     }
 }
 

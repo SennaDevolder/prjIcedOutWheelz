@@ -18,33 +18,35 @@ namespace prjIcedOutWheelz
 {
     public partial class frmhoofdpagina : Form
     {
-
+        // DataSet met alle autotypes uit de database
         DataSet dsTypes = AutoDA.TypesOphalen();
-        private Dictionary<string, DataRow> dataMap = new Dictionary<string, DataRow>();
 
+        // Dictionary voor snelle toegang tot DataRows op basis van een string key
+        private Dictionary<string, DataRow> dataMap = new Dictionary<string, DataRow>();
 
         public frmhoofdpagina()
         {
-            InitializeComponent();
-            this.CenterToScreen();
+            InitializeComponent(); // Initialiseer UI-componenten
+            this.CenterToScreen(); // Zet het venster in het midden van het scherm
 
+            // Haal opnieuw alle types op (voor de zekerheid)
             DataSet dsTypes = AutoDA.TypesOphalen(); 
             DataTable dtTypes = dsTypes.Tables[0];
 
-            FillListBoxTypes(dsTypes.Tables[0]);
+            FillListBoxTypes(dsTypes.Tables[0]); // Vul de ListBox met types
             
-            // Gebruik een HashSet om dubbele types in de combobox te vermijden
+            // Unieke types verzamelen voor de combobox
             HashSet<string> uniqueTypes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             foreach (DataRow row in dtTypes.Rows)
             {
-                string typeName = row[1].ToString();
-                if (uniqueTypes.Add(typeName))
+                string typeName = row[1].ToString(); // Haal type-naam op
+                if (uniqueTypes.Add(typeName)) // Voeg alleen toe als nog niet aanwezig
                 {
-                    cmbType.Items.Add(typeName);
+                    cmbType.Items.Add(typeName); // Voeg type toe aan combobox
                 }
             }
 
-            // Toon admin-knop alleen als de gebruiker een admin is
+            // Controleer of de gebruiker admin is en toon de admin-knop indien nodig
             if (LoginDA.SoortGebruikerCheck(frmLogin.log) == "A")
             {
                 btnAdmin.Visible = true;
@@ -58,12 +60,14 @@ namespace prjIcedOutWheelz
         // Filtert rijen op basis van de selectie in de combobox
         public DataTable FilterRowsByComboBoxSelection(DataTable originalTable, string selectedValue)
         {
-            DataTable filteredTable = originalTable.Clone();
+            DataTable filteredTable = originalTable.Clone(); // Maak lege kopie van de structuur
 
+            // Selecteer rijen waar het merk overeenkomt met de selectie
             var filteredRows = from row in originalTable.AsEnumerable()
                                where row.Field<string>("Merk") == selectedValue
                                select row;
 
+            // Voeg gefilterde rijen toe aan de nieuwe tabel
             foreach (var row in filteredRows)
             {
                 filteredTable.ImportRow(row);
@@ -77,53 +81,54 @@ namespace prjIcedOutWheelz
         {
             DataTable dtTypes = AutoDA.TypesOphalen().Tables[0];
 
-            // Voeg een samengestelde kolom toe voor weergave
+            // Voeg samengestelde kolom toe voor weergave als die nog niet bestaat
             if (!dtTypes.Columns.Contains("DisplayText"))
             {
                 dtTypes.Columns.Add("DisplayText", typeof(string), "Merk + ' | ' + Type + ' | ' + Jaar");
             }
 
-            lsbTypes.DataSource = dtTypes;
-            lsbTypes.DisplayMember = "DisplayText";
-            lsbTypes.ValueMember = "typeID";
+            lsbTypes.DataSource = dtTypes; // Koppel data aan ListBox
+            lsbTypes.DisplayMember = "DisplayText"; // Toon samengestelde tekst
+            lsbTypes.ValueMember = "typeID"; // Gebruik typeID als waarde
         }
 
-        // Opent het adminscherm
+        // Open het adminscherm als op de knop wordt geklikt
         private void btnAdmin_Click(object sender, EventArgs e)
         {
-            frmAdminscherm frm = new frmAdminscherm();
-            this.Hide();
-            frm.Show();
+            frmAdminscherm frm = new frmAdminscherm(); // Maak nieuw adminscherm
+            this.Hide(); // Verberg huidig scherm
+            frm.Show(); // Toon adminscherm
         }
 
-        // Vult de motor-combobox op basis van het geselecteerde type
+        // Vul de motor-combobox op basis van het geselecteerde type
         private void FillComboBoxMotor(int autoTypeID)
         {
-            DataSet dsMotorPerAuto = AutoDA.MotorPerAutoOphalen(autoTypeID);
-            cmbMotor.DataSource = dsMotorPerAuto.Tables[0];
-            cmbMotor.ValueMember = "MotorPerTypeID";
-            cmbMotor.DisplayMember = "MotorType";
+            DataSet dsMotorPerAuto = AutoDA.MotorPerAutoOphalen(autoTypeID); // Haal motoren op
+            cmbMotor.DataSource = dsMotorPerAuto.Tables[0]; // Koppel aan combobox
+            cmbMotor.ValueMember = "MotorPerTypeID"; // Waarde
+            cmbMotor.DisplayMember = "MotorType"; // Weergave
         }
 
-        // Vult de kleur-combobox op basis van het geselecteerde type
+        // Vul de kleur-combobox op basis van het geselecteerde type
         private void FillComboBoxKleur(int autoTypeID)
         {
-            DataSet dsKleurPerAuto = AutoDA.KleurPerAutoOphalen(autoTypeID);
+            DataSet dsKleurPerAuto = AutoDA.KleurPerAutoOphalen(autoTypeID); // Haal kleuren op
             cmbKleur.DataSource = dsKleurPerAuto.Tables[0];
             cmbKleur.ValueMember = "KleurPerTypeID";
             cmbKleur.DisplayMember = "Kleur";
         }
 
-        // Vult de status-combobox op basis van het geselecteerde type
+        // Vul de status-combobox op basis van het geselecteerde type
         private void FillComboBoxStatus(int autoTypeID)
         {
-            DataSet dsStatusPerAuto = AutoDA.StatusPerAutoOphalen(autoTypeID);
+            DataSet dsStatusPerAuto = AutoDA.StatusPerAutoOphalen(autoTypeID); // Haal statussen op
             DataTable dtTypes = AutoDA.TypesOphalen().Tables[0];
             DataRow typeRow = dtTypes.AsEnumerable().FirstOrDefault(r => Convert.ToInt32(r["typeID"]) == autoTypeID);
             string merk = typeRow != null ? typeRow["Merk"].ToString() : string.Empty;
 
-            cmbstatus.Items.Clear();
+            cmbstatus.Items.Clear(); // Maak combobox leeg
 
+            // Voeg statussen toe aan combobox
             if (dsStatusPerAuto.Tables.Count > 0 && dsStatusPerAuto.Tables[0].Rows.Count > 0)
             {
                 foreach (DataRow row in dsStatusPerAuto.Tables[0].Rows)
@@ -132,11 +137,11 @@ namespace prjIcedOutWheelz
                 }
                 cmbstatus.DisplayMember = "Text";
                 cmbstatus.ValueMember = "Value";
-                cmbstatus.SelectedIndex = 0; // Selecteer standaard de eerste status
+                cmbstatus.SelectedIndex = 0; // Selecteer eerste status
             }
+            // Speciaal geval voor Volvo
             else if (merk.Equals("Volvo", StringComparison.OrdinalIgnoreCase))
             {
-                // Voeg een standaardstatus toe voor Volvo indien geen status gevonden
                 cmbstatus.Items.Add(new { Text = "Nieuw", Value = 0 });
                 cmbstatus.DisplayMember = "Text";
                 cmbstatus.ValueMember = "Value";
@@ -153,21 +158,22 @@ namespace prjIcedOutWheelz
         {
             if (lsbTypes.SelectedItem != null)
             {
-                // Haal het geselecteerde type op en vul de comboboxen
+                // Haal geselecteerd type op
                 DataRowView drv = (DataRowView)lsbTypes.SelectedItem;
                 int selectedAutoTypeID = Convert.ToInt32(drv["typeID"]);
 
+                // Vul comboboxen op basis van selectie
                 FillComboBoxMotor(selectedAutoTypeID);
                 FillComboBoxKleur(selectedAutoTypeID);
                 FillComboBoxStatus(selectedAutoTypeID);
             }
 
-            // Haal de index van de geselecteerde auto op
+            // Haal index van selectie op
             int selectedIndex = lsbTypes.SelectedIndex;
             DataTable dtListBox = (DataTable)lsbTypes.DataSource;
             int autoType = Convert.ToInt32(dtListBox.Rows[selectedIndex]["typeID"]);
 
-            // Haal de foto op van het geselecteerde type
+            // Haal foto op van geselecteerd type
             DataSet dsFoto = AutoDA.FotoOphalen(autoType); 
 
             if (dsFoto.Tables[0].Rows.Count > 0)
@@ -180,7 +186,7 @@ namespace prjIcedOutWheelz
                     {
                         using (MemoryStream ms = new MemoryStream(photoData))
                         {
-                            picAuto.Image = Image.FromStream(ms);
+                            picAuto.Image = Image.FromStream(ms); // Toon foto
                         }
                     }
                     catch (Exception ex)
@@ -206,6 +212,7 @@ namespace prjIcedOutWheelz
             {
                 string selectedMerk = cmbType.SelectedItem.ToString();
 
+                // Haal alle types op en filter op merk
                 DataTable dtTypes = AutoDA.TypesOphalen().Tables[0];
                 DataRow[] filteredRows = dtTypes.Select($"Merk = '{selectedMerk}'");
 
@@ -215,6 +222,7 @@ namespace prjIcedOutWheelz
                     dtFiltered.ImportRow(row);
                 }
 
+                // Voeg samengestelde kolom toe als die nog niet bestaat
                 if (!dtFiltered.Columns.Contains("DisplayText"))
                 {
                     dtFiltered.Columns.Add("DisplayText", typeof(string), "Merk + ' | ' + Type + ' | ' + Jaar");
@@ -235,6 +243,7 @@ namespace prjIcedOutWheelz
             DataRowView drvAutoType = (DataRowView)lsbTypes.SelectedItem;
             int selectedAutoTypeID = Convert.ToInt32(drvAutoType[0]);
 
+            // Haal motorgegevens op
             DataTable dt = AutoDA.AutoInfoOphalen(selectedAutoTypeID, selectedMotorTypeID).Tables[0];
 
             List<string> listItems = new List<string>();
@@ -245,25 +254,28 @@ namespace prjIcedOutWheelz
                 string displayText = $"{row["Merk"]}  |  {row["Type"]}  |  {row["Jaar"]}  |  {row["MotorType"]}  |  {row["BrandstofType"]}  |  {row["Vermogen"]}  |  {row["Koppel"]}  |  {row["Batterijcapaciteit"]}";
                 listItems.Add(displayText);
             }
-            lsbInformatie.DataSource = listItems;
+            lsbInformatie.DataSource = listItems; // Toon info in ListBox
         }
 
         // Verwerkt het aanvragen van een offerte en stuurt deze per mail
         private void btnVraagOfferte_Click(object sender, EventArgs e)
         {
             Login L = new Login();
-            L = frmLogin.log;
+            L = frmLogin.log; // Haal ingelogde gebruiker op
 
             if (lsbTypes.SelectedItem != null)
             {
                 DataRowView drv = (DataRowView)lsbTypes.SelectedItem;
 
+                // Haal geselecteerde kleur op
                 string kleurNaam = cmbKleur.SelectedItem != null ? ((DataRowView)cmbKleur.SelectedItem)["Kleur"].ToString() : string.Empty;
                 int kleurID = AutoDA.GetKleurID(kleurNaam);
 
+                // Haal geselecteerde motor op
                 string motorNaam = cmbMotor.SelectedItem != null ? ((DataRowView)cmbMotor.SelectedItem)["MotorType"].ToString() : string.Empty;
                 int motorID = AutoDA.GetMotorID(motorNaam);
 
+                // Haal geselecteerde status op
                 string statusNaam = string.Empty;
                 if (cmbstatus.SelectedItem != null)
                 {
@@ -282,6 +294,7 @@ namespace prjIcedOutWheelz
                 }
                 int statusID = AutoDA.GetStatusID(statusNaam);
 
+                // Lees extra opties uit
                 bool stuurVerwarming = chkStuurVerwarming.Checked;
                 bool cruiseControl = chkCruiseControl.Checked;
                 bool zetelverwarming = chkZetelverwarming.Checked;
@@ -292,7 +305,7 @@ namespace prjIcedOutWheelz
 
                 int typeID = Convert.ToInt32(drv["TypeID"]);
 
-                // Haal expliciet de prijs van het type op
+                // Haal prijs van het type op uit de database
                 decimal typePrijs = 0;
                 using (var conn = prjIcedOutWheelz.Helper.Database.MakeConnection())
                 {
@@ -306,7 +319,7 @@ namespace prjIcedOutWheelz
                     }
                 }
 
-                // Haal expliciet de prijs van de geselecteerde extra's op
+                // Haal prijs van geselecteerde extra's op
                 decimal extrasTotal = 0;
                 using (var conn = prjIcedOutWheelz.Helper.Database.MakeConnection())
                 {
@@ -334,10 +347,10 @@ namespace prjIcedOutWheelz
                     }
                 }
 
-                // Bereken de totale prijs
+                // Bereken totale prijs
                 decimal totalPrice = typePrijs + extrasTotal;
 
-                // Sla de offerte op in de database
+                // Sla offerte op in de database
                 AutoDA.AutoOfferteAanmaken(
                     Convert.ToDouble(totalPrice),
                     kleurID,
@@ -360,7 +373,7 @@ namespace prjIcedOutWheelz
                 MessageBox.Show("Selecteer eerst een auto type uit de lijst.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            // Haal de details van de offerte op en stuur deze per e-mail
+            // Haal details van de offerte op en stuur per e-mail
             DataTable offerteDetails = OfferteDA.OfferteDetailsOphalen().Tables[0];
 
             if (offerteDetails.Rows.Count > 0)
@@ -372,8 +385,8 @@ namespace prjIcedOutWheelz
                     string subject = "Uw offerte";
                     string body = "<h3>Beste klant,</h3><p>In de bijlage kunt u uw offerte vinden zie u zonet had opgevraagt.</p><br><p>Bij verdere vragen kunt u contact met ons opnemen via het\nemail: icedoutwheelz@gmail.com\nOf via ons telefoonnummer +32494597173</p><br><p>Bedankt voor uw interesse!</p><p>Met vriendelijke groet\nIcedOutWheelZz</p>";
 
-                    OfferteDA.SendEmailWithPdf(toEmail, subject, body, pdfStream);
-                    OfferteDA.SendEmailWithPdf("icedoutwheelz@gmail.com", subject, body, pdfStream);
+                    OfferteDA.SendEmailWithPdf(toEmail, subject, body, pdfStream); // Stuur naar klant
+                    OfferteDA.SendEmailWithPdf("icedoutwheelz@gmail.com", subject, body, pdfStream); // Stuur naar bedrijf
                 }
             }
             else
@@ -395,6 +408,13 @@ namespace prjIcedOutWheelz
             frmStartscherm frmStartscherm = new frmStartscherm();
             frmStartscherm.Show();
             this.Close();
+        }
+
+        private void frmhoofdpagina_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frmStartscherm frm = new frmStartscherm();
+            this.Hide();
+            frm.Show();
         }
     }
 }

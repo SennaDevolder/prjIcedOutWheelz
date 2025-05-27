@@ -24,137 +24,139 @@ using System.Drawing.Imaging;
 using System.Globalization;
 using prjIcedOutWheelz.Model;
 
-
 namespace prjIcedOutWheelz.DA
 {
+    // Data Access Layer voor auto-gerelateerde database-operaties
     internal class AutoDA
     {
-
-
+        // Haal alle autotypes op uit de database
         public static DataSet TypesOphalen()
         {
-            //virtuele weergave van tabellen, maak tijdelijke eigen tabel.
+            // Maak een nieuw DataSet aan voor de resultaten
             DataSet dsTypes = new DataSet();
 
+            // SQL-query om typeID, merk, type en jaar op te halen
             string sql = "SELECT typeID, Merk, type, jaar FROM tbltype ORDER BY Merk ASC";
 
             MySqlConnection conn = Database.MakeConnection();
-            //vergelijking USB C naar USB A, converting. Tunnel tussen database en programma
+            // DataAdapter voor het uitvoeren van de query
             MySqlDataAdapter daTypes = new MySqlDataAdapter(sql, conn);
 
-            //DataSet vullen met sql resultaat
+            // Vul het DataSet met de resultaten
             daTypes.Fill(dsTypes);
 
             return dsTypes;
         }
 
+        // Haal alle motoren op die gekoppeld zijn aan een bepaald autotype
         public static DataSet MotorPerAutoOphalen(int intAutoType)
         {
-            //virtuele weergave van tabellen, maak tijdelijke eigen tabel.
             DataSet dsMotorPerAuto = new DataSet();
 
+            // SQL-query met INNER JOIN om motoren per type op te halen
             string sql = "SELECT MT.MotorPerTypeID, M.MotorType FROM tblmotorpertype MT INNER JOIN tblmotoren M ON MT.MotorID = M.MotorID WHERE MT.TypeID=@AutoType";
 
             MySqlConnection conn = Database.MakeConnection();
-
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@AutoType", intAutoType);
 
-            //vergelijking USB C naar USB A, converting. Tunnel tussen database en programma
             MySqlDataAdapter daMotorPerAuto = new MySqlDataAdapter(cmd);
-
-
-            //DataSet vullen met sql resultaat
             daMotorPerAuto.Fill(dsMotorPerAuto);
 
             return dsMotorPerAuto;
         }
 
+        // Haal alle kleuren op die gekoppeld zijn aan een bepaald autotype
         public static DataSet KleurPerAutoOphalen(int intAutoType)
         {
-            //virtuele weergave van tabellen, maak tijdelijke eigen tabel.
             DataSet dsKleurPerAuto = new DataSet();
 
+            // SQL-query met INNER JOIN om kleuren per type op te halen
             string sql = "SELECT KT.KleurPerTypeID, K.Kleur FROM tblkleurpertype KT INNER JOIN tblkleuren K ON KT.KleurID = K.KleurID WHERE KT.TypeID=@AutoType";
 
             MySqlConnection conn = Database.MakeConnection();
-
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@AutoType", intAutoType);
 
-            //vergelijking USB C naar USB A, converting. Tunnel tussen database en programma
             MySqlDataAdapter daKleurPerAuto = new MySqlDataAdapter(cmd);
-
-
-            //DataSet vullen met sql resultaat
             daKleurPerAuto.Fill(dsKleurPerAuto);
 
             return dsKleurPerAuto;
         }
 
-        // Haalt de status(sen) op die gekoppeld zijn aan een bepaald auto type
-            public static DataSet StatusPerAutoOphalen(int intAutoType)
-            {
-                DataSet dsStatsuPerAuto = new DataSet();
-
-                // Query om de status per type op te halen via een INNER JOIN
-                string sql = "SELECT ST.StatusPerTypeID, S.Status FROM tblstatuspertype ST INNER JOIN tblstatus S ON ST.StatusID = S.StatusID WHERE ST.TypeID=@AutoType";
-
-                MySqlConnection conn = Database.MakeConnection();
-
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@AutoType", intAutoType);
-
-                MySqlDataAdapter daStatusPerAuto = new MySqlDataAdapter(cmd);
-
-                // Vul het DataSet met de resultaten van de query
-                daStatusPerAuto.Fill(dsStatsuPerAuto);
-
-                return dsStatsuPerAuto;
-            }
-
-            // Haalt de foto op van een auto op basis van het typeID
-            public static DataSet FotoOphalen(int AutoType)
-            {
-                DataSet dsFoto = new DataSet();
-                string sql = "SELECT Foto FROM tbltype WHERE typeID=@typeID";
-
-                MySqlConnection conn = Database.MakeConnection();
-
-                MySqlDataAdapter daFoto = new MySqlDataAdapter(sql, conn);
-
-                // Voeg het typeID toe als parameter
-                daFoto.SelectCommand.Parameters.AddWithValue("@typeID", AutoType);
-
-                // Vul het DataSet met de foto
-                daFoto.Fill(dsFoto);
-
-                return dsFoto;
-            }
-
-            // Haalt alle info op van een auto en de gekoppelde motor op basis van type en motor
-            public static DataSet AutoInfoOphalen(int AutoType, int MotorType)
-            {
-                DataSet dsAutoInfo = new DataSet();
-
-                // Query om alle relevante info van auto en motor op te halen
-                string sql = "SELECT t.Merk, t.Type, t.Jaar, m.MotorType, m.BrandstofType, m.Vermogen, m.Koppel, m.Batterijcapaciteit FROM tblmotoren m INNER JOIN tbltype t ON m.AutoID = t.typeID WHERE m.AutoID=@AutoType";
-
-                MySqlConnection conn = Database.MakeConnection();
-                MySqlDataAdapter daAutoInfo = new MySqlDataAdapter(sql, conn);
-
-                // Voeg parameters toe voor de query
-                daAutoInfo.SelectCommand.Parameters.AddWithValue("@AutoType", AutoType);
-                daAutoInfo.SelectCommand.Parameters.AddWithValue("@MotorType", MotorType);
-
-                // Vul het DataSet met de resultaten
-                daAutoInfo.Fill(dsAutoInfo);
-
-                return dsAutoInfo;
-            }
-
-        public static void AutoOfferteAanmaken(double prijs, int kleurID, int statusID, int typeID, int motorID, bool stuurVerwarming, bool cruiseControl, bool zetelverwarming, bool parkeersensoren, bool trekHaak, bool xenonlampen, bool geblindeerdeRamen)
+        // Haal alle statussen op die gekoppeld zijn aan een bepaald autotype
+        public static DataSet StatusPerAutoOphalen(int intAutoType)
         {
+            DataSet dsStatsuPerAuto = new DataSet();
+
+            // SQL-query met INNER JOIN om statussen per type op te halen
+            string sql = "SELECT ST.StatusPerTypeID, S.Status FROM tblstatuspertype ST INNER JOIN tblstatus S ON ST.StatusID = S.StatusID WHERE ST.TypeID=@AutoType";
+
+            MySqlConnection conn = Database.MakeConnection();
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@AutoType", intAutoType);
+
+            MySqlDataAdapter daStatusPerAuto = new MySqlDataAdapter(cmd);
+            daStatusPerAuto.Fill(dsStatsuPerAuto);
+
+            return dsStatsuPerAuto;
+        }
+
+        // Haal de foto op van een auto op basis van het typeID
+        public static DataSet FotoOphalen(int AutoType)
+        {
+            DataSet dsFoto = new DataSet();
+            string sql = "SELECT Foto FROM tbltype WHERE typeID=@typeID";
+
+            MySqlConnection conn = Database.MakeConnection();
+            MySqlDataAdapter daFoto = new MySqlDataAdapter(sql, conn);
+
+            // Voeg het typeID toe als parameter
+            daFoto.SelectCommand.Parameters.AddWithValue("@typeID", AutoType);
+
+            // Vul het DataSet met de foto
+            daFoto.Fill(dsFoto);
+
+            return dsFoto;
+        }
+
+        // Haal alle info op van een auto en de gekoppelde motor op basis van type en motor
+        public static DataSet AutoInfoOphalen(int AutoType, int MotorType)
+        {
+            DataSet dsAutoInfo = new DataSet();
+
+            // SQL-query om alle relevante info van auto en motor op te halen
+            string sql = "SELECT t.Merk, t.Type, t.Jaar, m.MotorType, m.BrandstofType, m.Vermogen, m.Koppel, m.Batterijcapaciteit FROM tblmotoren m INNER JOIN tbltype t ON m.AutoID = t.typeID WHERE m.AutoID=@AutoType";
+
+            MySqlConnection conn = Database.MakeConnection();
+            MySqlDataAdapter daAutoInfo = new MySqlDataAdapter(sql, conn);
+
+            // Voeg parameters toe voor de query
+            daAutoInfo.SelectCommand.Parameters.AddWithValue("@AutoType", AutoType);
+            daAutoInfo.SelectCommand.Parameters.AddWithValue("@MotorType", MotorType);
+
+            // Vul het DataSet met de resultaten
+            daAutoInfo.Fill(dsAutoInfo);
+
+            return dsAutoInfo;
+        }
+
+        // Slaat een nieuwe offerte op in de database
+        public static void AutoOfferteAanmaken(
+            double prijs,
+            int kleurID,
+            int statusID,
+            int typeID,
+            int motorID,
+            bool stuurVerwarming,
+            bool cruiseControl,
+            bool zetelverwarming,
+            bool parkeersensoren,
+            bool trekHaak,
+            bool xenonlampen,
+            bool geblindeerdeRamen)
+        {
+            // SQL-query om een offerte toe te voegen
             string sql = "INSERT INTO `tblautoofferte`(`Prijs`, `KleurID`, `StatusID`, `TypeID`, `MotorID`, `Stuurverwarming`, `CruiseControl`, `Zetelverwarming`, `Parkeersensoren`, `Trekhaak`, `Xenonlampen`, `GeblindeerdeRamen`) VALUES (@Prijs, @KleurID, @Status, @TypeID, @MotorID, @Stuurverwarming, @CruiseControl, @Zetelverwarming, @Parkeersensoren, @Trekhaak, @Xenonlampen, @GeblindeerdeRamen);";
 
             MySqlConnection conn = Database.MakeConnection();
@@ -162,14 +164,13 @@ namespace prjIcedOutWheelz.DA
 
             try
             {
-                // Add parameters to prevent SQL injection
+                // Voeg parameters toe aan de query
                 cmd.Parameters.AddWithValue("@Prijs", prijs);
                 cmd.Parameters.AddWithValue("@KleurID", kleurID);
                 cmd.Parameters.AddWithValue("@Status", statusID);
                 cmd.Parameters.AddWithValue("@TypeID", typeID);
                 cmd.Parameters.AddWithValue("@MotorID", motorID);
-
-                // Add checkbox states as parameters (convert booleans to 1 or 0)
+                // Zet booleans om naar 1/0 voor database
                 cmd.Parameters.AddWithValue("@Stuurverwarming", stuurVerwarming ? 1 : 0);
                 cmd.Parameters.AddWithValue("@CruiseControl", cruiseControl ? 1 : 0);
                 cmd.Parameters.AddWithValue("@Zetelverwarming", zetelverwarming ? 1 : 0);
@@ -178,16 +179,16 @@ namespace prjIcedOutWheelz.DA
                 cmd.Parameters.AddWithValue("@Xenonlampen", xenonlampen ? 1 : 0);
                 cmd.Parameters.AddWithValue("@GeblindeerdeRamen", geblindeerdeRamen ? 1 : 0);
 
-                cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery(); // Voer de insert uit
             }
             catch (MySqlException ex)
             {
-                // Output the full exception details for better debugging
+                // Toon foutmelding bij databasefout
                 MessageBox.Show($"Error: {ex.Message}\n\nStack Trace: {ex.StackTrace}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-                // Close the connection
+                // Sluit de verbinding indien nodig
                 if (conn.State == System.Data.ConnectionState.Open)
                 {
                     conn.Close();
@@ -195,6 +196,7 @@ namespace prjIcedOutWheelz.DA
             }
         }
 
+        // Haal het KleurID op op basis van de naam van de kleur
         public static int GetKleurID(string kleur)
         {
             int kleurID = 0;
@@ -202,7 +204,7 @@ namespace prjIcedOutWheelz.DA
 
             try
             {
-                using (MySqlConnection conn = Database.MakeConnection()) // Verbind met database
+                using (MySqlConnection conn = Database.MakeConnection())
                 {
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
@@ -210,13 +212,13 @@ namespace prjIcedOutWheelz.DA
 
                         if (conn.State == System.Data.ConnectionState.Closed)
                         {
-                            conn.Open(); // Open verbinding als deze nog niet open is
+                            conn.Open();
                         }
 
-                        var result = cmd.ExecuteScalar(); // Voer query uit
+                        var result = cmd.ExecuteScalar();
                         if (result != null)
                         {
-                            kleurID = Convert.ToInt32(result); // Zet om naar integer
+                            kleurID = Convert.ToInt32(result);
                         }
                         else
                         {
@@ -233,8 +235,7 @@ namespace prjIcedOutWheelz.DA
             return kleurID;
         }
 
-
-
+        // Haal het StatusID op op basis van de naam van de status
         public static int GetStatusID(string status)
         {
             int statusID = 0;
@@ -242,7 +243,7 @@ namespace prjIcedOutWheelz.DA
 
             try
             {
-                using (MySqlConnection conn = Database.MakeConnection()) // Verbind met database
+                using (MySqlConnection conn = Database.MakeConnection())
                 {
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
@@ -250,13 +251,13 @@ namespace prjIcedOutWheelz.DA
 
                         if (conn.State == System.Data.ConnectionState.Closed)
                         {
-                            conn.Open(); // Open verbinding als deze nog niet open is
+                            conn.Open();
                         }
 
-                        var result = cmd.ExecuteScalar(); // Voer query uit
+                        var result = cmd.ExecuteScalar();
                         if (result != null)
                         {
-                            statusID = Convert.ToInt32(result); // Zet om naar integer
+                            statusID = Convert.ToInt32(result);
                         }
                         else
                         {
@@ -272,26 +273,23 @@ namespace prjIcedOutWheelz.DA
             return statusID;
         }
 
-
+        // Haal het typeID op op basis van de naam van het type
         public static int GetTypeID(string type)
         {
             int typeID = 0;
-
             string query = "SELECT typeID FROM `tbltypes` WHERE `Type` = @Type LIMIT 1";
 
             MySqlConnection conn = Database.MakeConnection();
             MySqlCommand cmd = new MySqlCommand(query, conn);
-
-            // Voeg de parameter toe
             cmd.Parameters.AddWithValue("@Type", type);
 
             try
             {
                 conn.Open();
-                var result = cmd.ExecuteScalar();  // Haal de TypeID op
+                var result = cmd.ExecuteScalar();
                 if (result != null)
                 {
-                    typeID = Convert.ToInt32(result); // Zet om naar een integer
+                    typeID = Convert.ToInt32(result);
                 }
             }
             catch (Exception ex)
@@ -302,10 +300,10 @@ namespace prjIcedOutWheelz.DA
             {
                 conn.Close();
             }
-            conn.Close();
             return typeID;
         }
 
+        // Haal het MotorID op op basis van de naam van het motortype
         public static int GetMotorID(string motor)
         {
             int motorID = 0;
@@ -313,7 +311,7 @@ namespace prjIcedOutWheelz.DA
 
             try
             {
-                using (MySqlConnection conn = Database.MakeConnection()) // Verbind met database
+                using (MySqlConnection conn = Database.MakeConnection())
                 {
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
@@ -321,13 +319,13 @@ namespace prjIcedOutWheelz.DA
 
                         if (conn.State == System.Data.ConnectionState.Closed)
                         {
-                            conn.Open(); // Open verbinding als deze nog niet open is
+                            conn.Open();
                         }
 
-                        var result = cmd.ExecuteScalar(); // Voer query uit
+                        var result = cmd.ExecuteScalar();
                         if (result != null)
                         {
-                            motorID = Convert.ToInt32(result); // Zet om naar integer
+                            motorID = Convert.ToInt32(result);
                         }
                         else
                         {

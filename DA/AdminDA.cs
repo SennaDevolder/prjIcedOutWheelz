@@ -19,12 +19,10 @@ namespace prjIcedOutWheelz.DA
         public static int GetAutoIdByMerkAndType(string merk, string type)
         {
             int typeID = 0;
-
             MySqlConnection conn = Database.MakeConnection();
 
-            // Selecteert het laatste typeID uit de tabel
+            // Selecteert het laatste typeID uit de tabel (let op: filtert niet op merk/type!)
             string query = "SELECT typeID FROM tbltype ORDER BY typeID DESC;";
-
             MySqlCommand cmd = new MySqlCommand(query, conn);
 
             cmd.Parameters.AddWithValue("@Merk", merk);
@@ -35,16 +33,14 @@ namespace prjIcedOutWheelz.DA
             return typeID;
         }
 
-        // Haalt het typeID op voor kleur (deze methode lijkt identiek aan de vorige)
+        // Haalt het typeID op voor kleur (identiek aan GetAutoIdByMerkAndType)
         public static int GetKleurIdByMerkAndType(string merk, string type)
         {
             int typeID = 0;
-
             MySqlConnection conn = Database.MakeConnection();
 
-            // Selecteert het laatste typeID uit de tabel
+            // Selecteert het laatste typeID uit de tabel (let op: filtert niet op merk/type!)
             string query = "SELECT typeID FROM tbltype ORDER BY typeID DESC;";
-
             MySqlCommand cmd = new MySqlCommand(query, conn);
 
             cmd.Parameters.AddWithValue("@Merk", merk);
@@ -55,15 +51,14 @@ namespace prjIcedOutWheelz.DA
             return typeID;
         }
 
+        // Haalt het motorID op van een auto op basis van het autoID
         public static int GetMotorIdByAutoId(int autoID)
         {
             int motorID = 0;
-
             MySqlConnection conn = Database.MakeConnection();
 
-            // Selecteert het laatste motorID uit de tabel
+            // Selecteert het motorID voor een specifieke auto
             string query = "SELECT MotorID FROM tblmotoren WHERE AutoID = @AutoID;";
-
             MySqlCommand cmd = new MySqlCommand(query, conn);
             cmd.Parameters.AddWithValue("@AutoID", autoID);
 
@@ -81,6 +76,7 @@ namespace prjIcedOutWheelz.DA
         {
             MySqlConnection conn = Database.MakeConnection();
 
+            // Voeg een nieuwe rij toe aan tbltype
             string query = "INSERT INTO `tbltype`(`Merk`, `Type`, `Jaar`, `Prijs`, `Foto`) VALUES (@Merk,@Type,@Jaar,@Prijs, @Foto)";
             MySqlCommand sqlcmd = new MySqlCommand(query, conn);
 
@@ -99,6 +95,7 @@ namespace prjIcedOutWheelz.DA
         {
             MySqlConnection conn = Database.MakeConnection();
 
+            // Voeg een nieuwe rij toe aan tblmotoren
             string query = "INSERT INTO `tblmotoren`(`MotorType`, `BrandstofType`, `AutoID`, `Vermogen`, `Koppel`, `Batterijcapaciteit`) VALUES (@MotorType,@BrandstofType,@AutoID,@Vermogen,@Koppel,@Batterijcapaciteit)";
             MySqlCommand sqlcmd = new MySqlCommand(query, conn);
 
@@ -113,6 +110,7 @@ namespace prjIcedOutWheelz.DA
             MessageBox.Show("Motor succesvol toegevoegd aan de database!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        // Koppelt een motor aan een type auto (relatietabel)
         public static void MotorPerTypeToevoegen(int TypeID, int MotorID)
         {
             MySqlConnection conn = Database.MakeConnection();
@@ -125,7 +123,7 @@ namespace prjIcedOutWheelz.DA
             cmd.ExecuteScalar();
         }
 
-        // Koppelt een kleur aan een type auto
+        // Koppelt een kleur aan een type auto (relatietabel)
         public static void KleurPerTypeToevoegen(int TypeID, int KleurID)
         {
             MySqlConnection conn = Database.MakeConnection();
@@ -143,6 +141,7 @@ namespace prjIcedOutWheelz.DA
         {
             MySqlConnection conn = Database.MakeConnection();
 
+            // Zoek het KleurID op in tblkleuren
             string query = "SELECT KleurID FROM `tblkleuren` WHERE `Kleur` = @Kleur";
             MySqlCommand sqlcmd = new MySqlCommand(query, conn);
             sqlcmd.Parameters.AddWithValue("@Kleur", Kleur);
@@ -151,7 +150,7 @@ namespace prjIcedOutWheelz.DA
             return kleurID;
         }
 
-        // Koppelt een status aan een type auto
+        // Koppelt een status aan een type auto (relatietabel)
         public static void StatusPerTypeToevoegen(int TypeID, int StatusID)
         {
             MySqlConnection conn = Database.MakeConnection();
@@ -169,6 +168,7 @@ namespace prjIcedOutWheelz.DA
         {
             MySqlConnection conn = Database.MakeConnection();
 
+            // Zoek het StatusID op in tblstatus
             string query = "SELECT StatusID FROM `tblstatus` WHERE `Status` = @Status";
             MySqlCommand sqlcmd = new MySqlCommand(query, conn);
             sqlcmd.Parameters.AddWithValue("@Status", Status);
@@ -177,11 +177,12 @@ namespace prjIcedOutWheelz.DA
             return kleurID;
         }
 
+        // Verwijdert een auto uit de database op basis van merk en type
         public static void AutoVerwijderen(string strMerk, string strType)
         {
             MySqlConnection conn = Database.MakeConnection();
 
-            // Verwijdert de auto op basis van het AutoID
+            // Verwijder de auto uit tbltype
             string query = "DELETE FROM `tbltype` WHERE `Merk` = @Merk AND `Type` = @Type";
             MySqlCommand sqlcmd = new MySqlCommand(query, conn);
             sqlcmd.Parameters.AddWithValue("@Merk", strMerk);
@@ -191,10 +192,12 @@ namespace prjIcedOutWheelz.DA
             MessageBox.Show("Auto succesvol verwijderd uit de database!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        // Controleert of een auto met hetzelfde merk, type en bouwjaar al bestaat
         public static bool DuplicateCarCheck(string strMerk, string strType, string strBouwjaar)
         {
             MySqlConnection conn = Database.MakeConnection();
 
+            // Tel het aantal auto's met dezelfde gegevens
             string query = "SELECT COUNT(1) FROM `tbltype` WHERE `Merk` = @Merk AND `Type` = @Type AND `Jaar` = @Jaar";
             MySqlCommand sqlcmd = new MySqlCommand(query, conn);
             sqlcmd.Parameters.AddWithValue("@Merk", strMerk);

@@ -331,8 +331,10 @@
             this.Controls.Add(this.lblSlogan);
             this.Controls.Add(this.pcbLogo);
             this.Controls.Add(this.pcbBalk);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmAdminscherm";
             this.Text = "Adminscherm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmAdminscherm_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAuto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbLogo)).EndInit();

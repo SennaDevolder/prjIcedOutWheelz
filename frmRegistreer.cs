@@ -16,8 +16,8 @@ namespace prjIcedOutWheelz
     {
         public frmRegistreer()
         {
-            InitializeComponent();
-            this.CenterToScreen();
+            InitializeComponent(); // Initialiseer UI-componenten
+            this.CenterToScreen(); // Zet het venster in het midden van het scherm
             SetTxts(); // Zet de standaardtekst in de tekstvakken
         }
 
@@ -45,10 +45,17 @@ namespace prjIcedOutWheelz
         // Verwerkt het aanmaken van een nieuw account
         private void btnaccount_Click(object sender, EventArgs e)
         {
+            // Controleer of het e-mailadres al bestaat
             if (!LoginDA.BestaandeGebruikenChecken(txtemail.Text))
             {
-                // Controleer of alle velden correct zijn ingevuld en wachtwoorden overeenkomen
-                if (txtwachtwoord.Text == txtherhaal.Text && txtnaam.Text != "Naam" && txtvoornaam.Text != "Voornaam" && txtemail.Text != "Email" && txttelefoon.Text != "Telefoonnummer" && txtstraatnr.Text != "Straatnaam + nummer" & txtadres.Text != "Gemeente + postcode")
+                // Controleer of alle velden zijn ingevuld en wachtwoorden overeenkomen
+                if (txtwachtwoord.Text == txtherhaal.Text &&
+                    txtnaam.Text != "Naam" &&
+                    txtvoornaam.Text != "Voornaam" &&
+                    txtemail.Text != "Email" &&
+                    txttelefoon.Text != "Telefoonnummer" &&
+                    txtstraatnr.Text != "Straatnaam + nummer" &
+                    txtadres.Text != "Gemeente + postcode")
                 {
                     Login L = new Login();
 
@@ -68,7 +75,7 @@ namespace prjIcedOutWheelz
 
                     if (dlr == DialogResult.Yes)
                     {
-                        frmLogin frm = new frmLogin();
+                        frmLogin frm = new frmLogin(); // Open loginvenster
                         this.Hide();
                         frm.Show();
                     }
@@ -79,17 +86,18 @@ namespace prjIcedOutWheelz
                 }
                 else
                 {
+                    // Toon foutmelding als niet alles is ingevuld
                     MessageBox.Show("Gelieve alle velden in te vullen!", "Incorrecte ingave");
                 }
             }
             else
             {
+                // Toon foutmelding als e-mail al bestaat
                 MessageBox.Show("Deze email is al in gebruik!", "Email bestaat al");
             }
-            
         }
 
-        // Sluit de applicatie volledig af als het registratievenster wordt gesloten
+        // Sluit het registratievenster en open het startscherm
         private void frmRegistreer_FormClosed(object sender, FormClosedEventArgs e)
         {
             frmStartscherm frm = new frmStartscherm();
@@ -117,6 +125,7 @@ namespace prjIcedOutWheelz
             }
         }
 
+        // Verwijdert de standaardtekst bij focus op het voornaamveld
         private void txtvoornaam_Enter(object sender, EventArgs e)
         {
             if (txtvoornaam.Text == "Voornaam")
@@ -126,6 +135,7 @@ namespace prjIcedOutWheelz
             }
         }
 
+        // Zet de standaardtekst terug als het voornaamveld leeg is bij verlaten
         private void txtvoornaam_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtvoornaam.Text))
@@ -135,6 +145,7 @@ namespace prjIcedOutWheelz
             }
         }
 
+        // Verwijdert de standaardtekst bij focus op het e-mailveld
         private void txtemail_Enter(object sender, EventArgs e)
         {
             if(txtemail.Text == "Email")
@@ -144,6 +155,7 @@ namespace prjIcedOutWheelz
             }
         }
 
+        // Zet de standaardtekst terug als het e-mailveld leeg is bij verlaten
         private void txtemail_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtemail.Text))
@@ -153,6 +165,7 @@ namespace prjIcedOutWheelz
             }
         }
 
+        // Verwijdert de standaardtekst bij focus op het telefoonveld
         private void txttelefoon_Enter(object sender, EventArgs e)
         {
             if(txttelefoon.Text == "Telefoonnummer")
@@ -162,6 +175,7 @@ namespace prjIcedOutWheelz
             }    
         }
 
+        // Zet de standaardtekst terug als het telefoonveld leeg is bij verlaten
         private void txttelefoon_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txttelefoon.Text))
@@ -171,6 +185,7 @@ namespace prjIcedOutWheelz
             }
         }
 
+        // Verwijdert de standaardtekst bij focus op het straat/nummer-veld
         private void txtstraatnr_Enter(object sender, EventArgs e)
         {
             if(txtstraatnr.Text == "Straatnaam + nummer")
@@ -180,6 +195,7 @@ namespace prjIcedOutWheelz
             }
         }
 
+        // Zet de standaardtekst terug als het straat/nummer-veld leeg is bij verlaten
         private void txtstraatnr_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtstraatnr.Text))
@@ -189,6 +205,7 @@ namespace prjIcedOutWheelz
             }
         }
 
+        // Verwijdert de standaardtekst bij focus op het adresveld
         private void txtadres_Enter(object sender, EventArgs e)
         {
             if(txtadres.Text == "Gemeente + postcode")
@@ -198,6 +215,7 @@ namespace prjIcedOutWheelz
             }
         }
 
+        // Zet de standaardtekst terug als het adresveld leeg is bij verlaten
         private void txtadres_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtadres.Text))
@@ -207,6 +225,7 @@ namespace prjIcedOutWheelz
             }
         }
 
+        // Verwijdert de standaardtekst bij focus op het wachtwoordveld
         private void txtwachtwoord_Enter(object sender, EventArgs e)
         {
             if(txtwachtwoord.Text == "Wachtwoord")
@@ -216,6 +235,7 @@ namespace prjIcedOutWheelz
             }
         }
 
+        // Zet de standaardtekst terug als het wachtwoordveld leeg is bij verlaten
         private void txtwachtwoord_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtwachtwoord.Text))
@@ -225,6 +245,7 @@ namespace prjIcedOutWheelz
             }
         }
 
+        // Verwijdert de standaardtekst bij focus op het herhaal-wachtwoordveld
         private void txtherhaal_Enter(object sender, EventArgs e)
         {
             if (txtherhaal.Text == "Herhaal wachtwoord")
@@ -234,6 +255,7 @@ namespace prjIcedOutWheelz
             }
         }
 
+        // Zet de standaardtekst terug als het herhaal-wachtwoordveld leeg is bij verlaten
         private void txtherhaal_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtherhaal.Text))

@@ -18,13 +18,13 @@ namespace prjIcedOutWheelz
 {
     public partial class frmAdminscherm : Form
     {
-        // Objecten voor het opslaan van tijdelijke gegevens van het type, motor, kleur en status
+        // Tijdelijke objecten voor gebruikersinvoer
         Model.Type autoType = new Model.Type();
         Model.Motoren motorType = new Model.Motoren();
         Model.Kleuren kleurType = new Model.Kleuren();
         Model.Status statusType = new Model.Status();
 
-        // Variabelen voor gebruikersinvoer
+        // Variabelen voor invoer en keuzelijsten
         string strMerk, strType, strKleur, strBrandstof, strextras, stropvang, strStatus;
         int intBouwjaar;
         double dblPrijs;
@@ -33,42 +33,43 @@ namespace prjIcedOutWheelz
 
         public frmAdminscherm()
         {
-            InitializeComponent();
-            this.CenterToScreen();
+            InitializeComponent(); // Initialiseer componenten
+            this.CenterToScreen(); // Zet het scherm in het midden
 
-            // Ophalen van alle types bij het openen van het scherm
+            // Haal types op bij opstarten
             DataSet dsTypes = AutoDA.TypesOphalen();
             DataTable dtTypes = dsTypes.Tables[0];
 
-            FillListBoxTypes();
+            FillListBoxTypes(); // Vul de lijst met types
         }
 
-        // Vult de lijst met beschikbare autotypes
+        // Vul de lijstbox met autotypes
         public void FillListBoxTypes()
         {
             DataTable dtTypes = AutoDA.TypesOphalen().Tables[0];
 
-            // Voeg een samengestelde kolom toe voor weergave in de lijst
+            // Voeg samengestelde kolom toe als die nog niet bestaat
             if (!dtTypes.Columns.Contains("DisplayText"))
             {
                 dtTypes.Columns.Add("DisplayText", typeof(string), "Merk + ' | ' + Type + ' | ' + Jaar");
             }
 
-            lsbautos.DataSource = dtTypes;
-            lsbautos.DisplayMember = "DisplayText";  // Toon samengestelde tekst
-            lsbautos.ValueMember = "typeID";         // Gebruik typeID als waarde
+            lsbautos.DataSource = dtTypes; // Koppel data aan listbox
+            lsbautos.DisplayMember = "DisplayText"; // Toon samengestelde tekst
+            lsbautos.ValueMember = "typeID"; // Gebruik typeID als waarde
         }
 
-        // Afbeelding toevoegen aan een auto
+        // Voeg een afbeelding toe aan een auto
         private void btnaddimg_Click(object sender, EventArgs e)
         {
-            string eindwerkPath = FindEindwerkPath();
+            string eindwerkPath = FindEindwerkPath(); // Zoek resources-map
             if (eindwerkPath == null)
             {
                 MessageBox.Show("Eindwerk map niet gevonden.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
+            // Open dialoog voor afbeeldingsselectie
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.Filter = "Afbeeldingsbestanden|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
@@ -79,11 +80,12 @@ namespace prjIcedOutWheelz
                     string selectedFilePath = openFileDialog.FileName;
                     try
                     {
-                        // Laad afbeelding in PictureBox en sla op als byte array
+                        // Laad afbeelding in PictureBox
                         picAuto.Image?.Dispose();
                         picAuto.Image = System.Drawing.Image.FromFile(selectedFilePath);
                         picAuto.SizeMode = PictureBoxSizeMode.StretchImage;
 
+                        // Zet afbeelding om naar byte array
                         using (MemoryStream ms = new MemoryStream())
                         {
                             using (Bitmap clone = new Bitmap(picAuto.Image))
@@ -103,12 +105,13 @@ namespace prjIcedOutWheelz
             }
         }
 
-        // Zoekt het pad naar de Resources-map
+        // Zoek het pad naar de Resources-map
         private string FindEindwerkPath()
         {
             string currentDirectory = Directory.GetCurrentDirectory();
             DirectoryInfo dir = new DirectoryInfo(currentDirectory);
 
+            // Loop omhoog tot Resources-map gevonden is
             while (dir != null)
             {
                 if (dir.GetDirectories("Resources").Any())
@@ -118,18 +121,18 @@ namespace prjIcedOutWheelz
                 dir = dir.Parent;
             }
 
-            return null;
+            return null; // Niet gevonden
         }
 
-        // Gaat terug naar het hoofdscherm
+        // Ga terug naar het hoofdscherm
         private void txthooftdpagina_Click(object sender, EventArgs e)
         {
             frmhoofdpagina frmhoofdpagina = new frmhoofdpagina();
             frmhoofdpagina.Show();
-            this.Close();
+            this.Hide();
         }
 
-        // Verwijdert een afbeelding uit de resources en reset de PictureBox
+        // Verwijder een afbeelding uit de resources
         private void btnremove_Click(object sender, EventArgs e)
         {
             string eindwerkPath = FindEindwerkPath();
@@ -140,6 +143,7 @@ namespace prjIcedOutWheelz
                 return;
             }
 
+            // Open dialoog om bestand te kiezen
             OpenFileDialog openFileDialog = new OpenFileDialog()
             {
                 InitialDirectory = eindwerkPath
@@ -153,7 +157,7 @@ namespace prjIcedOutWheelz
 
                 try
                 {
-                    // Controleer of het bestand bestaat en verwijder het
+                    // Verwijder bestand als het bestaat
                     if (File.Exists(selectedFile))
                     {
                         picAuto.Image.Dispose();
@@ -173,6 +177,7 @@ namespace prjIcedOutWheelz
             }
             else
             {
+                // Herhaal dialoog indien gewenst
                 DialogResult resultaat = MessageBox.Show("Geen bestand geselecteerd.\nWilt u de verkenner sluiten?", "Waarschuwing", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (resultaat == DialogResult.No)
@@ -182,14 +187,14 @@ namespace prjIcedOutWheelz
             }
         }
 
-        // Reset de afbeelding naar de standaardafbeelding
+        // Zet afbeelding terug naar standaard
         private void btnclear_Click(object sender, EventArgs e)
         {
             picAuto.Image.Dispose();
             picAuto.Image = Properties.Resources.placeholder_image;
         }
 
-        // Selecteert een afbeelding uit de resources
+        // Selecteer een afbeelding uit de resources
         private void btnselect_Click(object sender, EventArgs e)
         {
             string eindwerkPath = FindEindwerkPath();
@@ -213,6 +218,7 @@ namespace prjIcedOutWheelz
             }
             else
             {
+                // Herhaal dialoog indien gewenst
                 DialogResult resultaat = MessageBox.Show("Geen bestand geselecteerd.\nWilt u de verkenner sluiten?", "Waarschuwing", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (resultaat == DialogResult.No)
@@ -222,7 +228,7 @@ namespace prjIcedOutWheelz
             }
         }
 
-        // Toont de afbeelding van de geselecteerde auto in de lijst
+        // Toon afbeelding van geselecteerde auto
         private void lsbautos_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = lsbautos.SelectedIndex;
@@ -260,13 +266,14 @@ namespace prjIcedOutWheelz
             }
         }
 
-        // Voert een dialoog voor het invoeren van het merk van de auto
+        // Dialoog voor invoer merk
         private void btnMerk_Click(object sender, EventArgs e)
         {
             do
             {
                 strMerk = Interaction.InputBox("Gelieve het merk van de auto in te vullen", "Merk Auto");
 
+                // Validatie: geen cijfers, niet leeg
                 if (strMerk.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strMerk))
                 {
                     MessageBox.Show("Gelieve alleen letters te gebruiken en het veld niet leeg te laten!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -281,7 +288,7 @@ namespace prjIcedOutWheelz
             MessageBox.Show($"Merk opgeslagen: {strMerk}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        // Voert een dialoog voor het invoeren van het model van de auto
+        // Dialoog voor invoer model
         private void btnModel_Click(object sender, EventArgs e)
         {
             do
@@ -302,13 +309,14 @@ namespace prjIcedOutWheelz
             MessageBox.Show($"Model opgeslagen: {strType}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        // Voert een dialoog voor het invoeren van het bouwjaar van de auto
+        // Dialoog voor invoer bouwjaar
         private void btnBouwjaar_Click(object sender, EventArgs e)
         {
            do
             {
                 stropvang = Interaction.InputBox("Wat is het bouwjaar van de auto?", "Bouwjaar");
 
+                // Validatie: numeriek en niet leeg
                 if (string.IsNullOrWhiteSpace(stropvang) || !int.TryParse(stropvang, out intBouwjaar))
                 {
                     MessageBox.Show("Gelieve een geldig bouwjaar in te voeren!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -323,7 +331,7 @@ namespace prjIcedOutWheelz
             MessageBox.Show($"Bouwjaar opgeslagen: {intBouwjaar}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        // Logt uit en keert terug naar het startscherm
+        // Log uit en keer terug naar startscherm
         private void btnLoguit_Click(object sender, EventArgs e)
         {
             frmStartscherm frmStartscherm = new frmStartscherm();
@@ -331,7 +339,7 @@ namespace prjIcedOutWheelz
             this.Close();
         }
 
-        // Voert een dialoog voor het invoeren van het brandstoftype
+        // Dialoog voor invoer brandstof
         private void btnBrandstof_Click(object sender, EventArgs e)
         {
             do
@@ -352,6 +360,7 @@ namespace prjIcedOutWheelz
             MessageBox.Show($"Brandstof opgeslagen: {strBrandstof}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        // Verwijder geselecteerde auto uit database
         private void btnDel_Click(object sender, EventArgs e)
         {
             if (lsbautos.SelectedItem is DataRowView selectedRow)
@@ -364,13 +373,21 @@ namespace prjIcedOutWheelz
             }
         }
 
-        // Voert een dialoog voor het invoeren van de status van de auto
+        private void frmAdminscherm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frmhoofdpagina frm = new frmhoofdpagina();
+            this.Hide();
+            frm.Show();
+        }
+
+        // Dialoog voor invoer status
         private void btnAddStatus_Click(object sender, EventArgs e)
         {
             do
             {
                 strStatus = Interaction.InputBox("Maak een keuze voor de status van de auto:\nNieuw | Tweedehands", "Status Auto");
 
+                // Validatie: alleen uit lijst, geen cijfers, niet leeg
                 if (strStatus.Any(char.IsDigit) || string.IsNullOrWhiteSpace(strStatus) || !strStatusLijst.Contains(strStatus, StringComparer.OrdinalIgnoreCase))
                 {
                     MessageBox.Show("Gelieve alleen letters te gebruiken en het veld niet leeg te laten!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -388,12 +405,12 @@ namespace prjIcedOutWheelz
             MessageBox.Show($"Status opgeslagen: {strStatus}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        // Voegt een nieuwe auto toe aan de database met alle gekoppelde gegevens
+        // Voeg nieuwe auto toe aan database
         private void btnadd_Click(object sender, EventArgs e)
         {
             if(!AdminDA.DuplicateCarCheck(autoType.Merk, autoType._Type, autoType.Jaar))
             {
-                // Zet de huidige afbeelding om naar een byte array
+                // Zet afbeelding om naar byte array
                 if (picAuto.Image != null)
                 {
                     using (MemoryStream ms = new MemoryStream())
@@ -410,6 +427,7 @@ namespace prjIcedOutWheelz
                     autoType.Foto = null;
                 }
 
+                // Voeg type, motor, kleur en status toe en koppel deze
                 AdminDA.TypeToevoegen(autoType);
                 autoType.Typeid = AdminDA.GetAutoIdByMerkAndType(autoType.Merk, autoType._Type).ToString();
                 motorType.Autoid = autoType.Typeid;
@@ -429,10 +447,9 @@ namespace prjIcedOutWheelz
             {
                 MessageBox.Show("Deze auto bestaat al in de database!", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
         }
 
-        // Voert een dialoog voor het invoeren van motorgegevens
+        // Dialoog voor invoer motorgegevens
         private void Motorvermogen_Click(object sender, EventArgs e)
         {
             // Motortype opvragen
@@ -483,7 +500,7 @@ namespace prjIcedOutWheelz
             MessageBox.Show("Motorgegevens opgeslagen!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        // Voert een dialoog voor het invoeren van extra eigenschappen
+        // Dialoog voor invoer extra eigenschappen
         private void btnExtras_Click(object sender, EventArgs e)
         {
             do
@@ -500,7 +517,7 @@ namespace prjIcedOutWheelz
             MessageBox.Show($"Extras opgeslagen: {strextras}", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        // Voert een dialoog voor het kiezen van een kleur
+        // Dialoog voor kleurkeuze
         private void btnKleur_Click(object sender, EventArgs e)
         {
             do
@@ -525,7 +542,7 @@ namespace prjIcedOutWheelz
 
         }
 
-        // Voert een dialoog voor het invoeren van de prijs
+        // Dialoog voor invoer prijs
         private void btnPrijs_Click(object sender, EventArgs e)
         {
             do
